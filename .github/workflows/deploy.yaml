@@ -3,6 +3,9 @@ name: Deploy Quartz site
 on:
   push:
     branches: [main]
+    
+permissions:
+  contents: write
 
 jobs:
   deploy:
