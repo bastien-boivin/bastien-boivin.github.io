@@ -10,19 +10,19 @@
     <link>https://quartz.jzhao.xyz/config</link>
     <guid>https://quartz.jzhao.xyz/config</guid>
     <description>Quartz Configuration navbar name = “Accueil” href = ”/” navbar name = “Notes” href = “/notes” navbar name = “CV” href = “/cv”.</description>
-    <pubDate>Wed, 18 Jun 2025 17:23:45 GMT</pubDate>
+    <pubDate>Wed, 18 Jun 2025 17:31:22 GMT</pubDate>
   </item><item>
     <title>cv</title>
     <link>https://quartz.jzhao.xyz/cv</link>
     <guid>https://quartz.jzhao.xyz/cv</guid>
     <description></description>
-    <pubDate>Wed, 18 Jun 2025 17:23:45 GMT</pubDate>
+    <pubDate>Wed, 18 Jun 2025 17:31:22 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://quartz.jzhao.xyz/</link>
     <guid>https://quartz.jzhao.xyz/</guid>
     <description>Bienvenue ! Ceci est ma première note avec Quartz 🚀 Vous trouverez ici : 💻 des tutos 📄 mon CV 📚 mes projets 👉 Voir les notes.</description>
-    <pubDate>Wed, 18 Jun 2025 17:23:45 GMT</pubDate>
+    <pubDate>Wed, 18 Jun 2025 17:31:22 GMT</pubDate>
   </item>
     </channel>
   </rss>
