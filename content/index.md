@@ -1,11 +1,6 @@
 ---
 title: ""
 showTitle: false
-description: Page d’accueil
-tags:
-  - home
-created: 2025-06-18
-updated: 2025-06-19
 ---
 # Bienvenue !
 
