@@ -8,3 +8,24 @@ Vous trouverez ici :
 - 📚 mes projets
 
 👉 [Voir les notes](notes/)
+
+## Tutoriels Python
+
+:::gallery
+- [🛠️ Installer Conda](../notes/python/conda.md)
+- [📊 Analyse avec Pandas](../notes/python/pandas.md)
+:::
+
+<div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+  <a href="/notes/python/conda" style="flex: 1 1 200px; border: 1px solid #ccc; padding: 1rem; text-align: center;">🛠️ Conda</a>
+  <a href="/notes/linux/ssh" style="flex: 1 1 200px; border: 1px solid #ccc; padding: 1rem; text-align: center;">🔐 SSH</a>
+</div>
+
+> [!tip] Astuce Conda
+> Active ton environnement avec `conda activate monenv`
+
+> [!warning] Attention
+> Ne jamais supprimer `base` !
+
+![Test](assets/figure_ronan.png)
+

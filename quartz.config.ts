@@ -19,6 +19,9 @@ const config: QuartzConfig = {
     baseUrl: "quartz.jzhao.xyz",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
+    // 🔽 Ajout de la copie automatique des assets
+    assetsDir: ["content/assets"],
+
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
@@ -88,8 +91,7 @@ const config: QuartzConfig = {
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      // Comment out CustomOgImages to speed up build time
-      Plugin.CustomOgImages(),
+      Plugin.CustomOgImages(), // Tu peux commenter ici si build trop long
     ],
   },
 }
