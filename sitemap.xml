@@ -1,10 +1,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
+    <loc>https://quartz.jzhao.xyz/Notes/Linux/deb</loc>
+    <lastmod>2025-06-19T14:47:09.000Z</lastmod>
+  </url><url>
+    <loc>https://quartz.jzhao.xyz/Notes/Python/Environnements-Virtuels</loc>
+    <lastmod>2025-06-19T14:47:09.000Z</lastmod>
+  </url><url>
     <loc>https://quartz.jzhao.xyz/cv</loc>
-    <lastmod>2025-06-18T17:52:43.000Z</lastmod>
+    <lastmod>2025-06-19T14:47:09.000Z</lastmod>
   </url><url>
     <loc>https://quartz.jzhao.xyz/</loc>
-    <lastmod>2025-06-18T17:52:43.000Z</lastmod>
-  </url><url>
-    <loc>https://quartz.jzhao.xyz/ping</loc>
-    <lastmod>2025-06-18T17:52:43.000Z</lastmod>
+    <lastmod>2025-06-19T14:47:09.000Z</lastmod>
   </url></urlset>
