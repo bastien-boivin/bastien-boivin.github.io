@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0">
     <channel>
-      <title>Quartz 4</title>
+      <title>Bastien Boivin</title>
       <link>https://quartz.jzhao.xyz</link>
-      <description>Last 10 notes on Quartz 4</description>
+      <description>Last 10 notes on Bastien Boivin</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
     <title>deb</title>
     <link>https://quartz.jzhao.xyz/Notes/Linux/deb</link>
     <guid>https://quartz.jzhao.xyz/Notes/Linux/deb</guid>
     <description></description>
-    <pubDate>Thu, 19 Jun 2025 15:06:34 GMT</pubDate>
+    <pubDate>Thu, 19 Jun 2025 15:26:26 GMT</pubDate>
   </item><item>
     <title>Environnements Virtuels</title>
     <link>https://quartz.jzhao.xyz/Notes/Python/Environnements-Virtuels</link>
     <guid>https://quartz.jzhao.xyz/Notes/Python/Environnements-Virtuels</guid>
     <description></description>
-    <pubDate>Thu, 19 Jun 2025 15:06:34 GMT</pubDate>
+    <pubDate>Thu, 19 Jun 2025 15:26:26 GMT</pubDate>
   </item><item>
     <title>cv</title>
     <link>https://quartz.jzhao.xyz/cv</link>
     <guid>https://quartz.jzhao.xyz/cv</guid>
     <description></description>
-    <pubDate>Thu, 19 Jun 2025 15:06:34 GMT</pubDate>
+    <pubDate>Thu, 19 Jun 2025 15:26:26 GMT</pubDate>
   </item><item>
     <title>index</title>
     <link>https://quartz.jzhao.xyz/</link>
