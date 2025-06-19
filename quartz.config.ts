@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
+    pageTitle: "Bastien Boivin",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -19,7 +19,6 @@ const config: QuartzConfig = {
     baseUrl: "quartz.jzhao.xyz",
     ignorePatterns: ["private", "templates", ".obsidian"],
     defaultDateType: "modified",
-    // 🔽 Ajout de la copie automatique des assets
     assetsDir: ["content/assets"],
 
     theme: {
@@ -91,7 +90,7 @@ const config: QuartzConfig = {
       Plugin.Static(),
       Plugin.Favicon(),
       Plugin.NotFoundPage(),
-      Plugin.CustomOgImages(), // Tu peux commenter ici si build trop long
+      Plugin.CustomOgImages(),
     ],
   },
 }

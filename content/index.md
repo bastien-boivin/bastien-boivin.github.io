@@ -1,5 +1,6 @@
 ---
-title: index
+title: ""
+showTitle: false
 description: Page d’accueil
 tags:
   - home
