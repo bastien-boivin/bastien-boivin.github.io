@@ -18,7 +18,7 @@ Ce site rassemble mes notes techniques, scripts et réflexions sur la modélisat
 ## 📚 Navigation
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
-  <a href="/notes/cv" style="flex: 1 1 800px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
+  <a href="/Notes/Profil/Profil" style="flex: 1 1 800px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
     👨‍🎓<br><strong style="color: var(--dark);">Profil</strong>
   </a>
   <a href="/notes/python" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
