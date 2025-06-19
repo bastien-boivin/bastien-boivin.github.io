@@ -5,12 +5,6 @@ tags:
   - cv
 description: Profil de Bastien Boivin – Doctorant en modélisation hydrogéologique
 ---
-
-> [!info] À propos
-> **Bastien Boivin** – Doctorant en modélisation hydrogéologique à l'Université de Rennes, spécialisé dans l'étude des interactions surface-subsurface et l'impact du changement climatique sur les ressources en eau. 
-> 
-> Passionné par le développement d'outils Python pour automatiser la modélisation hydrogéologique, je contribue activement aux projets open-source **HydroModPy** et **GeoP4th** dans le cadre de mes travaux de recherche.
-
 ## 🎓 Formation & Recherche
 
 > [!abstract] Thèse de Doctorat (2024-2027)
@@ -109,40 +103,28 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 ## 🛠️ Compétences Techniques
 
 ### 🐍 Programmation & Développement
-- **Langages :** Python, R, SQL
-- **Outils :** FloPy, Pandas, NumPy, Matplotlib
+- **Langages :** Python, bash
+- **Outils :** FloPy, Pandas, NumPy, Matplotlib, Streamlit, ...
 - **Versioning :** Git, GitLab, GitHub
 - **Méthodologie :** Développement open-source, FAIR principles
 
 ### 💧 Modélisation Hydrogéologique
-- **Logiciels :** MODFLOW, MODPATH, MT3DMS
-- **Modules :** LAK (Lake), SFR (Streamflow Routing)
-- **Spécialités :** Couplage surface-subsurface, aquifères cristallins
+- **Logiciels :** MODFLOW-NWT, MODPATH, MT3DMS
+- **Modules :** LAK (Lake), SFR (Streamflow Routing), DIS (Discretization)
+- **Spécialités :** Couplage surface-subsurface, aquifères cristallins, Modélisation de Lac
 - **Applications :** Gestion de ressources, changement climatique
 
 ### 🗺️ Outils Géospatiaux
 - **Librairies :** WhiteboxTools, GDAL, Rasterio
-- **SIG :** QGIS, ArcGIS
-- **Données :** MNT, imagerie satellite, bases hydrogéologiques
+- **SIG :** QGIS, Python
+- **Données :** MNT, Raster, NetCDF, xyz
 - **Analyses :** Délimitation de bassins versants, réseaux hydrographiques
 
 ### 🌍 Changement Climatique & Gestion
-- **Données climatiques :** SIM2 (Météo-France), projections IPCC
+- **Données climatiques :** SIM2 (Météo-France), projections IPCC, ERA5-Land ...
 - **Modélisation :** Scénarios climatiques, impacts hydrologiques
 - **Applications :** Aide à la décision, gestion prévisionnelle
 - **Secteurs :** Production d'eau potable, ressources en eau
-
----
-
-## 🏆 Domaines d'Expertise
-
-| Domaine | Niveau | Applications |
-|---------|--------|-------------|
-| **Modélisation hydrogéologique** | Expert | Aquifères cristallins, couplage surface-subsurface |
-| **Développement Python** | Avancé | Automatisation, outils scientifiques, open-source |
-| **Changement climatique** | Avancé | Impacts sur ressources en eau, adaptation |
-| **Géomatique** | Intermédiaire | Analyse spatiale, traitement de données géographiques |
-| **Gestion de l'eau** | Intermédiaire | Production d'eau potable, aide à la décision |
 
 ---
 
@@ -161,7 +143,3 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 
 > [!quote] 
 > *"L'avenir de la gestion de l'eau repose sur notre capacité à comprendre et modéliser les interactions complexes entre surface et subsurface, dans un contexte de changement climatique."*
-
----
-
-**Dernière mise à jour :** Juin 2025
