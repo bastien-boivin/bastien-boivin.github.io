@@ -27,16 +27,38 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Profil/Profil.md",
-                "mode": "source",
-                "source": false
+                "file": "Notes/Python/Gestion des environnements.md",
+                "mode": "preview",
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "Profil"
-            }
+              "title": "Gestion des environnements"
+            },
+            "group": "c4eebecd0b014b0f"
           }
         ],
         "currentTab": 1
+      },
+      {
+        "id": "58fd0647f762678a",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a1b44796ab0a6d29",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Notes/Python/Gestion des environnements.md",
+                "mode": "source",
+                "source": true
+              },
+              "icon": "lucide-file",
+              "title": "Gestion des environnements"
+            },
+            "group": "c4eebecd0b014b0f"
+          }
+        ]
       }
     ],
     "direction": "vertical"
@@ -184,15 +206,17 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "36fccdc5153c8bc3",
+  "active": "a1b44796ab0a6d29",
   "lastOpenFiles": [
+    "Notes/Python/Packages Python.md",
+    "Notes/Python/Gestion des environnements.md",
+    "Notes/Profil/Profil.md",
+    "Gestion des environnements Python.md",
     "index.md",
     "Notes/Vrac",
     "Notes/SIG",
     "Notes/Quartz",
-    "Notes/Python/Environnements Virtuels.md",
     "Notes/Python",
-    "Notes/Profil/Profil.md",
     "Notes/Profil",
     "Notes/Linux/deb.md",
     "Notes/Linux",
@@ -213,7 +237,6 @@
     "cv.md",
     "assets",
     "content/assets",
-    "Notes/Python/Untitled.md",
     "ping.md",
     "config.md"
   ]
