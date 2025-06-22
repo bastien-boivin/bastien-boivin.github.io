@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Python/Fichier d'installation.md",
+                "file": "Notes/Python/Python - Hub.md",
                 "mode": "preview",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Fichier d'installation"
+              "title": "Python - Hub"
             },
             "group": "614e50aa5ea8a6dc"
           }
@@ -34,12 +34,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Python/Fichier d'installation.md",
+                "file": "Notes/Python/Python - Hub.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Fichier d'installation"
+              "title": "Python - Hub"
             },
             "group": "614e50aa5ea8a6dc"
           }
@@ -164,13 +164,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Notes/Python/Fichier d'installation.md",
+                "file": "Notes/Python/Python - Hub.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Fichier d'installation"
+              "title": "Outline of Python - Hub"
             }
           }
         ],
@@ -194,12 +194,12 @@
   },
   "active": "4e58757db190c3d1",
   "lastOpenFiles": [
+    "Notes/Python/Fichier d'installation.md",
     "Notes/Python/Gestion des environnements.md",
     "Notes/Python/Packages Python.md",
     "Notes/Python/pyproject.toml.md",
     "Notes/Python/Python - Hub.md",
     "index.md",
-    "Notes/Python/Fichier d'installation.md",
     "Notes/Profil/Profil.md",
     "Notes/Linux/deb.md",
     "Gestion des environnements Python.md",
