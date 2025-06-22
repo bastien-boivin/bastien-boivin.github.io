@@ -1,5 +1,5 @@
 ---
-title: Gestion des environnements Python
+title: Gestion des environnements
 tags:
   - python
   - conda
@@ -12,10 +12,10 @@ description: Guide complet pour la gestion des environnements Python avec conda 
 
 La gestion des environnements Python est cruciale pour maintenir des projets isolés et reproductibles. Plusieurs solutions existent : `venv`, `virtualenv`, `pipenv`, `poetry`, `conda`, `mamba`...
 
-Dans cette note, je me concentre sur **conda** et **mamba** qui sont particulièrement adaptés pour mon utilisation (_datasciences_) et les projets nécessitant des dépendances complexes.
+Dans cette note, je me concentre sur **conda** et **mamba** qui sont particulièrement adaptés pour mon utilisation (_datasciences_) et les projets présentant des inter-dépendances complexes.
 
 > [!info] Note complémentaire
-> Pour la gestion des packages dans les environnements, voir : [[Packages Python]]
+> Pour la gestion des packages dans les environnements (`conda` et `pip`), voir : [[Packages Python]]
 
 ---
 
@@ -81,8 +81,6 @@ conda install --revision 2
 #### Supprimer un environnement
 
 ```bash
-conda env remove -n mon_env
-# ou
 conda remove -n mon_env --all
 
 # Supprimer un environnement par chemin
@@ -91,7 +89,9 @@ conda env remove -p ./envs/mon_env
 
 ### 📋 Environnements reproductibles
 
-#### Créer depuis un fichier YAML
+>[!info] Voir la note [[Fichier d'installation]] qui présente les différents formats, yml | yaml | txt | etc...
+
+#### Créer depuis un fichier YML
 
 ```bash
 # Créer depuis environment.yml
@@ -103,6 +103,8 @@ conda env create -f environment.yml -n nouveau_nom
 # Mettre à jour un environnement existant
 conda env update -f environment.yml --prune
 ```
+
+>[!info] L'option `--prune` fait en sorte que la conda élimine toute dépendance qui n'est plus nécessaire de l'environnement lors de la mise à jours. 
 
 #### Structure d'un fichier environment.yml
 
@@ -190,7 +192,7 @@ conda clean --packages
 conda clean --index-cache
 ```
 
-> [!info]- 🧹 Détails sur `conda clean`
+> [!warning]- 🧹 Détails sur `conda clean`
 > 
 > - `--all` : supprime **tout ce qui est nettoyable** (à utiliser avec précaution)
 > - `--tarballs` : supprime les archives `.tar.bz2` téléchargées
@@ -220,11 +222,11 @@ conda config --show solver
 
 ---
 
-## 🚄 Mamba : L'alternative rapide
+## ⚡ Mamba : L'alternative rapide
 
 🔗 [Documentation officielle de Mamba](https://mamba.readthedocs.io/)
 
-### 🧱 Installation avec Miniforge
+### ⚒️ Installation avec Miniforge
 
 **Miniforge** : distribution conda minimale avec mamba natif et conda-forge par défaut.
 
@@ -281,7 +283,7 @@ mamba activate mon_env
 - Résolution parfois légèrement différente (généralement meilleure)
 - Moins de documentation disponible en ligne
 
-### 🛠️ Configuration recommandée
+### 🛠️ Configuration recommandée - conda / mamba
 
 ```bash
 # Définir conda-forge en priorité
@@ -304,45 +306,42 @@ mamba config --show
 
 ```bash
 # 1. Créer l'environnement avec version Python spécifique
-mamba create -n projet_2025 python=3.11
+conda create -n projet python=3.11
 
 # 2. Activer
-mamba activate projet_2025
+conda activate projet
 
 # 3. Installer les dépendances de base
-mamba install -c conda-forge numpy pandas matplotlib
+conda install -c conda-forge numpy pandas matplotlib
 
 # 4. Exporter pour la reproductibilité
-mamba env export --no-builds > environment.yml
-
-# 5. Ajouter au contrôle de version
-git add environment.yml
+conda env export --no-builds > environment.yml
 ```
 
 ### 🔄 Reproduire un environnement
 
 ```bash
 # Créer depuis le fichier
-mamba env create -f environment.yml
+conda env create -f environment.yml
 
 # Ou mettre à jour un environnement existant
-mamba env update -f environment.yml --prune
+conda env update -f environment.yml --prune
 
 # Activer
-mamba activate nom_du_projet
+conda activate nom_du_projet
 ```
 
 ### 🔧 Maintenance régulière
 
 ```bash
 # Mettre à jour l'environnement
-mamba update --all
+conda update --all
 
 # Exporter les changements
-mamba env export --no-builds > environment.yml
+conda env export --no-builds > environment.yml
 
 # Nettoyer périodiquement
-mamba clean --tarballs
+conda clean --tarballs
 ```
 
 > [!tip] Bonnes pratiques
@@ -352,7 +351,7 @@ mamba clean --tarballs
 > - **Export régulier** de `environment.yml`
 > - **Toujours utiliser conda-forge** comme canal principal
 > - **Utiliser Mamba** pour optimiser les performances
-> - **Versionner** les fichiers `environment.yml`
+> - **Versionner** les fichiers `environment.yml` (git)
 
 ---
 
@@ -362,22 +361,22 @@ mamba clean --tarballs
 
 ```bash
 # Recréer un environnement depuis l'export
-mamba env create -f environment.yml --force
+conda env create -f environment.yml --force
 
 # Ou nettoyer et réinstaller
-mamba clean --all
-mamba env remove -n problematic_env
-mamba env create -f environment.yml
+conda clean --all
+conda env remove -n problematic_env
+conda env create -f environment.yml
 ```
 
 ### Conflits de dépendances
 
 ```bash
 # Forcer la résolution avec mamba (plus efficace)
-mamba install package_name --force-reinstall
+conda install package_name --force-reinstall
 
 # Ou installer depuis un canal spécifique
-mamba install -c conda-forge package_name
+conda install -c conda-forge package_name
 ```
 
 ### Problèmes de performance
@@ -403,7 +402,3 @@ conda config --set solver libmamba
 
 - [Cheat sheet Conda](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)
 - [Guide migration vers Mamba](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html)
-
-### Notes connexes
-
-- [[Packages Python]] - Installation et gestion des librairies

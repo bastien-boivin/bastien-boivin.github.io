@@ -6,6 +6,7 @@
       {
         "id": "a798941aa5dbb608",
         "type": "tabs",
+        "dimension": 48.78854625550661,
         "children": [
           {
             "id": "5ba9a9f489a735bb",
@@ -27,12 +28,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Python/Gestion des environnements.md",
+                "file": "Notes/Python/pyproject.toml.md",
                 "mode": "preview",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Gestion des environnements"
+              "title": "pyproject.toml"
             },
             "group": "c4eebecd0b014b0f"
           }
@@ -42,6 +43,7 @@
       {
         "id": "58fd0647f762678a",
         "type": "tabs",
+        "dimension": 51.2114537444934,
         "children": [
           {
             "id": "a1b44796ab0a6d29",
@@ -49,12 +51,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Python/Gestion des environnements.md",
+                "file": "Notes/Python/pyproject.toml.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Gestion des environnements"
+              "title": "pyproject.toml"
             },
             "group": "c4eebecd0b014b0f"
           }
@@ -179,21 +181,21 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Notes/Profil/Profil.md",
+                "file": "Notes/Python/pyproject.toml.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Profil"
+              "title": "Outline of pyproject.toml"
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 497.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -203,22 +205,25 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "obsidian-git:Open Git source control": false
+      "obsidian-git:Open Git source control": false,
+      "copilot:Open Copilot Chat": false
     }
   },
-  "active": "a1b44796ab0a6d29",
+  "active": "36fccdc5153c8bc3",
   "lastOpenFiles": [
     "Notes/Python/Packages Python.md",
+    "Notes/Python/pyproject.toml.md",
     "Notes/Python/Gestion des environnements.md",
+    "Notes/Python/Fichier d'installation.md",
     "Notes/Profil/Profil.md",
-    "Gestion des environnements Python.md",
+    "Notes/Linux/deb.md",
     "index.md",
+    "Gestion des environnements Python.md",
     "Notes/Vrac",
     "Notes/SIG",
     "Notes/Quartz",
     "Notes/Python",
     "Notes/Profil",
-    "Notes/Linux/deb.md",
     "Notes/Linux",
     "Notes/dev",
     "assets/researchgate-logo.png",

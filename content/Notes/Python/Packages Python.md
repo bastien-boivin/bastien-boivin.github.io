@@ -1,5 +1,5 @@
 ---
-title: Gestion des packages Python
+title: Packages Python
 tags:
   - python
   - conda
@@ -45,7 +45,7 @@ Cette note complète le guide sur la [[Gestion des environnements]] en détailla
 
 ## 🛠️ Installation avec Conda/Mamba
 
->[!tip] Possible de remplacer `conda` par `mamba` comme expliqué dans [[Gestion des environnements#Compatibilité complète]]
+>[!tip] Possible de remplacer `conda` par `mamba` comme expliqué dans [[Gestion des environnements#Compatibilité complète]] **à lire**
 ### 📥 Installation basique
 
 ```bash
@@ -76,7 +76,7 @@ conda config --set channel_priority strict
 conda config --show channels
 
 # Installer depuis un canal spécifique sans l'ajouter
-conda install -c bioconda package_name
+conda install -c conda-forge package_name
 
 # Ordre de priorité des canaux (par défaut)
 conda config --add channels defaults
@@ -218,35 +218,15 @@ conda install -c conda-forge gdal geos proj
 
 # Package géospatiaux populaires
 conda install -c conda-forge geopandas rasterio fiona shapely
-
-# Stack complète géospatiale
-conda install -c conda-forge geopandas rasterio fiona shapely pyproj cartopy folium contextily
 ```
 
-> [!warning] GDAL avec Pip Installer GDAL avec pip peut être **très problématique** :
+> [!warning] Installer GDAL avec pip peut être **très problématique** :
 > 
 > - Compilation complexe
 > - Dépendances système requises
 > - Versions incompatibles fréquentes
 > 
 > **Utilisez toujours conda/mamba pour GDAL !**
-
-### 🧭 Packages spécialisés géosciences
-
-```bash
-# Hydrologie
-conda install -c conda-forge flopy modflow-devtools
-
-# Traitement d'images satellite
-conda install -c conda-forge rioxarray xarray dask
-
-# Visualisation cartographique
-conda install -c conda-forge cartopy geoviews holoviews
-
-# Machine learning géospatial
-conda install -c conda-forge scikit-image scikit-learn
-```
-
 ---
 
 ## 🔄 Stratégies de gestion hybride Conda + Pip
@@ -379,7 +359,3 @@ pip install --upgrade package_name
 - [conda-tree](https://github.com/rvalieris/conda-tree) : visualiser l'arbre des dépendances
 - [pipdeptree](https://github.com/tox-dev/pipdeptree) : arbre des dépendances pip
 - [pip-audit](https://github.com/pypa/pip-audit) : audit de sécurité
-
-### 📋 Notes connexes
-
-- [[Gestion des environnements]] - Création et gestion des environnements
