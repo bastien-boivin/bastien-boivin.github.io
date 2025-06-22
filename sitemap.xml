@@ -1,19 +1,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
-    <loc>https://quartz.jzhao.xyz/Gestion-des-environnements-Python</loc>
-    <lastmod>2025-06-21T09:35:47.000Z</lastmod>
-  </url><url>
     <loc>https://quartz.jzhao.xyz/Notes/Linux/deb</loc>
-    <lastmod>2025-06-21T09:35:47.000Z</lastmod>
+    <lastmod>2025-06-22T17:40:55.000Z</lastmod>
   </url><url>
     <loc>https://quartz.jzhao.xyz/Notes/Profil/Profil</loc>
-    <lastmod>2025-06-21T09:35:47.000Z</lastmod>
+    <lastmod>2025-06-22T17:40:55.000Z</lastmod>
+  </url><url>
+    <loc>https://quartz.jzhao.xyz/Notes/Python/Fichier-d'installation</loc>
+    <lastmod>2025-06-22T17:40:55.000Z</lastmod>
   </url><url>
     <loc>https://quartz.jzhao.xyz/Notes/Python/Gestion-des-environnements</loc>
-    <lastmod>2025-06-21T09:35:47.000Z</lastmod>
+    <lastmod>2025-06-22T17:40:55.000Z</lastmod>
   </url><url>
     <loc>https://quartz.jzhao.xyz/Notes/Python/Packages-Python</loc>
-    <lastmod>2025-06-21T09:35:47.000Z</lastmod>
+    <lastmod>2025-06-22T17:40:55.000Z</lastmod>
+  </url><url>
+    <loc>https://quartz.jzhao.xyz/Notes/Python/pyproject.toml</loc>
+    <lastmod>2025-06-22T17:40:55.000Z</lastmod>
   </url><url>
     <loc>https://quartz.jzhao.xyz/</loc>
-    <lastmod>2025-06-21T09:35:47.000Z</lastmod>
+    <lastmod>2025-06-22T17:40:55.000Z</lastmod>
   </url></urlset>
