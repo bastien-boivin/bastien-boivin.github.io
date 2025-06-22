@@ -1,5 +1,5 @@
 ---
-title: Python - Hub
+title: Python Hub
 tags:
   - python
   - index
