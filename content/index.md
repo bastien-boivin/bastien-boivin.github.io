@@ -21,7 +21,7 @@ Ce site rassemble mes notes techniques, scripts et réflexions sur la modélisat
   <a href="/Notes/Profil/Profil" style="flex: 1 1 800px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
     👨‍🎓<br><strong style="color: var(--dark);">Profil</strong>
   </a>
-  <a href="/notes/python" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
+  <a href="/notes/python/Python - Hub" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
     🐍<br><strong style="color: var(--dark);">Python</strong>
   </a>
   <a href="/notes/linux" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">

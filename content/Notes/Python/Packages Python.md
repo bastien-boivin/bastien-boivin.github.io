@@ -64,6 +64,7 @@ conda install -c conda-forge numpy pandas matplotlib geopandas
 ````
 
 ### 🌐 Gestion des canaux
+>[!tip] Possible de le géré par défaut, voir [[Gestion des environnements]]
 
 ```bash
 # Ajouter un canal
