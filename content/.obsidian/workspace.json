@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Linux/Gestion des .deb.md",
+                "file": "index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Gestion des .deb"
+              "title": "index"
             },
             "group": "614e50aa5ea8a6dc"
           }
@@ -34,12 +34,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Linux/Gestion des .deb.md",
+                "file": "index.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Gestion des .deb"
+              "title": "index"
             },
             "group": "614e50aa5ea8a6dc"
           }
@@ -164,13 +164,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Notes/Linux/Gestion des .deb.md",
+                "file": "index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Gestion des .deb"
+              "title": "Outline of index"
             }
           }
         ],
@@ -193,11 +193,13 @@
   },
   "active": "78ddc703e4414fdb",
   "lastOpenFiles": [
+    "Notes/Python/Python Hub.md",
     "Notes/Profil/Profil.md",
+    "Notes/Linux/Linux Hub.md",
     "Notes/Linux/Gestion des .deb.md",
+    "Gestion des paquets .deb.md",
     "Notes/Python/Fichier d'installation.md",
     "index.md",
-    "Notes/Python/Python Hub.md",
     "Notes/Python/Gestion des environnements.md",
     "Notes/Python/Packages Python.md",
     "Notes/Python/pyproject.toml.md",

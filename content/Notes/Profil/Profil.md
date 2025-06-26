@@ -110,6 +110,47 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 
 ---
 
+## 💻 Configuration d'équipement
+
+> [!info] Station de travail de recherche 
+> Configuration utilisée pour le développement Python, la modélisation hydrogéologique et l'analyse de données géospatiales.
+
+### 🖥️ HP EliteBook 840 G11 - Spécifications détaillées
+
+**🔧 Processeur**
+
+- **Intel Core Ultra 7 165H** (Meteor Lake - 7nm Intel 4)
+- **Architecture hybride :** 6 P-cores + 8 E-cores + 2 LP E-cores = **16 cœurs / 22 threads**
+- **Fréquences :** Base 1.4 GHz → Turbo max 5.0 GHz
+- **Cache :** 24 MB L3 Intel Smart Cache
+- **TDP :** 28W (base) / 115W (turbo max)
+
+**🎮 Graphiques**
+
+- **Intel Arc Graphics** (8 Xe-cores) intégrés
+- **Support :** DirectX 12, Vulkan, OpenGL 4.6
+- **Accélération AI :** NPU intégré (Neural Processing Unit)
+
+**🧠 Mémoire & Stockage**
+
+- **RAM :** 64 GB DDR5-5600
+- **Stockage :** 1 TB PCIe NVMe SSD (vitesses jusqu'à 15.7 GB/s)
+
+### 🐧 Environnement logiciel
+
+**Système d'exploitation**
+
+- **OS :** Ubuntu 24.04.2 LTS (au 2025-06-26)
+- **Kernel :** Linux 6.11.0-26-generic
+- **DE :** GNOME 46.0 (Wayland)
+- **Shell :** Zsh avec configuration personnalisée
+
+### ⚙️ Stack de développement
+
+- **Gestionnaire packages :** Mamba (Miniforge)
+- **IDE :** VScode
+- **SIG :** Qgis
+
 ## 🔗 Contact & Liens
 
 <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; align-items: center;">
