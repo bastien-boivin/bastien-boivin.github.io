@@ -216,6 +216,14 @@ conda config --set solver libmamba
 
 # Vérifier la configuration
 conda config --show solver
+
+# Définir conda-forge en priorité
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+
+# Vérifier la configuration
+mamba config --show channels
+mamba config --show
 ```
 
 > [!success] Performance Libmamba est **10 à 100 fois plus rapide** que le solveur par défaut de conda.
@@ -282,21 +290,6 @@ mamba activate mon_env
 - Base d'utilisateurs plus petite (mais en croissance rapide)
 - Résolution parfois légèrement différente (généralement meilleure)
 - Moins de documentation disponible en ligne
-
-### 🛠️ Configuration recommandée - conda / mamba
-
-```bash
-# Définir conda-forge en priorité
-mamba config --add channels conda-forge
-mamba config --set channel_priority strict
-
-# Configuration SSL si problèmes réseau
-mamba config --set ssl_verify false  # à éviter en production
-
-# Vérifier la configuration
-mamba config --show channels
-mamba config --show
-```
 
 ---
 

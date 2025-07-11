@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "Notes/Python/Gestion des environnements.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "Gestion des environnements"
             },
             "group": "614e50aa5ea8a6dc"
           }
@@ -34,12 +34,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "Notes/Python/Gestion des environnements.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "index"
+              "title": "Gestion des environnements"
             },
             "group": "614e50aa5ea8a6dc"
           }
@@ -164,13 +164,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index.md",
+                "file": "Notes/Python/Gestion des environnements.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of index"
+              "title": "Outline of Gestion des environnements"
             }
           }
         ],
@@ -193,13 +193,13 @@
   },
   "active": "78ddc703e4414fdb",
   "lastOpenFiles": [
+    "Notes/Linux/Linux Hub.md",
+    "index.md",
     "Notes/Python/Python Hub.md",
     "Notes/Profil/Profil.md",
-    "Notes/Linux/Linux Hub.md",
     "Notes/Linux/Gestion des .deb.md",
     "Gestion des paquets .deb.md",
     "Notes/Python/Fichier d'installation.md",
-    "index.md",
     "Notes/Python/Gestion des environnements.md",
     "Notes/Python/Packages Python.md",
     "Notes/Python/pyproject.toml.md",
