@@ -10,15 +10,15 @@ tags:
 description: Guide complet pour l'installation et la gestion des packages Python avec conda, mamba et pip
 ---
 
-## 📦 Gestion des packages Python
+## Gestion des packages Python
 
 Cette note complète le guide sur la [[Gestion des environnements]] en détaillant l'installation et la gestion des packages dans les environnements conda/mamba.
 
 ---
 
-## 🔍 Conda vs Pip : Comprendre les différences
+## Conda vs Pip : Comprendre les différences
 
-### 🏗️ Architecture et fonctionnement
+### Architecture et fonctionnement
 
 | Aspect           | Conda                                 | Pip                         |
 | ---------------- | ------------------------------------- | --------------------------- |
@@ -27,7 +27,7 @@ Cette note complète le guide sur la [[Gestion des environnements]] en détailla
 | **Langages**     | Python, R, C++, Fortran...            | Python uniquement           |
 | **Installation** | Binaires optimisés                    | Compilation locale possible |
 
-### 🎯 Quand utiliser quoi ?
+### Quand utiliser quoi ?
 
 #### Préférer Conda/Mamba pour :
 - **Packages scientifiques** (numpy, scipy, pandas, matplotlib)
@@ -43,10 +43,10 @@ Cette note complète le guide sur la [[Gestion des environnements]] en détailla
 
 ---
 
-## 🛠️ Installation avec Conda/Mamba
+## Installation avec Conda/Mamba
 
 >[!tip] Possible de remplacer `conda` par `mamba` comme expliqué dans [[Gestion des environnements#Compatibilité complète]] **à lire**
-### 📥 Installation basique
+### Installation basique
 
 ```bash
 # Package simple
@@ -61,9 +61,9 @@ conda install -c conda-forge geopandas
 
 # Plusieurs packages
 conda install -c conda-forge numpy pandas matplotlib geopandas
-````
+```
 
-### 🌐 Gestion des canaux
+### Gestion des canaux
 >[!tip] Possible de le géré par défaut, voir [[Gestion des environnements]]
 
 ```bash
@@ -90,7 +90,7 @@ conda config --add channels conda-forge  # Plus prioritaire
 > - **defaults** : canal officiel Anaconda
 > - **pytorch** : pour PyTorch et dépendances
 
-### 🔄 Mise à jour et suppression
+### Mise à jour et suppression
 
 ```bash
 # Mettre à jour un package
@@ -110,7 +110,7 @@ conda list
 conda list numpy  # recherche spécifique
 ```
 
-### 🔍 Recherche de packages
+### Recherche de packages
 
 ```bash
 # Rechercher un package
@@ -128,9 +128,9 @@ conda depends numpy
 
 ---
 
-## 🐍 Installation avec Pip
+## Installation avec Pip
 
-### 📦 Installation depuis PyPI
+### Installation depuis PyPI
 
 ```bash
 # Installation basique
@@ -147,7 +147,7 @@ pip install requests beautifulsoup4 lxml
 pip install -r requirements.txt
 ```
 
-### 🔗 Installation depuis Git
+### Installation depuis Git
 
 ```bash
 # Depuis une branche spécifique
@@ -166,7 +166,7 @@ pip install git+ssh://git@github.com/user/repo.git
 pip install git+https://gitlab.com/user/repo.git
 ```
 
-### 🏠 Installation en mode développement
+### Installation en mode développement
 
 ```bash
 # Installation locale éditable (mode développement)
@@ -183,7 +183,7 @@ pip install -e ./path/to/package
 pip uninstall package_name
 ```
 
-### 🔧 Options avancées de Pip
+### Options avancées de Pip
 
 ```bash
 # Installation sans cache
@@ -207,9 +207,9 @@ pip download package_name
 
 ---
 
-## 🌍 Packages géospatiaux : cas particuliers
+## Packages géospatiaux : cas particuliers
 
-### 🗺️ GDAL et écosystème géospatial
+### GDAL et écosystème géospatial
 
 Les packages géospatiaux ont des dépendances complexes (GDAL, GEOS, PROJ, etc.). **Conda est fortement recommandé** :
 
@@ -230,9 +230,9 @@ conda install -c conda-forge geopandas rasterio fiona shapely
 > **Utilisez toujours conda/mamba pour GDAL !**
 ---
 
-## 🔄 Stratégies de gestion hybride Conda + Pip
+## Stratégies de gestion hybride Conda + Pip
 
-### 📋 Ordre d'installation recommandé
+### Ordre d'installation recommandé
 
 ```bash
 # 1. D'abord, installer les packages scientifiques/géospatiaux avec conda
@@ -245,7 +245,7 @@ pip install requests beautifulsoup4 streamlit
 pip install git+https://github.com/user/dev_package.git
 ```
 
-### 📝 Fichier environment.yml hybride
+### Fichier environment.yml hybride
 
 ```yaml
 name: projet_geo
@@ -278,9 +278,9 @@ dependencies:
 
 ---
 
-## 🔧 Résolution de conflits et problèmes
+## Résolution de conflits et problèmes
 
-### ⚠️ Conflits de dépendances
+### Conflits de dépendances
 
 ```bash
 # Diagnostiquer les conflits
@@ -297,7 +297,7 @@ conda env remove -n env_name
 conda env create -f environment.yml
 ```
 
-### 🧹 Nettoyage des packages
+### Nettoyage des packages
 
 ```bash
 # Conda/Mamba
@@ -312,9 +312,9 @@ pip cache info
 
 ---
 
-## 📊 Monitoring et audit des packages
+## Monitoring et audit des packages
 
-### 🔍 Informations sur les packages
+### Informations sur les packages
 
 ```bash
 # Détails d'un package conda
@@ -331,7 +331,7 @@ pip install pipdeptree
 pipdeptree
 ```
 
-### 🔐 Sécurité et vulnérabilités
+### Sécurité et vulnérabilités
 
 ```bash
 # Audit de sécurité avec pip-audit
@@ -347,15 +347,15 @@ pip install --upgrade package_name
 
 ---
 
-## 🔗 Ressources et documentation
+## Ressources et documentation
 
-### 📖 Documentation officielle
+### Documentation officielle
 
 - [Conda packages](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-pkgs.html)
 - [Pip user guide](https://pip.pypa.io/en/stable/user_guide/)
 - [Conda-forge documentation](https://conda-forge.org/docs/)
 
-### 🛠️ Outils utiles
+### Outils utiles
 
 - [conda-tree](https://github.com/rvalieris/conda-tree) : visualiser l'arbre des dépendances
 - [pipdeptree](https://github.com/tox-dev/pipdeptree) : arbre des dépendances pip

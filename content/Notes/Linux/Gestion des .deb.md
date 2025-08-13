@@ -8,7 +8,7 @@ tags:
   packages
 description: Guide complet pour installer, mettre à jour et supprimer des paquets .deb sous distributions Debian/Ubuntu
 ---
-## 📦 Gestion des fichiers `.deb`
+## Gestion des fichiers `.deb`
 
 Les fichiers `.deb` sont le format de paquets standard des distributions basées sur Debian (Ubuntu, Linux Mint, etc.). Ils contiennent tous les éléments nécessaires à l'installation d'un logiciel : binaires, métadonnées, scripts de configuration et informations sur les dépendances.
 
@@ -21,9 +21,9 @@ Les fichiers `.deb` sont le format de paquets standard des distributions basées
 
 ---
 
-## 🛠️ Méthodes d'installation
+## Méthodes d'installation
 
-### 📥 Méthode recommandée : `apt install`
+### Méthode recommandée : `apt install`
 
 ```bash
 # Installation directe avec gestion des dépendances
@@ -38,14 +38,14 @@ sudo apt install ./*.deb
 
 **Avantages :**
 
-- ✅ Gestion automatique des dépendances
-- ✅ Intégration avec le système de packages
-- ✅ Vérifications de sécurité
-- ✅ Suivi des packages installés
+- Gestion automatique des dépendances
+- Intégration avec le système de packages
+- Vérifications de sécurité
+- Suivi des packages installés
 
 > [!tip] Pourquoi `./` avant le nom du fichier ? Le `./` indique à `apt` qu'il s'agit d'un fichier local et non d'un package des dépôts. Sans cela, `apt` cherchera le package dans les dépôts configurés.
 
-### ⚙️ Méthode alternative : `dpkg`
+### Méthode alternative : `dpkg`
 
 ```bash
 # Installation basique (sans résolution automatique des dépendances)
@@ -63,7 +63,7 @@ sudo apt install -f
 
 > [!warning] Attention avec dpkg `dpkg` n'installe **pas** automatiquement les dépendances. Il est nécessaire d'utiliser `apt install -f` après pour résoudre les dépendances manquantes.
 
-### 🖱️ Installation graphique : `gdebi`
+### Installation graphique : `gdebi`
 
 ```bash
 # Installer gdebi
@@ -84,9 +84,9 @@ sudo gdebi nom_du_fichier.deb
 
 ---
 
-## 🔍 Vérification et informations
+## Vérification et informations
 
-### 📋 Examiner un fichier .deb avant installation
+### Examiner un fichier .deb avant installation
 
 ```bash
 # Afficher les métadonnées du package
@@ -102,7 +102,7 @@ dpkg --field nom_du_fichier.deb Depends
 ar t nom_du_fichier.deb
 ```
 
-### 🔎 Packages installés
+### Packages installés
 
 ```bash
 # Lister tous les packages installés
@@ -123,9 +123,9 @@ dpkg -S /chemin/vers/fichier
 
 ---
 
-## 🔁 Mise à jour des packages .deb
+## Mise à jour des packages .deb
 
-### ⚡ Mise à jour manuelle
+### Mise à jour manuelle
 
 ```bash
 # 1. Télécharger la nouvelle version
@@ -138,7 +138,7 @@ sudo apt install ./nouveau_package.deb
 dpkg -l | grep nom_du_paquet
 ```
 
-### 🔄 Automatisation avec scripts
+### Automatisation avec scripts
 
 ```bash
 #!/bin/bash
@@ -155,9 +155,9 @@ wget -O latest.deb $DOWNLOAD_URL
 # Vérification de l'intégrité (optionnel)
 if dpkg --info latest.deb > /dev/null 2>&1; then
     sudo apt install ./latest.deb
-    echo "✅ Mise à jour réussie"
+    echo "Mise à jour réussie"
 else
-    echo "❌ Fichier .deb corrompu"
+    echo "Fichier .deb corrompu"
 fi
 
 # Nettoyage
@@ -168,9 +168,9 @@ rm latest.deb
 
 ---
 
-## 🗑️ Désinstallation et nettoyage
+## Désinstallation et nettoyage
 
-### 🔄 Suppression standard
+### Suppression standard
 
 ```bash
 # Supprimer le package (garde les fichiers de config)
@@ -186,7 +186,7 @@ sudo apt autoremove
 sudo apt autoclean
 ```
 
-### 🧹 Nettoyage avancé
+### Nettoyage avancé
 
 ```bash
 # Supprimer tous les résidus de configuration
@@ -202,7 +202,7 @@ dpkg -l | grep "^rc" | cut -d' ' -f3 | xargs sudo dpkg --purge
 sudo apt clean
 ```
 
-### 🔍 Vérification post-suppression
+### Vérification post-suppression
 
 ```bash
 # Vérifier que le package est bien supprimé
@@ -217,9 +217,9 @@ systemctl list-units | grep nom_du_paquet
 
 ---
 
-## ⚠️ Résolution de problèmes
+## Résolution de problèmes
 
-### 🔧 Problèmes de dépendances
+### Problèmes de dépendances
 
 ```bash
 # Forcer l'installation malgré les dépendances manquantes
@@ -232,7 +232,7 @@ sudo apt install -f
 sudo dpkg --configure -a
 ```
 
-### 🛡️ Problèmes de conflits
+### Problèmes de conflits
 
 ```bash
 # Forcer le remplacement de fichiers en conflit
@@ -246,7 +246,7 @@ sudo apt remove package_en_conflit
 sudo apt install ./nouveau_package.deb
 ```
 
-### 🔒 Problèmes de permissions
+### Problèmes de permissions
 
 ```bash
 # Vérifier les permissions du fichier .deb
@@ -266,18 +266,18 @@ sudo dpkg --configure -a
 
 ---
 
-## 📊 Comparaison des outils
+## Comparaison des outils
 
 |Outil|Dépendances|Interface|Cas d'usage|
 |---|---|---|---|
-|**apt install**|✅ Automatique|CLI|Installation recommandée|
-|**dpkg -i**|❌ Manuel|CLI|Scripts, débogage|
-|**gdebi**|✅ Automatique|GUI/CLI|Utilisateurs novices|
-|**Software Center**|✅ Automatique|GUI|Interface graphique|
+|**apt install**|Automatique|CLI|Installation recommandée|
+|**dpkg -i**|Manuel|CLI|Scripts, débogage|
+|**gdebi**|Automatique|GUI/CLI|Utilisateurs novices|
+|**Software Center**|Automatique|GUI|Interface graphique|
 
 ---
 
-### 🔄 Workflow recommandé
+### Workflow recommandé
 
 ```bash
 # 1. Vérifier si le package existe dans les dépôts
@@ -298,9 +298,9 @@ echo "$(date): Installé package.deb version X.Y.Z" >> ~/installed_debs.log
 
 ---
 
-## 🔗 Intégration avec les PPA
+## Intégration avec les PPA
 
-### 📦 Alternative aux .deb : PPA
+### Alternative aux .deb : PPA
 
 ```bash
 # Ajouter un PPA (préférable aux .deb manuels)
@@ -322,9 +322,9 @@ sudo add-apt-repository --remove ppa:nom_du_ppa
 
 ---
 
-## 🔧 Outils avancés
+## Outils avancés
 
-### 🔍 Outils de diagnostic
+### Outils de diagnostic
 
 ```bash
 # Installer des outils supplémentaires
@@ -339,21 +339,21 @@ apt-file search nom_du_fichier
 
 ---
 
-## 📚 Ressources et documentation
+## Ressources et documentation
 
-### 📖 Documentation officielle
+### Documentation officielle
 
 - [Debian Package Management](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html)
 - [Ubuntu Package Management](https://help.ubuntu.com/community/InstallingSoftware)
 - [dpkg Manual](https://manpages.debian.org/stable/dpkg/dpkg.1.en.html)
 
-### 🛠️ Outils complémentaires
+### Outils complémentaires
 
 - [deb-get](https://github.com/wimpysworld/deb-get) : Gestionnaire pour .deb tiers
 - [Flatpak](https://flatpak.org/) : Alternative moderne aux .deb
 - [Snap](https://snapcraft.io/) : Packages universels d'Ubuntu
 
-### 🔍 Commandes de référence rapide
+### Commandes de référence rapide
 
 ```bash
 # Installation

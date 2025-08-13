@@ -1,5 +1,5 @@
 ---
-title: "🏠 Home"
+title: "Home"
 tags: [home]
 description: "Page d'accueil du carnet de notes de Bastien – modélisation hydrogéologique, Python et outils géospatiaux"
 ---
@@ -15,7 +15,7 @@ Ce site rassemble mes notes techniques, scripts et réflexions sur la modélisat
 }
 </style>
 
-## 📚 Navigation
+## Navigation
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
   <a href="/Notes/Profil/Profil" style="flex: 1 1 800px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
@@ -30,17 +30,17 @@ Ce site rassemble mes notes techniques, scripts et réflexions sur la modélisat
   <a href="/notes/dev" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
     ⚙️<br><strong style="color: var(--dark);">Développement</strong>
   </a>
-  <a href="/notes/sig" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
+  <a href="/notes/sig" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-decoration: none; color: inherit;">
     🗺️<br><strong style="color: var(--dark);">SIG</strong>
   </a>
-  <a href="/notes/vrac" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
+  <a href="/notes/vrac" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-decoration: none; color: inherit;">
     🗂️<br><strong style="color: var(--dark);">Vrac</strong>
   </a>
 </div>
 
 ---
 
-## 🚀 Projets de recherche
+## Projets de recherche
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
   <a href="https://gitlab.com/Alex-Gauvain/HydroModPy/-/tree/dev?ref_type=heads" style="flex: 1 1 300px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1.5rem; background: var(--light); text-decoration: none; color: inherit; display: block;">
@@ -72,7 +72,7 @@ Ce site rassemble mes notes techniques, scripts et réflexions sur la modélisat
 
 ---
 
-## 🔗 Contact & Liens
+## Contact & Liens
 
 <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; align-items: center;">
   

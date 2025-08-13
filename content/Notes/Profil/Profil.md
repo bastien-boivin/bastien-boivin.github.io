@@ -5,7 +5,7 @@ tags:
   - cv
 description: Profil de Bastien Boivin – Doctorant en modélisation hydrogéologique
 ---
-## 🎓 Formation & Recherche
+## Formation & Recherche
 
 > [!abstract] Thèse de Doctorat (2024-2027) - [Lien](https://theses.fr/s400366)
 > **Université de Rennes** • Géosciences Rennes (UMR 6118)
@@ -23,26 +23,26 @@ description: Profil de Bastien Boivin – Doctorant en modélisation hydrogéolo
 
 ---
 
-## 💼 Expérience Professionnelle
+## Expérience Professionnelle
 
-### 🖥️ Doctorant en Modélisation Hydrogéologique
+### Doctorant en Modélisation Hydrogéologique
 **Université de Rennes** • *Oct. 2024 - Sept. 2027*
 
 Développement de modèles couplés surface-souterrain pour évaluer l'impact du changement climatique sur la ressource en eau. Contribution active aux projets HydroModPy et GeoP4th.
 
-### 💧 Alternant Ingénieur Hydrogéologue  
+### Alternant Ingénieur Hydrogéologue  
 **BRGM Bretagne** • *Sept. 2023 - Sept. 2024*
 
 Contribution au SIGES Bretagne, synthèse des paramètres hydrodynamiques, cartographie des périmètres de protection, élaboration d'itinéraires hydrogéologiques.
 
-### 💧 Stagiaire Ingénieur Hydrogéologue
+### Stagiaire Ingénieur Hydrogéologue
 **BRGM Bretagne** • *Mai 2023 - Août 2023*
 
 Initiation aux méthodes d'investigation hydrogéologique et participation aux projets de recherche du service géologique régional.
 
 ---
 
-## 🚀 Projets de Recherche
+## Projets de Recherche
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
   <a href="https://gitlab.com/Alex-Gauvain/HydroModPy/-/tree/dev?ref_type=heads" style="flex: 1 1 300px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1.5rem; background: var(--light); text-decoration: none; color: inherit; display: block;">
@@ -76,9 +76,9 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 
 ---
 
-## 📝 Publications & Communications
+## Publications & Communications
 
-> [!note] 📝 HydroModPy: A Python toolbox for deploying catchment-scale shallow groundwater models
+> [!note] HydroModPy: A Python toolbox for deploying catchment-scale shallow groundwater models
 > **Preprint • EGUsphere (2025)**
 > 
 > **Auteurs :** A. Gauvain, R. Abhervé, A. Coche, M. Le Mesnil, C. Roques, C. Bouchez, S. Leray, E. Marti, R. Figueroa, E. Bresciani, C. Vautier, **B. Boivin**, et al.
@@ -87,7 +87,7 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 > 
 > [→ Lire le preprint](https://egusphere.copernicus.org/preprints/2025/egusphere-2024-3962/)
 
-> [!tip] 🗣️ Coupled surface-water and groundwater modeling approach to optimize drinking-water dam management
+> [!tip] Coupled surface-water and groundwater modeling approach to optimize drinking-water dam management
 > **Abstract accepté • OZCAR TERENO 2025**
 > 
 > **Auteurs :** **B. Boivin**, A. Coche, R. Abhervé, R. Guillossou, J.-Y. Gaubert, L. Aquilina, J.-R. De Dreuzy
@@ -100,24 +100,24 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 
 ---
 
-## 🎯 Objectifs de Recherche
+## Objectifs de Recherche
 
 **Axes principaux :**
-- 🔄 **Interactions surface-subsurface**
-- 🌡️ **Modélisation des impacts climatiques** sur la disponibilité des ressources
-- 🛠️ **Développement d'outils** pour la communauté scientifique et opérationnelle
-- 📊 **Aide à la décision** pour les gestionnaires de ressources en eau
+- Interactions surface-subsurface
+- Modélisation des impacts climatiques sur la disponibilité des ressources
+- Développement d'outils pour la communauté scientifique et opérationnelle
+- Aide à la décision pour les gestionnaires de ressources en eau
 
 ---
 
-## 💻 Configuration d'équipement
+## Configuration d'équipement
 
 > [!info] Station de travail de recherche 
 > Configuration utilisée pour le développement Python, la modélisation hydrogéologique et l'analyse de données géospatiales.
 
-### 🖥️ HP EliteBook 840 G11 - Spécifications détaillées
+### HP EliteBook 840 G11 - Spécifications détaillées
 
-**🔧 Processeur**
+**Processeur**
 
 - **Intel Core Ultra 7 165H** (Meteor Lake - 7nm Intel 4)
 - **Architecture hybride :** 6 P-cores + 8 E-cores + 2 LP E-cores = **16 cœurs / 22 threads**
@@ -125,18 +125,18 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 - **Cache :** 24 MB L3 Intel Smart Cache
 - **TDP :** 28W (base) / 115W (turbo max)
 
-**🎮 Graphiques**
+**Graphiques**
 
 - **Intel Arc Graphics** (8 Xe-cores) intégrés
 - **Support :** DirectX 12, Vulkan, OpenGL 4.6
 - **Accélération AI :** NPU intégré (Neural Processing Unit)
 
-**🧠 Mémoire & Stockage**
+**Mémoire & Stockage**
 
 - **RAM :** 64 GB DDR5-5600
 - **Stockage :** 1 TB PCIe NVMe SSD (vitesses jusqu'à 15.7 GB/s)
 
-### 🐧 Environnement logiciel
+### Environnement logiciel
 
 **Système d'exploitation**
 
@@ -145,13 +145,13 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 - **DE :** GNOME 46.0 (Wayland)
 - **Shell :** Zsh avec configuration personnalisée
 
-### ⚙️ Stack de développement
+### Stack de développement
 
 - **Gestionnaire packages :** Mamba (Miniforge)
 - **IDE :** VScode
 - **SIG :** Qgis
 
-## 🔗 Contact & Liens
+## Contact & Liens
 
 <div style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap; align-items: center;">
   

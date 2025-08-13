@@ -9,7 +9,7 @@ tags:
 description: Guide pour configurer un projet Python avec pyproject.toml
 ---
 
-## 🚀 Configuration avec pyproject.toml
+## Configuration avec pyproject.toml
 
 Le fichier `pyproject.toml` est le standard moderne pour configurer un projet Python (PEP 518, 621, 660). Il remplace `setup.py` par une approche déclarative plus sûre et lisible.
 
@@ -17,9 +17,9 @@ Le fichier `pyproject.toml` est le standard moderne pour configurer un projet Py
 
 ---
 
-## 🏗️ Structure fondamentale
+## Structure fondamentale
 
-### 📦 Section [build-system]
+### Section [build-system]
 
 ```toml
 [build-system]
@@ -29,9 +29,9 @@ requires = [
     'tomli; python_version < "3.11"'  # support TOML pour Python < 3.11
 ]
 build-backend = "setuptools.build_meta"
-````
+```
 
-### 🏷️ Section [project] - Métadonnées
+### Section [project] - Métadonnées
 
 ```toml
 [project]
@@ -161,9 +161,9 @@ classifiers = [
 
 ---
 
-## 📚 Gestion des dépendances
+## Gestion des dépendances
 
-### 🔢 Syntaxe des versions
+### Syntaxe des versions
 
 #### Opérateurs de version
 
@@ -196,24 +196,24 @@ dependencies = [
 
 ```toml
 dependencies = [
-    # ✅ Version minimale stable pour packages matures
+    # Version minimale stable pour packages matures
     "numpy>=1.21.0",
     
-    # ✅ Fourchette pour éviter breaking changes
+    # Fourchette pour éviter breaking changes
     "pandas>=2.0.0,<3.0.0",
     
-    # ✅ Version compatible pour packages qui suivent semver
+    # Version compatible pour packages qui suivent semver
     "pydantic~=2.5.0",
     
-    # ❌ Version exacte (trop rigide)
+    # Version exacte (trop rigide)
     # "requests==2.31.0",
     
-    # ❌ Sans contrainte (risqué)
+    # Sans contrainte (risqué)
     # "matplotlib",
 ]
 ```
 
-### 🎯 Dependencies vs Optional Dependencies
+### Dependencies vs Optional Dependencies
 
 #### **Dependencies** : Dépendances obligatoires
 
@@ -226,8 +226,8 @@ dependencies = [
 ]
 ```
 
-- **Installées automatiquement** avec `pip install mon_projet`
-- **Indispensables** pour que le package fonctionne
+- Installées automatiquement avec `pip install mon_projet`
+- Indispensables pour que le package fonctionne
 - Doivent être **minimales** et **stables**
 
 #### **Optional Dependencies** : Dépendances optionnelles
@@ -257,9 +257,9 @@ geo = [
 ]
 ```
 
-- **Installation optionnelle** : `pip install mon_projet[dev]`
-- **Fonctionnalités spécialisées** non requises pour tous les utilisateurs
-- **Outils de développement** séparés du code de production
+- Installation optionnelle : `pip install mon_projet[dev]`
+- Fonctionnalités spécialisées non requises pour tous les utilisateurs
+- Outils de développement séparés du code de production
 
 #### Exemple d'utilisation des groupes
 
@@ -280,7 +280,7 @@ pip install mon_projet[dev,docs,geo,ml]
 pip install -e .[dev,test]
 ```
 
-### 🌐 URLs du projet
+### URLs du projet
 
 ```toml
 [project.urls]
@@ -293,9 +293,9 @@ docker = "https://hub.docker.com/r/bastien/mon_projet"
 
 ---
 
-## 🛠️ Configuration setuptools
+## Configuration setuptools
 
-### 📦 Découverte des packages
+### Découverte des packages
 
 ```toml
 [tool.setuptools.packages.find]
@@ -308,7 +308,7 @@ exclude = ["tests*", "docs*"]
 mon_projet = "src/mon_projet"
 ```
 
-### 📂 Répertoire des packages
+### Répertoire des packages
 
 ```toml
 [tool.setuptools.package-dir]
@@ -317,7 +317,7 @@ mon_projet = "src/mon_projet"
 "" = "."   # packages à la racine
 ```
 
-### 📄 Fichiers de données
+### Fichiers de données
 
 ```toml
 [tool.setuptools.package-data]
@@ -334,9 +334,9 @@ include-package-data = true
 
 ---
 
-## 🚀 Utilisation pratique
+## Utilisation pratique
 
-### 🔧 Installation en mode développement
+### Installation en mode développement
 
 ```bash
 # Installation éditable avec dépendances de base
@@ -350,7 +350,7 @@ pip install -e .[dev,docs,test]
 pip install -e .[dev,docs,test,geo]
 ```
 
-### 🔄 Intégration avec conda
+### Intégration avec conda
 
 ```yaml
 # environment.yml
@@ -369,9 +369,9 @@ dependencies:
 
 ---
 
-## 🔧 Résolution de problèmes
+## Résolution de problèmes
 
-### 🚨 Erreurs courantes
+### Erreurs courantes
 
 ```bash
 # Vérifier la syntaxe TOML
@@ -384,7 +384,7 @@ python -m setuptools check
 pip install -e . --force-reinstall
 ```
 
-### 🔍 Validation et debugging
+### Validation et debugging
 
 ```bash
 # Installer des outils de validation
@@ -399,15 +399,15 @@ check-manifest
 
 ---
 
-## 📚 Ressources
+## Ressources
 
-### 📖 Standards PEP
+### Standards PEP
 
 - [PEP 518](https://peps.python.org/pep-0518/) - pyproject.toml
 - [PEP 621](https://peps.python.org/pep-0621/) - Métadonnées projet
 - [PEP 660](https://peps.python.org/pep-0660/) - Installation éditable
 
-### 🛠️ Documentation
+### Documentation
 
 - [Setuptools et pyproject.toml](https://setuptools.pypa.io/en/latest/userguide/pyproject_config.html)
 - [Packaging Python](https://packaging.python.org/en/latest/)

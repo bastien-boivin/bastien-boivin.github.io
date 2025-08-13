@@ -8,7 +8,7 @@ tags:
 description: Guide complet pour la gestion des environnements Python avec conda et mamba
 ---
 
-## 🐍 Gestion des environnements Python
+## Gestion des environnements Python
 
 La gestion des environnements Python est cruciale pour maintenir des projets isolés et reproductibles. Plusieurs solutions existent : `venv`, `virtualenv`, `pipenv`, `poetry`, `conda`, `mamba`...
 
@@ -19,11 +19,11 @@ Dans cette note, je me concentre sur **conda** et **mamba** qui sont particuliè
 
 ---
 
-## 📦 Conda : Les fondamentaux
+## Conda : Les fondamentaux
 
-🔗 [Documentation officielle de conda](https://docs.conda.io/)
+[Documentation officielle de conda](https://docs.conda.io/)
 
-### 🧪 Gestion des environnements
+### Gestion des environnements
 
 #### Créer un environnement
 
@@ -42,7 +42,7 @@ conda create -p ./envs/mon_env python=3.11
 
 # Cloner un environnement existant
 conda create -n clone_env --clone mon_env
-````
+```
 
 #### Activer/Désactiver
 
@@ -87,7 +87,7 @@ conda remove -n mon_env --all
 conda env remove -p ./envs/mon_env
 ```
 
-### 📋 Environnements reproductibles
+### Environnements reproductibles
 
 >[!info] Voir la note [[Fichier d'installation]] qui présente les différents formats, yml | yaml | txt | etc...
 
@@ -153,7 +153,7 @@ conda list --export > requirements.txt
 > - **Sans hash** : plus souple, multi-plateforme
 > - **--from-history** : liste uniquement les packages explicitement installés
 
-### 🏷️ Gestion avancée
+### Gestion avancée
 
 #### Renommer un environnement
 
@@ -176,7 +176,7 @@ conda env config vars list -n mon_env
 conda env config vars unset VAR_NAME -n mon_env
 ```
 
-### 🧹 Nettoyage et maintenance
+### Nettoyage et maintenance
 
 ```bash
 # Nettoyer les packages non utilisés dans les caches
@@ -192,20 +192,20 @@ conda clean --packages
 conda clean --index-cache
 ```
 
-> [!warning]- 🧹 Détails sur `conda clean`
+> [!warning]- Détails sur `conda clean`
 > 
 > - `--all` : supprime **tout ce qui est nettoyable** (à utiliser avec précaution)
 > - `--tarballs` : supprime les archives `.tar.bz2` téléchargées
->     - ✅ Gagne de la place disque
->     - ⚠️ Re-téléchargement nécessaire si réinstallation
+>     - Gagne de la place disque
+>     - Re-téléchargement nécessaire si réinstallation
 > - `--packages` : supprime les paquets inutilisés dans le cache
->     - ✅ Utile après des tests temporaires
->     - ⚠️ Ne pas utiliser en plein développement
+>     - Utile après des tests temporaires
+>     - Ne pas utiliser en plein développement
 > - `--index-cache` : supprime les caches des index de paquets
->     - ✅ À utiliser si conda semble bloqué
->     - ⚠️ Allonge la prochaine résolution
+>     - À utiliser si conda semble bloqué
+>     - Allonge la prochaine résolution
 
-### ⚙️ Optimiser conda : changer le solveur
+### Optimiser conda : changer le solveur
 
 ```bash
 # Installer libmamba
@@ -226,15 +226,15 @@ mamba config --show channels
 mamba config --show
 ```
 
-> [!success] Performance Libmamba est **10 à 100 fois plus rapide** que le solveur par défaut de conda.
+> [!success] Performance Libmamba est 10 à 100 fois plus rapide que le solveur par défaut de conda.
 
 ---
 
-## ⚡ Mamba : L'alternative rapide
+## Mamba : L'alternative rapide
 
-🔗 [Documentation officielle de Mamba](https://mamba.readthedocs.io/)
+[Documentation officielle de Mamba](https://mamba.readthedocs.io/)
 
-### ⚒️ Installation avec Miniforge
+### Installation avec Miniforge
 
 **Miniforge** : distribution conda minimale avec mamba natif et conda-forge par défaut.
 
@@ -248,7 +248,7 @@ curl -L -O https://github.com/conda-forge/miniforge/releases/latest/download/Min
 bash Miniforge3-Linux-x86_64.sh
 ```
 
-> [!tip] Installation recommandée Je recommande **fortement** Miniforge plutôt que Anaconda ou Miniconda pour :
+> [!tip] Installation recommandée Je recommande fortement Miniforge plutôt que Anaconda ou Miniconda pour :
 > 
 > - Mamba intégré nativement
 > - Conda-forge par défaut
@@ -260,7 +260,7 @@ bash Miniforge3-Linux-x86_64.sh
 > - [Miniforge sur GitHub](https://github.com/conda-forge/miniforge)
 > - [Guide d'installation détaillé](https://github.com/conda-forge/miniforge#install)
 
-### 🔍 Comparatif Mamba vs Conda
+### Comparatif Mamba vs Conda
 
 #### Avantages techniques de Mamba
 
@@ -274,7 +274,7 @@ bash Miniforge3-Linux-x86_64.sh
 
 #### Compatibilité complète
 
-Mamba est un **drop-in replacement** de conda :
+Mamba est un drop-in replacement de conda :
 
 ```bash
 # Remplacez simplement 'conda' par 'mamba'
@@ -293,9 +293,9 @@ mamba activate mon_env
 
 ---
 
-## 🎯 Workflows recommandés
+## Workflows recommandés
 
-### 🚀 Nouveau projet (workflow optimal)
+### Nouveau projet (workflow optimal)
 
 ```bash
 # 1. Créer l'environnement avec version Python spécifique
@@ -311,7 +311,7 @@ conda install -c conda-forge numpy pandas matplotlib
 conda env export --no-builds > environment.yml
 ```
 
-### 🔄 Reproduire un environnement
+### Reproduire un environnement
 
 ```bash
 # Créer depuis le fichier
@@ -324,7 +324,7 @@ conda env update -f environment.yml --prune
 conda activate nom_du_projet
 ```
 
-### 🔧 Maintenance régulière
+### Maintenance régulière
 
 ```bash
 # Mettre à jour l'environnement
@@ -339,16 +339,16 @@ conda clean --tarballs
 
 > [!tip] Bonnes pratiques
 > 
-> - **Un environnement = un projet**
-> - **Noms clairs** et explicites (`projet_nom_version`)
-> - **Export régulier** de `environment.yml`
-> - **Toujours utiliser conda-forge** comme canal principal
-> - **Utiliser Mamba** pour optimiser les performances
-> - **Versionner** les fichiers `environment.yml` (git)
+> - Un environnement = un projet
+> - Noms clairs et explicites (`projet_nom_version`)
+> - Export régulier de `environment.yml`
+> - Toujours utiliser conda-forge comme canal principal
+> - Utiliser Mamba pour optimiser les performances
+> - Versionner les fichiers `environment.yml` (git)
 
 ---
 
-## 🔧 Résolution de problèmes courants
+## Résolution de problèmes courants
 
 ### Environnement corrompu
 
@@ -383,15 +383,15 @@ conda config --set solver libmamba
 
 ---
 
-## 📚 Ressources supplémentaires
+## Ressources supplémentaires
 
 ### Documentation officielle
 
-- [Documentation Conda](https://docs.conda.io/)
-- [Documentation Mamba](https://mamba.readthedocs.io/)
-- [Guide Conda-forge](https://conda-forge.org/docs/)
+- Documentation Conda
+- Documentation Mamba
+- Guide Conda-forge
 
 ### Guides et cheat sheets
 
-- [Cheat sheet Conda](https://docs.conda.io/projects/conda/en/4.6.0/_downloads/52a95608c49671267e40c689e0bc00ca/conda-cheatsheet.pdf)
-- [Guide migration vers Mamba](https://mamba.readthedocs.io/en/latest/user_guide/mamba.html)
+- Cheat sheet Conda
+- Guide migration vers Mamba

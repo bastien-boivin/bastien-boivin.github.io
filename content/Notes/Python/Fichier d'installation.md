@@ -13,9 +13,9 @@ description: Guide des différents formats de fichiers de configuration pour les
 > [!warning] Information
 > Cette notes est une compilation d'explication déjà contenu dans les notes [[Gestion des environnements]], [[Packages Python]] et [[pyproject.toml]] et présente des exemples d'utilisation / construction de fichier d'installation
 
-## 🐍 environment.yml - Environnements conda
+## environment.yml - Environnements conda
 
-### 📋 Structure complète
+### Structure complète
 
 ```yaml
 name: mon_projet_geo
@@ -63,7 +63,7 @@ variables:
 prefix: /opt/conda/envs/mon_projet_geo
 ```
 
-### 🎯 Cas d'usage
+### Cas d'usage
 
 **Utilisez environment.yml pour :**
 - Projets avec packages scientifiques/géospatiaux
@@ -73,12 +73,12 @@ prefix: /opt/conda/envs/mon_projet_geo
 
 ---
 
-## 📄 requirements.txt - Dépendances pip
+## requirements.txt - Dépendances pip
 
 > [!info] Installation avec pip
 > Pour les détails d'installation et gestion des packages pip, voir [[Packages Python#Installation avec Pip]]
 
-### 📝 Formats et syntaxe
+### Formats et syntaxe
 
 ```txt
 # requirements.txt basique
@@ -106,7 +106,7 @@ black>=23.0.0
 mypy>=1.5.0
 ```
 
-### 🔗 Sources diverses
+### Sources diverses
 
 ```txt
 # Depuis PyPI (défaut)
@@ -128,7 +128,7 @@ https://github.com/user/repo/archive/main.zip
 ./packages/my_package-1.0.0-py3-none-any.whl
 ```
 
-### 📚 Organisation modulaire
+### Organisation modulaire
 
 ```bash
 # Structure organisée
@@ -159,7 +159,7 @@ gunicorn>=21.0.0
 psycopg2-binary>=2.9.0
 ```
 
-### 🎯 Cas d'usage
+### Cas d'usage
 
 **Utilisez requirements.txt pour :**
 - Projets Python pur sans dépendances complexes
@@ -169,22 +169,22 @@ psycopg2-binary>=2.9.0
 
 ---
 
-## 🔗 Comparatif des formats
+## Comparatif des formats
 
 | Aspect | environment.yml | requirements.txt | pyproject.toml |
 |--------|----------------|------------------|----------------|
 | **Gestionnaire** | conda/mamba | pip | pip + outils modernes |
-| **Environnements** | ✅ Gestion complète | ❌ Packages seulement | ❌ Packages seulement |
-| **Dépendances système** | ✅ Binaires pré-compilés | ❌ Compilation locale | ❌ Compilation locale |
-| **Multi-langage** | ✅ Python, R, C++, etc. | ❌ Python seulement | ❌ Python seulement |
-| **Métadonnées projet** | ❌ | ❌ | ✅ Complètes |
-| **Standard moderne** | ❌ | ❌ | ✅ PEP 518/621 |
+| **Environnements** | Gestion complète | Packages seulement | Packages seulement |
+| **Dépendances système** | Binaires pré-compilés | Compilation locale | Compilation locale |
+| **Multi-langage** | Python, R, C++, etc. | Python seulement | Python seulement |
+| **Métadonnées projet** |  |  | Complètes |
+| **Standard moderne** |  |  | PEP 518/621 |
 
 ---
 
-## 🔗 Intégration et workflow
+## Intégration et workflow
 
-### 🏗️ Workflow recommandé
+### Workflow recommandé
 
 ```bash
 # 1. Développement avec environment.yml
@@ -197,9 +197,9 @@ pip install -e .[dev]
 
 ---
 
-## 📚 Ressources
+## Ressources
 
-### 📖 Documentation
+### Documentation
 
 - [Conda environment.yml](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-file-manually)
 - [Pip requirements](https://pip.pypa.io/en/stable/reference/requirements-file-format/)

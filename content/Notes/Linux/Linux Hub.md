@@ -5,9 +5,9 @@ tags:
 description: Hub de navigation pour les notes Linux
 ---
 
-## 🗺️ Navigation
+## Navigation
 
-### 📦 **[[Gestion des .deb]]**
+### **[[Gestion des .deb]]**
 
 > _Installation, mise à jour et suppression des packages Debian/Ubuntu_
 
