@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Recherche/OZCAR TERENO 2025.md",
+                "file": "index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "OZCAR TERENO 2025"
+              "title": "index"
             },
             "group": "614e50aa5ea8a6dc"
           }
@@ -34,12 +34,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Recherche/OZCAR TERENO 2025.md",
+                "file": "index.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "OZCAR TERENO 2025"
+              "title": "index"
             },
             "group": "614e50aa5ea8a6dc"
           }
@@ -164,13 +164,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Notes/Recherche/OZCAR TERENO 2025.md",
+                "file": "index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of OZCAR TERENO 2025"
+              "title": "Outline of index"
             }
           }
         ],
@@ -191,14 +191,14 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "4e58757db190c3d1",
+  "active": "8869c8b73846f1e8",
   "lastOpenFiles": [
+    "Notes/Research/Research Hub.md",
+    "Notes/Research/OZCAR TERENO 2025.md",
     "assets/Abstract_OZCAR_TERENO_2025_Bastien_BOIVIN.pdf",
     "Notes/Profil/Profil.md",
-    "Notes/Recherche/OZCAR TERENO 2025.md",
-    "Notes/Recherche/Recherche Hub.md",
     "index.md",
-    "Notes/Recherche",
+    "Notes/Research",
     "Notes/Python/Gestion des environnements.md",
     "Notes/Linux/Linux Hub.md",
     "Notes/Python/Python Hub.md",
@@ -229,7 +229,6 @@
     "assets/logoHydroModPy.png",
     "Notes/Untitled.md",
     "cv.md",
-    "assets",
     "ping.md",
     "config.md"
   ]
