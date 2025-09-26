@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Python/Gestion des environnements.md",
+                "file": "Notes/Recherche/OZCAR TERENO 2025.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Gestion des environnements"
+              "title": "OZCAR TERENO 2025"
             },
             "group": "614e50aa5ea8a6dc"
           }
@@ -34,12 +34,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Python/Gestion des environnements.md",
+                "file": "Notes/Recherche/OZCAR TERENO 2025.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "Gestion des environnements"
+              "title": "OZCAR TERENO 2025"
             },
             "group": "614e50aa5ea8a6dc"
           }
@@ -164,13 +164,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Notes/Python/Gestion des environnements.md",
+                "file": "Notes/Recherche/OZCAR TERENO 2025.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Gestion des environnements"
+              "title": "Outline of OZCAR TERENO 2025"
             }
           }
         ],
@@ -191,16 +191,20 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "78ddc703e4414fdb",
+  "active": "4e58757db190c3d1",
   "lastOpenFiles": [
-    "Notes/Linux/Linux Hub.md",
-    "index.md",
-    "Notes/Python/Python Hub.md",
+    "assets/Abstract_OZCAR_TERENO_2025_Bastien_BOIVIN.pdf",
     "Notes/Profil/Profil.md",
+    "Notes/Recherche/OZCAR TERENO 2025.md",
+    "Notes/Recherche/Recherche Hub.md",
+    "index.md",
+    "Notes/Recherche",
+    "Notes/Python/Gestion des environnements.md",
+    "Notes/Linux/Linux Hub.md",
+    "Notes/Python/Python Hub.md",
     "Notes/Linux/Gestion des .deb.md",
     "Gestion des paquets .deb.md",
     "Notes/Python/Fichier d'installation.md",
-    "Notes/Python/Gestion des environnements.md",
     "Notes/Python/Packages Python.md",
     "Notes/Python/pyproject.toml.md",
     "Gestion des environnements Python.md",
@@ -226,7 +230,6 @@
     "Notes/Untitled.md",
     "cv.md",
     "assets",
-    "content/assets",
     "ping.md",
     "config.md"
   ]

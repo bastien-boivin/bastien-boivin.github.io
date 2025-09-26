@@ -27,8 +27,8 @@ Ce site rassemble mes notes techniques, scripts et réflexions sur la modélisat
   <a href="/Notes/Linux/Linux Hub" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
     💻<br><strong style="color: var(--dark);">Linux</strong>
   </a>
-  <a href="/notes/dev" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
-    ⚙️<br><strong style="color: var(--dark);">Développement</strong>
+  <a href="/Notes/Recherche/Recherche Hub" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
+    🔬<br><strong style="color: var(--dark);">Recherche</strong>
   </a>
   <a href="/notes/sig" style="flex: 1 1 200px; border: 2px solid var(--lightgray); border-radius: 12px; padding: 1rem; background: var(--light); text-align: center; text-decoration: none; color: inherit;">
     🗺️<br><strong style="color: var(--dark);">SIG</strong>
