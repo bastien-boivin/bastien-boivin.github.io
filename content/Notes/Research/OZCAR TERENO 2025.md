@@ -7,9 +7,6 @@ tags:
   - 2025
 description: Participation in the OZCAR TERENO 2025 conference – Coupled modeling of surface and groundwater for drinking-water dam management
 ---
-
-# OZCAR TERENO 2025
-
 📍 **Location:** Paris, France  
 📅 **Dates:** September 29 – October 2, 2025  
 
@@ -32,11 +29,23 @@ The case study focuses on the **Chèze dam (Brittany, France)**, a strategic res
 
 ## Materials
 
-- 📄 [Abstract](Abstract_OZCAR_TERENO_2025_Bastien_BOIVIN.pdf)  
-- 🖼️ [Poster](Draft_Poster_OZCAR_2025_Bastien_BOIVIN_V15.pdf)
-- 🔗 [Official conference website](https://ozcartereno2025.sciencesconf.org/)  
----
+<details>
+  <summary><strong>📄 Abstract (click to expand)</strong></summary>
+  <div style="margin-top: 0.75rem;">
+    <embed src="Abstract_OZCAR_TERENO_2025_Bastien_BOIVIN.pdf" type="application/pdf" width="100%" height="700px" />
+  </div>
+</details>
 
+<details>
+  <summary><strong>🖼️ Poster (click to expand)</strong></summary>
+  <div style="margin-top: 0.75rem;">
+    <embed src="Draft_Poster_OZCAR_2025_Bastien_BOIVIN_V15.pdf" type="application/pdf" width="100%" height="700px" />
+  </div>
+</details>
+
+- 🔗 [Official conference website](https://ozcartereno2025.sciencesconf.org/)
+
+---
 ## Open-Source Research Software
 
 <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
