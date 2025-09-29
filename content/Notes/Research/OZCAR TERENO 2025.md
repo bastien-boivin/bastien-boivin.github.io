@@ -33,9 +33,6 @@ The case study focuses on the **Chèze dam (Brittany, France)**, a strategic res
 - 🖼️ [Poster](Draft_Poster_OZCAR_2025_Bastien_BOIVIN_V15.pdf)
 - 🔗 [Official conference website](https://ozcartereno2025.sciencesconf.org/)  
 ---
-<iframe src="Abstract_OZCAR_TERENO_2025_Bastien_BOIVIN.pdf" width="100%" height="700px" style="border: none;"></iframe>
-
----
 
 ## Open-Source Research Software
 
