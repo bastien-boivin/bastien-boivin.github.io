@@ -4,27 +4,6 @@
     "type": "split",
     "children": [
       {
-        "id": "5d1d99b295008d2d",
-        "type": "tabs",
-        "children": [
-          {
-            "id": "78ddc703e4414fdb",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "index.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "index"
-            },
-            "group": "614e50aa5ea8a6dc"
-          }
-        ]
-      },
-      {
         "id": "d49ba7631000f372",
         "type": "tabs",
         "children": [
@@ -34,14 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "index.md",
+                "file": "Notes/Research/OZCAR TERENO 2025.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "index"
-            },
-            "group": "614e50aa5ea8a6dc"
+              "title": "OZCAR TERENO 2025"
+            }
           }
         ]
       }
@@ -164,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "index.md",
+                "file": "Notes/Research/OZCAR TERENO 2025.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of index"
+              "title": "Outline of OZCAR TERENO 2025"
             }
           }
         ],
@@ -182,6 +160,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "bases:Create new base": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
@@ -191,16 +170,17 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "8869c8b73846f1e8",
+  "active": "4e58757db190c3d1",
   "lastOpenFiles": [
+    "Notes/Profil/Profil.md",
     "Notes/Research/Research Hub.md",
     "Notes/Research/OZCAR TERENO 2025.md",
-    "assets/Abstract_OZCAR_TERENO_2025_Bastien_BOIVIN.pdf",
-    "Notes/Profil/Profil.md",
     "index.md",
+    "Notes/Linux/Linux Hub.md",
+    "assets/Draft_Poster_OZCAR_2025_Bastien_BOIVIN_V15.pdf",
+    "assets/Abstract_OZCAR_TERENO_2025_Bastien_BOIVIN.pdf",
     "Notes/Research",
     "Notes/Python/Gestion des environnements.md",
-    "Notes/Linux/Linux Hub.md",
     "Notes/Python/Python Hub.md",
     "Notes/Linux/Gestion des .deb.md",
     "Gestion des paquets .deb.md",
@@ -222,7 +202,6 @@
     "assets/gitlab-logo.png",
     "assets/github-logo.png",
     "assets/geop4th-logo.png",
-    "assets/abstract-ozacar-tereno-2025.pdf",
     "conflict-files-obsidian-git.md",
     "Pasted image 20250619232934.png",
     "assets/vignette3small.png",
