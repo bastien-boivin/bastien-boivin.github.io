@@ -356,45 +356,6 @@ sudo apt remove rclone
 - Pas de véritable mode hors-ligne
 
 ---
-### Service systemd (alternative à cron)
-
-```bash
-# Créer le service
-sudo nano /etc/systemd/system/onedrive-mount.service
-```
-
-```ini
-[Unit]
-Description=OneDrive rclone mount
-After=network-online.target
-Wants=network-online.target
-
-[Service]
-Type=notify
-User=%u
-ExecStart=/usr/bin/rclone mount OneDrive: %h/OneDrive-Rclone \
-    --vfs-cache-mode full \
-    --vfs-cache-max-size 2G \
-    --log-level INFO
-ExecStop=/bin/fusermount -u %h/OneDrive-Rclone
-Restart=on-failure
-RestartSec=10
-
-[Install]
-WantedBy=default.target
-```
-
-```bash
-# Activer le service
-sudo systemctl daemon-reload
-sudo systemctl enable onedrive-mount.service
-sudo systemctl start onedrive-mount.service
-
-# Vérifier le statut
-systemctl status onedrive-mount.service
-```
-
----
 
 ## Ressources et documentation
 
@@ -468,9 +429,3 @@ rclone link OneDrive:fichier.txt
 # Lister les fichiers partagés
 rclone lsf OneDrive: --shared
 ```
-
-> [!tip] Workflow recommandé
-> 1. Monter OneDrive au démarrage via crontab ou systemd
-> 2. Utiliser le dossier monté comme un disque normal
-> 3. Limiter la taille du cache selon l'espace disponible
-> 4. Démonter manuellement si besoin d'économiser de la RAM

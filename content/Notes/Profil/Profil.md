@@ -134,7 +134,7 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 **Mémoire & Stockage**
 
 - **RAM :** 64 GB DDR5-5600
-- **Stockage :** 1 TB PCIe NVMe SSD (vitesses jusqu'à 15.7 GB/s)
+- **Stockage :** 1 TB PCIe NVMe SSD
 
 ### Environnement logiciel
 
