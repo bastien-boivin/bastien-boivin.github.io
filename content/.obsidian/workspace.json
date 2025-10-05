@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Research/OZCAR TERENO 2025.md",
+                "file": "Notes/Linux/Montage OneDrive avec rclone.md",
                 "mode": "source",
                 "source": true
               },
               "icon": "lucide-file",
-              "title": "OZCAR TERENO 2025"
+              "title": "Montage OneDrive avec rclone"
             }
           }
         ]
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Notes/Research/OZCAR TERENO 2025.md",
+                "file": "Notes/Linux/Montage OneDrive avec rclone.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of OZCAR TERENO 2025"
+              "title": "Outline of Montage OneDrive avec rclone"
             }
           }
         ],
@@ -172,9 +172,9 @@
   },
   "active": "4e58757db190c3d1",
   "lastOpenFiles": [
+    "Notes/Research/OZCAR TERENO 2025.md",
     "Notes/Profil/Profil.md",
     "Notes/Research/Research Hub.md",
-    "Notes/Research/OZCAR TERENO 2025.md",
     "index.md",
     "Notes/Linux/Linux Hub.md",
     "assets/Draft_Poster_OZCAR_2025_Bastien_BOIVIN_V15.pdf",
