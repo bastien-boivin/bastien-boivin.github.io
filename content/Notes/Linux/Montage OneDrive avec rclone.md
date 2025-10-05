@@ -86,7 +86,7 @@ Dans `rclone config` :
 - Quitter : `q`
 
 > [!warning] Format du token
-> Le token doit être au format JSON complet avec les accolades `{}`. Ne collez pas seulement l'access_token brut.
+> Le token doit être au format JSON complet avec les accolades `{}`. Ne pas coller seulement l'access_token brut.
 
 ---
 
@@ -118,7 +118,7 @@ fusermount -u ~/OneDrive-Rclone
 # Éditer crontab
 crontab -e
 
-# Ajouter cette ligne
+# Ajouter cette ligne (via vim ou autre)
 @reboot rclone mount OneDrive: ~/OneDrive-Rclone --vfs-cache-mode full --daemon
 
 # Vérifier la configuration
@@ -298,7 +298,7 @@ rclone mount OneDrive: ~/OneDrive-Rclone --vfs-cache-mode off --daemon
 ```
 
 > [!warning] Démontage forcé
-> En cas de blocage, utilisez `fusermount -uz ~/OneDrive-Rclone` pour forcer le démontage.
+> En cas de blocage, utiliser `fusermount -uz ~/OneDrive-Rclone` pour forcer le démontage.
 
 ---
 
@@ -356,59 +356,6 @@ sudo apt remove rclone
 - Pas de véritable mode hors-ligne
 
 ---
-
-## Configuration avancée
-
-### Script de montage avec gestion d'erreurs
-
-```bash
-#!/bin/bash
-# ~/mount_onedrive.sh
-
-REMOTE="OneDrive"
-MOUNTPOINT="$HOME/OneDrive-Rclone"
-LOGFILE="$HOME/.rclone-mount.log"
-
-# Vérifier si déjà monté
-if mountpoint -q "$MOUNTPOINT"; then
-    echo "OneDrive déjà monté" >> "$LOGFILE"
-    exit 0
-fi
-
-# Créer le point de montage si nécessaire
-mkdir -p "$MOUNTPOINT"
-
-# Monter avec retry
-for i in {1..3}; do
-    rclone mount "$REMOTE:" "$MOUNTPOINT" \
-        --vfs-cache-mode full \
-        --vfs-cache-max-size 2G \
-        --daemon \
-        --log-file "$LOGFILE" \
-        --log-level INFO
-
-    if mountpoint -q "$MOUNTPOINT"; then
-        echo "$(date): Montage réussi" >> "$LOGFILE"
-        exit 0
-    fi
-
-    sleep 5
-done
-
-echo "$(date): Échec du montage" >> "$LOGFILE"
-exit 1
-```
-
-```bash
-# Rendre exécutable
-chmod +x ~/mount_onedrive.sh
-
-# Utiliser dans crontab
-crontab -e
-# Ajouter :
-@reboot /bin/bash /home/bb/mount_onedrive.sh
-```
-
 ### Service systemd (alternative à cron)
 
 ```bash
