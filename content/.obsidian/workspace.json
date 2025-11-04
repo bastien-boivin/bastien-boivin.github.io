@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Notes/Linux/Montage OneDrive avec rclone.md",
+                "file": "index.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Montage OneDrive avec rclone"
+              "title": "index"
             }
           }
         ]
@@ -142,13 +142,13 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Notes/Linux/Montage OneDrive avec rclone.md",
+                "file": "index.md",
                 "followCursor": false,
                 "showSearch": false,
                 "searchQuery": ""
               },
               "icon": "lucide-list",
-              "title": "Outline of Montage OneDrive avec rclone"
+              "title": "Outline of index"
             }
           }
         ],
@@ -172,6 +172,7 @@
   },
   "active": "46999699d5e6c67a",
   "lastOpenFiles": [
+    "Notes/Python/Gestion des environnements.md",
     "Notes/Linux/Montage OneDrive avec rclone.md",
     "Notes/Linux/Montage OneDrive avec rclone.md.tmp.50608.1759665549275",
     "Notes/Linux/Montage OneDrive avec rclone.md.tmp.50608.1759665544838",
@@ -183,7 +184,6 @@
     "assets/Draft_Poster_OZCAR_2025_Bastien_BOIVIN_V15.pdf",
     "assets/Abstract_OZCAR_TERENO_2025_Bastien_BOIVIN.pdf",
     "Notes/Research",
-    "Notes/Python/Gestion des environnements.md",
     "Notes/Python/Python Hub.md",
     "Notes/Linux/Gestion des .deb.md",
     "Gestion des paquets .deb.md",
