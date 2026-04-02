@@ -7,7 +7,7 @@ tags:
   - pip
   - packages
   - librairies
-description: Guide complet pour l'installation et la gestion des packages Python avec conda, mamba et pip
+description: Installation et gestion des packages Python avec conda, mamba et pip
 ---
 
 ## Gestion des packages Python

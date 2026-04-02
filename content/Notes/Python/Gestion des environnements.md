@@ -5,12 +5,12 @@ tags:
   - conda
   - mamba
   - environnements
-description: Guide complet pour la gestion des environnements Python avec conda et mamba
+description: Gestion des environnements Python avec conda et mamba
 ---
 
 ## Gestion des environnements Python
 
-La gestion des environnements Python est cruciale pour maintenir des projets isolés et reproductibles. Plusieurs solutions existent : `venv`, `virtualenv`, `pipenv`, `poetry`, `conda`, `mamba`...
+Plusieurs outils permettent d'isoler les environnements Python : `venv`, `virtualenv`, `pipenv`, `poetry`, `conda`, `mamba`...
 
 Dans cette note, je me concentre sur **conda** et **mamba** qui sont particulièrement adaptés pour mon utilisation (_datasciences_) et les projets présentant des inter-dépendances complexes.
 

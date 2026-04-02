@@ -32,7 +32,7 @@ Le territoire d'Eau du Bassin Rennais (EBR) alimente environ 500 000 personnes �
 ## Documents
 
 - 📄 [Résumé poster](GRUTTEE_2026_Bastien_BOIVIN.pdf)  
-- 📄 [Résumé oral](GRUTTE_2026_Luc_AQUILINA_Correct.pdf)  
+- 📄 [Résumé oral](GRUTTEE_2026_Luc_AQUILINA_Correct.pdf)  
 - 🖼️ [Poster](Poster_GRUTTEE_2025_Bastien_BOIVIN_V2_3.pdf)
 - 📎 [Annexe poster](Annexe_gruttee_v1.pdf)
 - 🔗 [Site du congrès](https://gruttee2026.sciencesconf.org/)  
@@ -49,7 +49,7 @@ Le territoire d'Eau du Bassin Rennais (EBR) alimente environ 500 000 personnes �
         <small style="color: var(--gray);">Toolbox Python pour la modélisation hydrogéologique</small>
       </div>
     </div>
-    <small style="color: var(--darkgray);">Contribution active pendant ma thèse au développement des modules de modélisation de retenues et lacs. HydroModPy automatise le déploiement de modèles d'écoulement souterrain à l'échelle du bassin versant.</small><br><br>
+    <small style="color: var(--darkgray);">Contributions au développement des modules de modélisation de retenues et lacs. HydroModPy automatise le déploiement de modèles d'écoulement souterrain à l'échelle du bassin versant.</small><br><br>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Co-auteur</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">MODFLOW</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Python</span>
@@ -63,7 +63,7 @@ Le territoire d'Eau du Bassin Rennais (EBR) alimente environ 500 000 personnes �
         <small style="color: var(--gray);">Plateforme de traitement de trajectoires spatio-temporelles</small>
       </div>
     </div>
-    <small style="color: var(--darkgray);">Développement d'outils d'analyse de trajectoires dans le cadre de mes recherches sur les interactions surface-souterrain. Contribution aux modules de traitement de données spatio-temporelles.</small><br><br>
+    <small style="color: var(--darkgray);">Outils d'analyse de trajectoires pour mes travaux sur les interactions surface-souterrain. Contributions aux modules de traitement de données spatio-temporelles.</small><br><br>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Contributeur</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Geospatial</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Python</span>

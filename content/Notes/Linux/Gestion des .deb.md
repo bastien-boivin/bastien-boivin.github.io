@@ -1,12 +1,12 @@
 ---
-title: Gestion des paquets .deb tag
+title: Gestion des paquets .deb
 tags:
-  linux
-  ubuntu
-  debian
-  deb
-  packages
-description: Guide complet pour installer, mettre à jour et supprimer des paquets .deb sous distributions Debian/Ubuntu
+  - linux
+  - ubuntu
+  - debian
+  - deb
+  - packages
+description: Installation, mise à jour et suppression des paquets .deb sous Debian/Ubuntu
 ---
 ## Gestion des fichiers `.deb`
 

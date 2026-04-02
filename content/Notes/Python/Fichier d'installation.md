@@ -7,7 +7,7 @@ tags:
   - yaml
   - requirements
   - toml
-description: Guide des différents formats de fichiers de configuration pour les projets Python
+description: Formats de fichiers de configuration pour les projets Python (yml, txt, toml)
 ---
 
 > [!warning] Information

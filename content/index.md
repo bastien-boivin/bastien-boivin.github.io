@@ -3,9 +3,9 @@ title: "Home"
 tags: [home]
 description: "Page d'accueil du carnet de notes de Bastien – modélisation hydrogéologique, Python et outils géospatiaux"
 ---
-Actuellement en thèse de doctorat en modélisation hydrogéologique, je participe au développement d'outils Python pour automatiser le déploiement de modèles d'eaux souterraines. Dans le cadre de mes travaux de recherche, je me concentre sur l'amélioration de la représentation des interactions surface-subsurface dans les aquifères de socle cristallin.
+Doctorant en modélisation hydrogéologique, je travaille sur les interactions surface-souterrain dans les aquifères de socle cristallin. Je contribue au développement d'outils Python pour automatiser le déploiement de modèles d'eaux souterraines.
 
-Ce site rassemble mes notes techniques, scripts et réflexions sur la modélisation hydrogéologique, le développement Python et les outils géospatiaux.
+Ce site regroupe mes notes techniques sur la modélisation hydrogéologique, Python et les outils géospatiaux.
 
 ---
 <style>

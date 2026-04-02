@@ -6,7 +6,7 @@ tags:
   - versioning
   - gitlab
   - github
-description: Guide pratique pour cloner, travailler avec des branches, synchroniser un dépôt, gérer les tags, publier des releases, maintenir un changelog et utiliser Git LFS
+description: Cloner, branches, synchronisation, tags, releases, changelog et Git LFS
 ---
 
 ## Objectif

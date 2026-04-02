@@ -3,7 +3,7 @@ title: Profil
 tags:
   - profil
   - cv
-description: Profil de Bastien Boivin – Doctorant en modélisation hydrogéologique
+description: Profil de Bastien Boivin, doctorant en modélisation hydrogéologique
 ---
 ## Formation & Recherche
 
@@ -28,7 +28,7 @@ description: Profil de Bastien Boivin – Doctorant en modélisation hydrogéolo
 ### Doctorant en Modélisation Hydrogéologique
 **Université de Rennes** • *Oct. 2024 - Sept. 2027*
 
-Développement de modèles couplés surface-souterrain pour évaluer l'impact du changement climatique sur la ressource en eau. Contribution active aux projets HydroModPy et GeoP4th.
+Modélisation couplée surface-souterrain pour évaluer l'impact du changement climatique sur la ressource en eau. Contributions aux projets HydroModPy et GeoP4th.
 
 ### Alternant Ingénieur Hydrogéologue  
 **BRGM Bretagne** • *Sept. 2023 - Sept. 2024*
@@ -53,7 +53,7 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
         <small style="color: var(--gray);">Boîte à outils Python pour la modélisation hydrogéologique</small>
       </div>
     </div>
-    <small style="color: var(--darkgray);">Contribution active durant ma thèse au développement de la modélisation des réservoirs et lacs. HydroModPy automatise le déploiement de modèles d'eaux souterraines à l'échelle des bassins versants.</small><br><br>
+    <small style="color: var(--darkgray);">Contributions au développement des modules de modélisation des réservoirs et lacs. HydroModPy automatise le déploiement de modèles d'eaux souterraines à l'échelle des bassins versants.</small><br><br>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Co-auteur</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">MODFLOW</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Python</span>
@@ -67,7 +67,7 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
         <small style="color: var(--gray);">Plateforme de traitement de trajectoires spatio-temporelles</small>
       </div>
     </div>
-    <small style="color: var(--darkgray);">Développement d'outils pour l'analyse des trajectoires dans le cadre de mes recherches sur les interactions surface-subsurface. Contribution aux modules de traitement des données spatio-temporelles.</small><br><br>
+    <small style="color: var(--darkgray);">Outils d'analyse de trajectoires pour mes travaux sur les interactions surface-souterrain. Contributions aux modules de traitement des données spatio-temporelles.</small><br><br>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Contributeur</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Géospatial</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Python</span>
@@ -83,7 +83,7 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 > 
 > **Auteurs :** A. Gauvain, R. Abhervé, A. Coche, M. Le Mesnil, C. Roques, C. Bouchez, S. Leray, E. Marti, R. Figueroa, E. Bresciani, C. Vautier, **B. Boivin**, et al.
 > 
-> Présentation d'une boîte à outils Python open-source pour automatiser le déploiement de modèles d'eaux souterraines à l'échelle des bassins versants.
+> Boîte à outils Python open-source pour automatiser le déploiement de modèles d'eaux souterraines à l'échelle des bassins versants.
 > 
 > [→ Lire le preprint](https://egusphere.copernicus.org/preprints/2025/egusphere-2024-3962/)
 
@@ -92,11 +92,29 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 > 
 > **Auteurs :** **B. Boivin**, A. Coche, R. Abhervé, R. Guillossou, J.-Y. Gaubert, L. Aquilina, J.-R. De Dreuzy
 > 
-> Présentation de l'approche de modélisation couplée développée pour optimiser la gestion des barrages d'eau potable sous l'impact du changement climatique.
+> Approche de modélisation couplée pour optimiser la gestion des barrages d'eau potable face au changement climatique.
 > 
 > **Conférence :** Paris, 29 septembre - 2 octobre 2025
 > 
 > **Focus :** Barrage de Chèze (Bretagne) - Modélisation des interactions surface-subsurface pour 500 000 habitants de la métropole rennaise
+
+> [!tip] Du niveau d'eau aux flux : séparation des composantes du bilan d'une retenue par modèle intégré
+> **Communication poster • GRUTTEE 2026**
+> 
+> **Auteurs :** **B. Boivin**, R. Guillossou, J.-Y. Gaubert, L. Aquilina, J.-R. De Dreuzy
+> 
+> Modèle intégré qui résout le bilan hydrique complet d'une retenue d'eau potable à partir de la chronique de hauteur d'eau. Validation sur le barrage de la Chèze (2000-2024) et projections climatiques.
+> 
+> **Conférence :** Marseille, 16ème congrès international du GRUTTEE
+
+> [!tip] Développement d'une modélisation systémique des ressources du bassin rennais
+> **Communication orale • GRUTTEE 2026**
+> 
+> **Auteurs :** **L. Aquilina**, B. Boivin, J.-Y. Gaubert, R. Guillossou, J.-R. De Dreuzy
+> 
+> Modélisation systémique du réseau d'approvisionnement en eau potable du bassin rennais pour anticiper les impacts du changement climatique.
+> 
+> **Conférence :** Marseille, 16ème congrès international du GRUTTEE
 
 ---
 
@@ -105,8 +123,8 @@ Initiation aux méthodes d'investigation hydrogéologique et participation aux p
 **Axes principaux :**
 - Interactions surface-subsurface
 - Modélisation des impacts climatiques sur la disponibilité des ressources
-- Développement d'outils pour la communauté scientifique et opérationnelle
-- Aide à la décision pour les gestionnaires de ressources en eau
+- Développement d'outils pour la communauté scientifique et les gestionnaires
+- Aide à la décision pour la gestion des ressources en eau
 
 ---
 

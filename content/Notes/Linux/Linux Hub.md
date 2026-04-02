@@ -1,7 +1,7 @@
 ---
-title: Linux Hub tags
+title: Linux Hub
 tags:
-  linux
+  - linux
 description: Hub de navigation pour les notes Linux
 ---
 

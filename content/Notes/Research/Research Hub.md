@@ -4,9 +4,11 @@ tags:
   - research
   - hub
   - overview
-description: Central hub for my PhD research — projects, outputs, datasets, code, and timelines.
+description: Page centrale pour ma recherche doctorale, projets, publications et conférences.
 ---
 
 # Research Hub
 
 ### **[[OZCAR TERENO 2025]]**
+
+### **[[GRUTTEE 2026]]**

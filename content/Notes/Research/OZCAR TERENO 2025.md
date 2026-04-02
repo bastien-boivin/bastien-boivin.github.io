@@ -45,7 +45,7 @@ The case study focuses on the **Chèze dam (Brittany, France)**, a strategic res
         <small style="color: var(--gray);">Python toolbox for hydrogeological modeling</small>
       </div>
     </div>
-    <small style="color: var(--darkgray);">Active contribution during my PhD to the development of reservoir and lake modeling. HydroModPy automates the deployment of groundwater models at the watershed scale.</small><br><br>
+    <small style="color: var(--darkgray);">Contributions to the development of reservoir and lake modeling modules. HydroModPy automates the deployment of groundwater models at the watershed scale.</small><br><br>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Co-author</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">MODFLOW</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Python</span>
@@ -59,7 +59,7 @@ The case study focuses on the **Chèze dam (Brittany, France)**, a strategic res
         <small style="color: var(--gray);">Platform for spatio-temporal trajectory processing</small>
       </div>
     </div>
-    <small style="color: var(--darkgray);">Development of tools for trajectory analysis within my research on surface–subsurface interactions. Contribution to spatio-temporal data processing modules.</small><br><br>
+    <small style="color: var(--darkgray);">Trajectory analysis tools for my work on surface-subsurface interactions. Contributions to spatio-temporal data processing modules.</small><br><br>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Contributor</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Geospatial</span>
     <span style="background: var(--lightgray); color: var(--darkgray); padding: 0.2rem 0.5rem; border-radius: 8px; font-size: 0.75rem;">Python</span>
