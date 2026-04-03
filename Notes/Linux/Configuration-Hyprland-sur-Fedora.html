@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en"><head><title>Configuration Hyprland sur FedoraBastien Boivin</title><meta charset="utf-8"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Bastien Boivin"/><meta property="og:title" content="Configuration Hyprland sur FedoraBastien Boivin"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Configuration Hyprland sur FedoraBastien Boivin"/><meta name="twitter:description" content="Installation et configuration complète de Hyprland sur Fedora 43 avec dual monitor, waybar, notifications, clipboard et thème Catppuccin"/><meta property="og:description" content="Installation et configuration complète de Hyprland sur Fedora 43 avec dual monitor, waybar, notifications, clipboard et thème Catppuccin"/><meta property="og:image:alt" content="Installation et configuration complète de Hyprland sur Fedora 43 avec dual monitor, waybar, notifications, clipboard et thème Catppuccin"/><meta property="twitter:domain" content="quartz.jzhao.xyz"/><meta property="og:url" content="https://quartz.jzhao.xyz/Notes/Linux/Configuration-Hyprland-sur-Fedora"/><meta property="twitter:url" content="https://quartz.jzhao.xyz/Notes/Linux/Configuration-Hyprland-sur-Fedora"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="Installation et configuration complète de Hyprland sur Fedora 43 avec dual monitor, waybar, notifications, clipboard et thème Catppuccin"/><meta name="generator" content="Quartz"/><link href="../../index.css" rel="stylesheet" type="text/css" spa-preserve/><style>.expand-button {
+  position: absolute;
+  display: flex;
+  float: right;
+  padding: 0.4rem;
+  margin: 0.3rem;
+  right: 0;
+  color: var(--gray);
+  border-color: var(--dark);
+  background-color: var(--light);
+  border: 1px solid;
+  border-radius: 5px;
+  opacity: 0;
+  transition: 0.2s;
+}
+.expand-button > svg {
+  fill: var(--light);
+  filter: contrast(0.3);
+}
+.expand-button:hover {
+  cursor: pointer;
+  border-color: var(--secondary);
+}
+.expand-button:focus {
+  outline: 0;
+}
+
+pre:hover > .expand-button {
+  opacity: 1;
+  transition: 0.2s;
+}
+
+#mermaid-container {
+  position: fixed;
+  contain: layout;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: none;
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
+}
+#mermaid-container.active {
+  display: inline-block;
+}
+#mermaid-container > #mermaid-space {
+  border: 1px solid var(--lightgray);
+  background-color: var(--light);
+  border-radius: 5px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 80vw;
+  overflow: hidden;
+}
+#mermaid-container > #mermaid-space > .mermaid-content {
+  padding: 2rem;
+  position: relative;
+  transform-origin: 0 0;
+  transition: transform 0.1s ease;
+  overflow: visible;
+  min-height: 200px;
+  min-width: 200px;
+}
+#mermaid-container > #mermaid-space > .mermaid-content pre {
+  margin: 0;
+  border: none;
+}
+#mermaid-container > #mermaid-space > .mermaid-content svg {
+  max-width: none;
+  height: auto;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  background: var(--light);
+  border: 1px solid var(--lightgray);
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 2;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 1px solid var(--lightgray);
+  background: var(--light);
+  color: var(--dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: var(--bodyFont);
+  transition: all 0.2s ease;
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:hover {
+  background: var(--lightgray);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:active {
+  transform: translateY(1px);
+}
+#mermaid-container > #mermaid-space > .mermaid-controls .mermaid-control-button:nth-child(2) {
+  width: auto;
+  padding: 0 12px;
+  font-size: 14px;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VSb290IjoiL2hvbWUvcnVubmVyL3dvcmsvYmFzdGllbi1ib2l2aW4uZ2l0aHViLmlvL2Jhc3RpZW4tYm9pdmluLmdpdGh1Yi5pby9xdWFydHovY29tcG9uZW50cy9zdHlsZXMiLCJzb3VyY2VzIjpbIm1lcm1haWQuaW5saW5lLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7O0FBR0Y7RUFDRTtFQUNBOztBQUdGO0VBQ0U7OztBQUtGO0VBQ0U7RUFDQTs7O0FBSUo7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7O0FBR0Y7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7RUFDQTs7QUFHRjtFQUNFO0VBQ0E7O0FBSUo7RUFDRTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBOztBQUVBO0VBQ0U7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTtFQUNBO0VBQ0E7RUFDQTs7QUFFQTtFQUNFOztBQUdGO0VBQ0U7O0FBSUY7RUFDRTtFQUNBO0VBQ0EiLCJzb3VyY2VzQ29udGVudCI6WyIuZXhwYW5kLWJ1dHRvbiB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxvYXQ6IHJpZ2h0O1xuICBwYWRkaW5nOiAwLjRyZW07XG4gIG1hcmdpbjogMC4zcmVtO1xuICByaWdodDogMDsgLy8gTk9URTogcmlnaHQgd2lsbCBiZSBzZXQgaW4gbWVybWFpZC5pbmxpbmUudHNcbiAgY29sb3I6IHZhcigtLWdyYXkpO1xuICBib3JkZXItY29sb3I6IHZhcigtLWRhcmspO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiB2YXIoLS1saWdodCk7XG4gIGJvcmRlcjogMXB4IHNvbGlkO1xuICBib3JkZXItcmFkaXVzOiA1cHg7XG4gIG9wYWNpdHk6IDA7XG4gIHRyYW5zaXRpb246IDAuMnM7XG5cbiAgJiA+IHN2ZyB7XG4gICAgZmlsbDogdmFyKC0tbGlnaHQpO1xuICAgIGZpbHRlcjogY29udHJhc3QoMC4zKTtcbiAgfVxuXG4gICY6aG92ZXIge1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgICBib3JkZXItY29sb3I6IHZhcigtLXNlY29uZGFyeSk7XG4gIH1cblxuICAmOmZvY3VzIHtcbiAgICBvdXRsaW5lOiAwO1xuICB9XG59XG5cbnByZSB7XG4gICY6aG92ZXIgPiAuZXhwYW5kLWJ1dHRvbiB7XG4gICAgb3BhY2l0eTogMTtcbiAgICB0cmFuc2l0aW9uOiAwLjJzO1xuICB9XG59XG5cbiNtZXJtYWlkLWNvbnRhaW5lciB7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgY29udGFpbjogbGF5b3V0O1xuICB6LWluZGV4OiA5OTk7XG4gIGxlZnQ6IDA7XG4gIHRvcDogMDtcbiAgd2lkdGg6IDEwMHZ3O1xuICBoZWlnaHQ6IDEwMHZoO1xuICBvdmVyZmxvdzogaGlkZGVuO1xuICBkaXNwbGF5OiBub25lO1xuICBiYWNrZHJvcC1maWx0ZXI6IGJsdXIoNHB4KTtcbiAgYmFja2dyb3VuZDogcmdiYSgwLCAwLCAwLCAwLjUpO1xuXG4gICYuYWN0aXZlIHtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gIH1cblxuICAmID4gI21lcm1haWQtc3BhY2Uge1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogdmFyKC0tbGlnaHQpO1xuICAgIGJvcmRlci1yYWRpdXM6IDVweDtcbiAgICBwb3NpdGlvbjogZml4ZWQ7XG4gICAgdG9wOiA1MCU7XG4gICAgbGVmdDogNTAlO1xuICAgIHRyYW5zZm9ybTogdHJhbnNsYXRlKC01MCUsIC01MCUpO1xuICAgIGhlaWdodDogODB2aDtcbiAgICB3aWR0aDogODB2dztcbiAgICBvdmVyZmxvdzogaGlkZGVuO1xuXG4gICAgJiA+IC5tZXJtYWlkLWNvbnRlbnQge1xuICAgICAgcGFkZGluZzogMnJlbTtcbiAgICAgIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgICAgIHRyYW5zZm9ybS1vcmlnaW46IDAgMDtcbiAgICAgIHRyYW5zaXRpb246IHRyYW5zZm9ybSAwLjFzIGVhc2U7XG4gICAgICBvdmVyZmxvdzogdmlzaWJsZTtcbiAgICAgIG1pbi1oZWlnaHQ6IDIwMHB4O1xuICAgICAgbWluLXdpZHRoOiAyMDBweDtcblxuICAgICAgcHJlIHtcbiAgICAgICAgbWFyZ2luOiAwO1xuICAgICAgICBib3JkZXI6IG5vbmU7XG4gICAgICB9XG5cbiAgICAgIHN2ZyB7XG4gICAgICAgIG1heC13aWR0aDogbm9uZTtcbiAgICAgICAgaGVpZ2h0OiBhdXRvO1xuICAgICAgfVxuICAgIH1cblxuICAgICYgPiAubWVybWFpZC1jb250cm9scyB7XG4gICAgICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gICAgICBib3R0b206IDIwcHg7XG4gICAgICByaWdodDogMjBweDtcbiAgICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgICBnYXA6IDhweDtcbiAgICAgIHBhZGRpbmc6IDhweDtcbiAgICAgIGJhY2tncm91bmQ6IHZhcigtLWxpZ2h0KTtcbiAgICAgIGJvcmRlcjogMXB4IHNvbGlkIHZhcigtLWxpZ2h0Z3JheSk7XG4gICAgICBib3JkZXItcmFkaXVzOiA2cHg7XG4gICAgICBib3gtc2hhZG93OiAwIDJweCA0cHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICAgICAgei1pbmRleDogMjtcblxuICAgICAgLm1lcm1haWQtY29udHJvbC1idXR0b24ge1xuICAgICAgICBkaXNwbGF5OiBmbGV4O1xuICAgICAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgICAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICAgICAgd2lkdGg6IDMycHg7XG4gICAgICAgIGhlaWdodDogMzJweDtcbiAgICAgICAgcGFkZGluZzogMDtcbiAgICAgICAgYm9yZGVyOiAxcHggc29saWQgdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHQpO1xuICAgICAgICBjb2xvcjogdmFyKC0tZGFyayk7XG4gICAgICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAgICAgY3Vyc29yOiBwb2ludGVyO1xuICAgICAgICBmb250LXNpemU6IDE2cHg7XG4gICAgICAgIGZvbnQtZmFtaWx5OiB2YXIoLS1ib2R5Rm9udCk7XG4gICAgICAgIHRyYW5zaXRpb246IGFsbCAwLjJzIGVhc2U7XG5cbiAgICAgICAgJjpob3ZlciB7XG4gICAgICAgICAgYmFja2dyb3VuZDogdmFyKC0tbGlnaHRncmF5KTtcbiAgICAgICAgfVxuXG4gICAgICAgICY6YWN0aXZlIHtcbiAgICAgICAgICB0cmFuc2Zvcm06IHRyYW5zbGF0ZVkoMXB4KTtcbiAgICAgICAgfVxuXG4gICAgICAgIC8vIFN0eWxlIHRoZSByZXNldCBidXR0b24gZGlmZmVyZW50bHlcbiAgICAgICAgJjpudGgtY2hpbGQoMikge1xuICAgICAgICAgIHdpZHRoOiBhdXRvO1xuICAgICAgICAgIHBhZGRpbmc6IDAgMTJweDtcbiAgICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgICAgIH1cbiAgICAgIH1cbiAgICB9XG4gIH1cbn1cbiJdfQ== */</style><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" spa-preserve/><script src="../../prescript.js" type="application/javascript" spa-preserve></script><script type="application/javascript" spa-preserve>const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://quartz.jzhao.xyz/index.xml"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://quartz.jzhao.xyz/Notes/Linux/Configuration-Hyprland-sur-Fedora-og-image.webp"/><meta property="og:image:url" content="https://quartz.jzhao.xyz/Notes/Linux/Configuration-Hyprland-sur-Fedora-og-image.webp"/><meta name="twitter:image" content="https://quartz.jzhao.xyz/Notes/Linux/Configuration-Hyprland-sur-Fedora-og-image.webp"/><meta property="og:image:type" content="image/.webp"/></head><body data-slug="Notes/Linux/Configuration-Hyprland-sur-Fedora"><div id="quartz-root" class="page"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Bastien Boivin</a></h2><div class="spacer mobile-only"></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 1rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button"><p>Search</p><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Search for something" placeholder="Search for something"/><div class="search-layout" data-preview="true"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Dark mode"><title>Dark mode</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Light mode"><title>Light mode</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Reader mode"><title>Reader mode</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a,b)=>!a.isFolder&amp;&amp;!b.isFolder||a.isFolder&amp;&amp;b.isFolder?a.displayName.localeCompare(b.displayName,void 0,{numeric:!0,sensitivity:\&quot;base\&quot;}):!a.isFolder&amp;&amp;b.isFolder?1:-1&quot;,&quot;filterFn&quot;:&quot;node=>node.slugSegment!==\&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;node=>node&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-content"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorer</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div class="explorer-content" aria-expanded="false"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#"></a></li></template><template id="template-folder"><li><div class="folder-container"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../Notes/">Notes</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../Notes/Linux/">Linux</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Configuration Hyprland sur Fedora</a></div></nav><h1 class="article-title">Configuration Hyprland sur Fedora</h1><p show-comma="true" class="content-meta"><time datetime="2026-04-03T14:13:25.000Z">Apr 03, 2026</time><span>12 min read</span></p><ul class="tags"><li><a href="../../tags/linux" class="internal tag-link">linux</a></li><li><a href="../../tags/fedora" class="internal tag-link">fedora</a></li><li><a href="../../tags/hyprland" class="internal tag-link">hyprland</a></li><li><a href="../../tags/wayland" class="internal tag-link">wayland</a></li><li><a href="../../tags/tiling" class="internal tag-link">tiling</a></li><li><a href="../../tags/ricing" class="internal tag-link">ricing</a></li></ul></div></div><article class="popover-hint"><h2 id="contexte">Contexte<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#contexte" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Hyprland est un compositeur Wayland tiling avec des animations fluides intégrées. Contrairement a Sway, les animations, le blur et les coins arrondis font partie du moteur de rendu, ce qui donne un rendu visuel bien au dessus sans plugins externes.</p>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Support officiel </p></div>
+                  
+                </div>
+<div class="callout-content">
+<div class="callout-content-inner">
+<p>Hyprland ne supporte officiellement que Arch et NixOS. Sur Fedora, le fonctionnement repose sur des depots COPR maintenus par la communaute. Ca marche bien en pratique, mais il n’y a pas de support officiel en cas de bug.</p>
+</div>
+</div>
+</blockquote>
+<p>Configuration realisee sur un laptop avec ecran 1920x1200 et un moniteur Dell U3417W ultrawide 3440x1440.</p>
+<hr/>
+<h2 id="installation">Installation<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#installation" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="activer-le-depot-copr">Activer le depot COPR<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#activer-le-depot-copr" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Le depot recommande par le wiki officiel Hyprland pour Fedora est <code>lionheartp/Hyprland</code> :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Activer le depot COPR</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dnf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> copr</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> enable</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> lionheartp/Hyprland</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Installer Hyprland et le portail XDG (screen sharing)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dnf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> hyprland</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> xdg-desktop-portal-hyprland</span></span></code></pre></figure>
+<h3 id="installer-les-outils-essentiels">Installer les outils essentiels<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#installer-les-outils-essentiels" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Terminal</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dnf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> copr</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> enable</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> pgdev/ghostty</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dnf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ghostty</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Barre, lanceur, notifications, fond d'ecran</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dnf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> waybar</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> wofi</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> mako</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> hyprpaper</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Screenshots et clipboard</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dnf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> grim</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> slurp</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> wl-clipboard</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> cliphist</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Verrouillage d'ecran</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dnf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> hyprlock</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Controle volume et luminosite</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">sudo</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dnf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> install</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> brightnessctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> playerctl</span></span></code></pre></figure>
+<h3 id="installer-une-nerd-font">Installer une Nerd Font<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#installer-une-nerd-font" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Les icones de waybar necessitent une police Nerd Font. Sans elle, les icones s’affichent comme des caracteres illegibles.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">mkdir</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -p</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ~/.local/share/fonts</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">cd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /tmp</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">curl</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -fLO</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.tar.xz</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">tar</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -xf</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> JetBrainsMono.tar.xz</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -C</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ~/.local/share/fonts/</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">fc-cache</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -fv</span></span></code></pre></figure>
+<hr/>
+<h2 id="configuration-de-hyprland">Configuration de Hyprland<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#configuration-de-hyprland" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Le fichier de configuration principal est <code>~/.config/hypr/hyprland.conf</code>. Au premier lancement, Hyprland genere une config par defaut avec un message jaune d’avertissement. Supprimer la ligne <code>autogenerated = 1</code> pour le retirer.</p>
+<h3 id="moniteurs">Moniteurs<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#moniteurs" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>La disposition des moniteurs se configure avec la directive <code>monitor</code>. Le format est :</p>
+<pre><code>monitor = NOM, RESOLUTION@REFRESH, POSITION, SCALE
+</code></pre>
+<p>Pour connaitre le nom de ses ecrans :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> monitors</span></span></code></pre></figure>
+<p>Exemple avec un ultrawide en haut et un laptop centre en dessous :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Ultrawide en haut</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">monitor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = DP-5, 3440x1440@60, 0x0, 1</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Laptop centre en dessous</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Position X = (3440 - 1920/1.25) / 2 = 952</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">monitor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = eDP-1, 1920x1200@60, 952x1440, 1.25</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Fallback pour les ecrans non configures</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">monitor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = , preferred, auto, auto</span></span></code></pre></figure>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Calcul du centrage </p></div>
+                  
+                </div>
+<div class="callout-content">
+<div class="callout-content-inner">
+<p>La position X du laptop depend de son scale. A scale 1.25, la largeur effective est 1920/1.25 = 1536px. Pour centrer sous un ecran de 3440px : (3440 - 1536) / 2 = 952.</p>
+</div>
+</div>
+</blockquote>
+<h3 id="programmes-par-defaut">Programmes par defaut<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#programmes-par-defaut" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">$</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">terminal</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = ghostty</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">$</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">fileManager</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = nautilus</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">$</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">menu</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = wofi --show drun</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">$</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">browser</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = firefox</span></span></code></pre></figure>
+<h3 id="autostart">Autostart<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#autostart" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Les programmes lances avec <code>exec-once</code> ne demarrent qu’a l’ouverture de la session, pas au reload de la config.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">exec-once</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = waybar</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">exec-once</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = mako</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">exec-once</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = hyprpaper</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">exec-once</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = wl-paste --watch cliphist store</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">exec-once</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = /usr/libexec/kf6/polkit-kde-authentication-agent-1</span></span></code></pre></figure>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Polkit </p></div>
+                  
+                </div>
+<div class="callout-content">
+<div class="callout-content-inner">
+<p>L’agent polkit gere les popups de mot de passe administrateur. Si KDE Plasma est installe sur la machine, l’agent KDE (<code>polkit-kde-authentication-agent-1</code>) est deja present. Sinon, installer <code>polkit-gnome</code> et lancer <code>/usr/libexec/polkit-gnome-authentication-agent-1</code>.</p>
+</div>
+</div>
+</blockquote>
+<h3 id="variables-denvironnement">Variables d’environnement<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#variables-denvironnement" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">env</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = XCURSOR_SIZE,24</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">env</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = HYPRCURSOR_SIZE,24</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">env</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = XCURSOR_THEME,breeze_cursors</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">env</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = GTK_THEME,Breeze-Dark</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">env</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = QT_QPA_PLATFORMTHEME,kde</span></span></code></pre></figure>
+<h3 id="apparence">Apparence<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#apparence" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">general {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    gaps_in</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 4</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    gaps_out</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 8</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    border_size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 2</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # Degrade anime bleu/violet/rose sur la fenetre active</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    col.active_border</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = rgba(89b4faee) rgba(cba6f7ee) rgba(f5c2e7ee) 45deg</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    col.inactive_border</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = rgba(45475aaa)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # Permet de redimensionner en cliquant sur les bords</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    resize_on_border</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = true</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    layout</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = dwindle</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">decoration {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    rounding</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 10</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    rounding_power</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 2</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    active_opacity</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 1.0</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    inactive_opacity</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 0.95</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    shadow {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        enabled</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = true</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        range</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 8</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        render_power</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 3</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = rgba(1a1a2eee)</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    }</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    blur {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        enabled</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = true</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 6</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        passes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 2</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        new_optimizations</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = true</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        vibrancy</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 0.2</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    }</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<h3 id="animations">Animations<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#animations" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Les courbes bezier definissent le profil d’acceleration des animations. <code>overshot</code> donne un leger rebond a l’arrivee, <code>smoothOut</code> une sortie rapide.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">animations {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    enabled</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = yes, please :)</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    bezier</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = smoothOut, 0.36, 0, 0.66, -0.56</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    bezier</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = smoothIn, 0.25, 1, 0.5, 1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    bezier</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = overshot, 0.05, 0.9, 0.1, 1.1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    bezier</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = linear, 0, 0, 1, 1</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # Fenetres : slide avec rebond</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = windows, 1, 4, overshot, slide</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = windowsIn, 1, 4, overshot, slide</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = windowsOut, 1, 3, smoothOut, slide</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = windowsMove, 1, 3, overshot</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # Bordure animee qui tourne en boucle</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = border, 1, 10, default</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = borderangle, 1, 50, linear, loop</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # Fondu</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = fade, 1, 3, smoothIn</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = fadeIn, 1, 3, smoothIn</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = fadeOut, 1, 3, smoothOut</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # Layers (waybar, wofi, etc.)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = layers, 1, 3, overshot</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = layersIn, 1, 3, overshot, fade</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = layersOut, 1, 2, smoothOut, fade</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = fadeLayersIn, 1, 3, smoothIn</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = fadeLayersOut, 1, 3, smoothOut</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # Changement de workspace : slide avec rebond</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = workspaces, 1, 4, overshot, slide</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = workspacesIn, 1, 4, overshot, slide</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    animation</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = workspacesOut, 1, 3, smoothOut, slide</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<h3 id="layout">Layout<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#layout" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">dwindle {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    pseudotile</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = true</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    preserve_split</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = true</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">misc {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    force_default_wallpaper</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 0</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    disable_hyprland_logo</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = true</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<h3 id="input">Input<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#input" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">input {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    kb_layout</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = fr</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    follow_mouse</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    sensitivity</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 0</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    touchpad {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        natural_scroll</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = true</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">        tap-to-click</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = true</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    }</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Swipe 3 doigts pour changer de workspace</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">gesture</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 3, horizontal, workspace</span></span></code></pre></figure>
+<h3 id="workspaces-par-ecran">Workspaces par ecran<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#workspaces-par-ecran" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Les workspaces peuvent etre attribues a un ecran specifique. Pratique pour toujours avoir ses outils de travail sur l’ultrawide et le monitoring sur le laptop.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Workspaces 1-5 sur l'ultrawide</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">workspace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 1, monitor:DP-5, default:true</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">workspace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 2, monitor:DP-5</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">workspace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 3, monitor:DP-5</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">workspace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 4, monitor:DP-5</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">workspace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 5, monitor:DP-5</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Workspaces 6-9 sur le laptop</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">workspace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 6, monitor:eDP-1, default:true</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">workspace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 7, monitor:eDP-1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">workspace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 8, monitor:eDP-1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">workspace</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 9, monitor:eDP-1</span></span></code></pre></figure>
+<hr/>
+<h2 id="raccourcis-clavier">Raccourcis clavier<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#raccourcis-clavier" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>La touche <code>SUPER</code> correspond a la touche Windows du clavier.</p>
+<h3 id="lancer-et-fermer">Lancer et fermer<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#lancer-et-fermer" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Raccourci</th><th>Action</th></tr></thead><tbody><tr><td><code>SUPER + Q</code></td><td>Ouvrir un nouveau terminal</td></tr><tr><td><code>SUPER + D</code></td><td>Lanceur d’applications (wofi)</td></tr><tr><td><code>SUPER + E</code></td><td>Gestionnaire de fichiers</td></tr><tr><td><code>SUPER + C</code></td><td>Fermer la fenetre active</td></tr><tr><td><code>SUPER + M</code></td><td>Quitter Hyprland (ferme la session)</td></tr><tr><td><code>SUPER + L</code></td><td>Verrouiller l’ecran</td></tr></tbody></table></div>
+<h3 id="gestion-des-fenetres">Gestion des fenetres<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#gestion-des-fenetres" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Raccourci</th><th>Action</th></tr></thead><tbody><tr><td><code>SUPER + F</code></td><td>Basculer en plein ecran</td></tr><tr><td><code>SUPER + V</code></td><td>Basculer en mode flottant (la fenetre sort du tiling)</td></tr><tr><td><code>SUPER + P</code></td><td>Pseudo-tiling (la fenetre garde sa taille dans le tiling)</td></tr><tr><td><code>SUPER + J</code></td><td>Alterner split horizontal/vertical</td></tr></tbody></table></div>
+<h3 id="naviguer-entre-les-fenetres">Naviguer entre les fenetres<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#naviguer-entre-les-fenetres" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Raccourci</th><th>Action</th></tr></thead><tbody><tr><td><code>SUPER + gauche</code></td><td>Focus sur la fenetre a gauche</td></tr><tr><td><code>SUPER + droite</code></td><td>Focus sur la fenetre a droite</td></tr><tr><td><code>SUPER + haut</code></td><td>Focus sur la fenetre du haut</td></tr><tr><td><code>SUPER + bas</code></td><td>Focus sur la fenetre du bas</td></tr></tbody></table></div>
+<h3 id="deplacer-les-fenetres">Deplacer les fenetres<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#deplacer-les-fenetres" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Raccourci</th><th>Action</th></tr></thead><tbody><tr><td><code>SUPER + SHIFT + gauche</code></td><td>Deplacer la fenetre vers la gauche</td></tr><tr><td><code>SUPER + SHIFT + droite</code></td><td>Deplacer la fenetre vers la droite</td></tr><tr><td><code>SUPER + SHIFT + haut</code></td><td>Deplacer la fenetre vers le haut</td></tr><tr><td><code>SUPER + SHIFT + bas</code></td><td>Deplacer la fenetre vers le bas</td></tr><tr><td><code>SUPER + clic gauche</code></td><td>Deplacer la fenetre a la souris (drag)</td></tr></tbody></table></div>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Deplacement entre ecrans </p></div>
+                  
+                </div>
+<div class="callout-content">
+<div class="callout-content-inner">
+<p>Si la fenetre est au bord d’un ecran et qu’on la deplace dans cette direction, elle passe sur l’ecran adjacent. Par exemple <code>SUPER + SHIFT + haut</code> sur le laptop enverra la fenetre vers l’ultrawide au dessus.</p>
+</div>
+</div>
+</blockquote>
+<h3 id="redimensionner-les-fenetres">Redimensionner les fenetres<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#redimensionner-les-fenetres" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Raccourci</th><th>Action</th></tr></thead><tbody><tr><td><code>SUPER + CTRL + gauche</code></td><td>Reduire la largeur (-40px)</td></tr><tr><td><code>SUPER + CTRL + droite</code></td><td>Augmenter la largeur (+40px)</td></tr><tr><td><code>SUPER + CTRL + haut</code></td><td>Reduire la hauteur (-40px)</td></tr><tr><td><code>SUPER + CTRL + bas</code></td><td>Augmenter la hauteur (+40px)</td></tr><tr><td><code>SUPER + clic droit</code></td><td>Redimensionner a la souris (drag)</td></tr><tr><td>Bords de fenetre</td><td>Cliquer-glisser sur le bord pour redimensionner (active via <code>resize_on_border</code>)</td></tr></tbody></table></div>
+<h3 id="workspaces">Workspaces<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#workspaces" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Raccourci</th><th>Action</th></tr></thead><tbody><tr><td><code>SUPER + 1</code> a <code>SUPER + 9</code></td><td>Aller au workspace 1 a 9</td></tr><tr><td><code>SUPER + 0</code></td><td>Aller au workspace 10</td></tr><tr><td><code>SUPER + SHIFT + 1</code> a <code>SUPER + SHIFT + 9</code></td><td>Envoyer la fenetre active vers le workspace 1 a 9</td></tr><tr><td><code>SUPER + SHIFT + 0</code></td><td>Envoyer la fenetre vers le workspace 10</td></tr><tr><td><code>SUPER + molette haut</code></td><td>Workspace precedent</td></tr><tr><td><code>SUPER + molette bas</code></td><td>Workspace suivant</td></tr><tr><td><code>SUPER + S</code></td><td>Afficher/masquer le scratchpad</td></tr><tr><td><code>SUPER + SHIFT + S</code></td><td>Envoyer la fenetre dans le scratchpad</td></tr><tr><td>Swipe 3 doigts horizontalement</td><td>Changer de workspace (touchpad)</td></tr></tbody></table></div>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Workspaces et ecrans </p></div>
+                  
+                </div>
+<div class="callout-content">
+<div class="callout-content-inner">
+<p>Les workspaces 1 a 5 sont attaches a l’ultrawide, les workspaces 6 a 9 au laptop. Quand on fait <code>SUPER + 1</code>, le focus va automatiquement sur l’ultrawide. <code>SUPER + 6</code> ramene le focus sur le laptop. Envoyer une fenetre vers un workspace d’un autre ecran la deplace physiquement vers cet ecran.</p>
+</div>
+</div>
+</blockquote>
+<h3 id="screenshots">Screenshots<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#screenshots" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Raccourci</th><th>Action</th></tr></thead><tbody><tr><td><code>Impr. ecran</code></td><td>Selectionner une zone, copier dans le presse-papiers</td></tr><tr><td><code>SHIFT + Impr. ecran</code></td><td>Capturer l’ecran entier dans le presse-papiers</td></tr><tr><td><code>SUPER + Impr. ecran</code></td><td>Selectionner une zone, sauvegarder en PNG dans <code>~/Images/</code></td></tr></tbody></table></div>
+<h3 id="clipboard">Clipboard<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#clipboard" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Raccourci</th><th>Action</th></tr></thead><tbody><tr><td><code>SUPER + SHIFT + V</code></td><td>Afficher l’historique du presse-papiers (wofi)</td></tr></tbody></table></div>
+<h3 id="media">Media<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#media" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="table-container"><table><thead><tr><th>Raccourci</th><th>Action</th></tr></thead><tbody><tr><td><code>Volume +</code></td><td>Augmenter le volume de 5%</td></tr><tr><td><code>Volume -</code></td><td>Baisser le volume de 5%</td></tr><tr><td><code>Mute</code></td><td>Couper/reactiver le son</td></tr><tr><td><code>Mute micro</code></td><td>Couper/reactiver le micro</td></tr><tr><td><code>Luminosite +</code></td><td>Augmenter la luminosite de 5%</td></tr><tr><td><code>Luminosite -</code></td><td>Baisser la luminosite de 5%</td></tr><tr><td><code>Play/Pause</code></td><td>Lecture/pause du media en cours</td></tr><tr><td><code>Suivant</code></td><td>Piste suivante</td></tr><tr><td><code>Precedent</code></td><td>Piste precedente</td></tr></tbody></table></div>
+<h3 id="commandes-hyprctl-equivalentes">Commandes hyprctl equivalentes<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#commandes-hyprctl-equivalentes" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Tous les raccourcis clavier appellent des dispatchers Hyprland. On peut les executer manuellement avec <code>hyprctl dispatch</code> :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Ouvrir un terminal</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> exec</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ghostty</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Fermer la fenetre active</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> killactive</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Passer en plein ecran</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> fullscreen</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 0</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Basculer en flottant</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> togglefloating</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Deplacer le focus</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movefocus</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> l</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # gauche</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movefocus</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> r</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # droite</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movefocus</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> u</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # haut</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movefocus</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> d</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # bas</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Deplacer la fenetre</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movewindow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> l</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movewindow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> r</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movewindow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> u</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movewindow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> d</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Redimensionner la fenetre</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> resizeactive</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 100</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 0</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">     # +100px en largeur</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> resizeactive</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -100</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 0</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # -100px en largeur</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> resizeactive</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 0</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 100</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">     # +100px en hauteur</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> resizeactive</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 0</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -100</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">    # -100px en hauteur</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Changer de workspace</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> workspace</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 3</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Envoyer la fenetre vers un workspace</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movetoworkspace</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 5</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Envoyer la fenetre vers un ecran specifique</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movewindow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> mon:DP-5</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> movewindow</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> mon:eDP-1</span></span></code></pre></figure>
+<hr/>
+<h2 id="configuration-de-waybar">Configuration de Waybar<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#configuration-de-waybar" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Waybar est la barre de statut. Deux fichiers dans <code>~/.config/waybar/</code> :</p>
+<h3 id="configjsonc">config.jsonc<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#configjsonc" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Definit les modules et leur position :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="jsonc" data-theme="github-light github-dark"><code data-language="jsonc" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">{</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;layer&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;top&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;position&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;top&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;height&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">34</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;spacing&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;modules-left&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;hyprland/workspaces&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;hyprland/window&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">],</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;modules-center&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;clock&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">],</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;modules-right&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: [</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">        &quot;mpris&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;tray&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;cpu&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;memory&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;temperature&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">        &quot;pulseaudio&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;network&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;battery&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;custom/power&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    ],</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;hyprland/workspaces&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;{id}&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;on-click&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;activate&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;sort-by-number&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">true</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    },</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;clock&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;{:%H:%M  %a %d %b}&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;tooltip-format&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;&lt;tt>{calendar}&lt;/tt>&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    },</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;cpu&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;interval&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;󰍛 {usage}%&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    },</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;memory&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;interval&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">10</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;󰘚 {percentage}%&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;tooltip-format&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;{used:0.1f} / {total:0.1f} Go&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    },</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;temperature&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;interval&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;critical-threshold&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">80</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot; {temperatureC}°C&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    },</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;mpris&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;{player_icon} {artist} - {title}&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;max-length&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">40</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    },</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;battery&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;{icon} {capacity}%&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format-charging&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;󰂄 {capacity}%&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;states&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: { </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;warning&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">30</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">, </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">&quot;critical&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">15</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> }</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    },</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;network&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format-wifi&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;󰤨 {essid}&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format-ethernet&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;󰈀 Filaire&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format-disconnected&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;󰤭 Deconnecte&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    },</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">    &quot;pulseaudio&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: {</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;{icon} {volume}%&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;format-muted&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;󰝟 muet&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">,</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;">        &quot;on-click&quot;</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">: </span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle&quot;</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">    }</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<h3 id="stylecss">style.css<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#stylecss" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Theme Catppuccin Mocha avec fond semi-transparent. Chaque module systeme a sa couleur : CPU en cyan, RAM en violet, temperature en vert (rouge si critique), media en rose.</p>
+<p>Le fichier complet est dans <code>~/.config/waybar/style.css</code>.</p>
+<hr/>
+<h2 id="configuration-des-notifications-mako">Configuration des notifications (mako)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#configuration-des-notifications-mako" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Fichier <code>~/.config/mako/config</code> :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Apparence Catppuccin</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">font</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=JetBrainsMono Nerd Font 11</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">background-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#1e1e2edd</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">text-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#cdd6f4</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">border-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#89b4fa</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">border-size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=2</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">border-radius</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=10</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">padding</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=12</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">margin</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=10</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Timeout</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">default-timeout</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=5000</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Position</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">anchor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=top-right</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">width</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=350</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">height</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=100</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Urgence critique : 10s, bordure rouge</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">[urgency=critical]</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">border-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#f38ba8</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">default-timeout</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=10000</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Urgence basse : 3s</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">[urgency=low]</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">default-timeout</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=3000</span></span></code></pre></figure>
+<p>Recharger apres modification :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">makoctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> reload</span></span></code></pre></figure>
+<hr/>
+<h2 id="configuration-du-lanceur-wofi">Configuration du lanceur (wofi)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#configuration-du-lanceur-wofi" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Deux fichiers dans <code>~/.config/wofi/</code> :</p>
+<h3 id="config">config<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#config" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">width</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=500</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">height</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=350</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">location</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=center</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">show</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=drun</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">prompt</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=Rechercher...</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">insensitive</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=true</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">allow_images</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=true</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">image_size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=24</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">columns</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=1</span></span></code></pre></figure>
+<h3 id="stylecss-1">style.css<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#stylecss-1" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Theme Catppuccin avec fond sombre semi-transparent, coins arrondis et surbrillance bleue sur la selection.</p>
+<hr/>
+<h2 id="configuration-du-terminal-ghostty">Configuration du terminal (Ghostty)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#configuration-du-terminal-ghostty" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Fichier <code>~/.config/ghostty/config.ghostty</code> :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">font-family</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = JetBrainsMono Nerd Font</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">font-size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 12</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">background-opacity</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 0.92</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Catppuccin Mocha</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">background</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 1e1e2e</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">foreground</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = cdd6f4</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">cursor-color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = f5e0dc</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">selection-background</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 45475a</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">selection-foreground</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = cdd6f4</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Palette 16 couleurs</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#45475a</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">1</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#f38ba8</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">2</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#a6e3a1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">3</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#f9e2af</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">4</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#89b4fa</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">5</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#f5c2e7</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">6</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#94e2d5</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">7</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#bac2de</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">8</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#585b70</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">9</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#f38ba8</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">10</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#a6e3a1</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">11</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#f9e2af</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">12</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#89b4fa</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">13</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#f5c2e7</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">14</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#94e2d5</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">palette</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = </span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">15</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">=</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;">#a6adc8</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">window-padding-x</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 8</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">window-padding-y</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 4</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">window-decoration</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = false</span></span></code></pre></figure>
+<hr/>
+<h2 id="configuration-du-verrouillage-hyprlock">Configuration du verrouillage (hyprlock)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#configuration-du-verrouillage-hyprlock" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Fichier <code>~/.config/hypr/hyprlock.conf</code> :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">background {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    monitor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> =</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = rgba(1e1e2eff)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    blur_passes</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 3</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    blur_size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 6</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">input-field {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    monitor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> =</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 300, 50</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    outline_thickness</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 2</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    outer_color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = rgba(89b4faee)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    inner_color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = rgba(313244ee)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    font_color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = rgb(cdd6f4)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    placeholder_text</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = &lt;i>Mot de passe...&lt;/i></span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    rounding</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 10</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    position</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 0, -50</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    halign</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = center</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    valign</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = center</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">label {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    monitor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> =</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    text</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = $TIME</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = rgba(cdd6f4ff)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    font_size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 72</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    font_family</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = JetBrainsMono Nerd Font</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    position</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 0, 120</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    halign</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = center</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    valign</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = center</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">label {</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    monitor</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> =</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    text</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = cmd[update:3600000] date +</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">&quot;%A %d %B&quot;</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    color</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = rgba(a6adc8ff)</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    font_size</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 20</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    font_family</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = JetBrainsMono Nerd Font</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    position</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = 0, 50</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    halign</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = center</span></span>
+<span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">    valign</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = center</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">}</span></span></code></pre></figure>
+<hr/>
+<h2 id="clipboard-manager-cliphist">Clipboard manager (cliphist)<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#clipboard-manager-cliphist" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>cliphist stocke l’historique du presse-papiers. Le daemon tourne au demarrage via :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="ini" data-theme="github-light github-dark"><code data-language="ini" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;">exec-once</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;"> = wl-paste --watch cliphist store</span></span></code></pre></figure>
+<p>Consulter l’historique avec <code>SUPER + SHIFT + V</code> qui ouvre wofi en mode dmenu.</p>
+<p>Gestion manuelle :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Lister l'historique</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">cliphist</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> list</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Vider l'historique</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">cliphist</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> wipe</span></span></code></pre></figure>
+<hr/>
+<h2 id="theme-gtk">Theme GTK<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#theme-gtk" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Pour que les applications GTK respectent le theme sombre :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Appliquer le theme sombre</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">gsettings</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> org.gnome.desktop.interface</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> gtk-theme</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Breeze-Dark&quot;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">gsettings</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> org.gnome.desktop.interface</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> color-scheme</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;prefer-dark&quot;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">gsettings</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> org.gnome.desktop.interface</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> icon-theme</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;breeze-dark&quot;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">gsettings</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> org.gnome.desktop.interface</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> cursor-theme</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;breeze_cursors&quot;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">gsettings</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> set</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> org.gnome.desktop.interface</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> cursor-size</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> 24</span></span></code></pre></figure>
+<p>Les variables d’environnement dans <code>hyprland.conf</code> assurent que le theme est aussi applique aux applications lancees depuis Hyprland.</p>
+<hr/>
+<h2 id="commandes-utiles">Commandes utiles<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#commandes-utiles" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="hyprctl">Hyprctl<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#hyprctl" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p><code>hyprctl</code> permet d’interagir avec Hyprland en temps reel :</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Voir les moniteurs connectes</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> monitors</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Voir les fenetres ouvertes</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> clients</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Recharger la config (sans redemarrer la session)</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> reload</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Voir les workspaces actifs</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> workspaces</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Dispatcher une action</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">hyprctl</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> dispatch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> exec</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> ghostty</span></span></code></pre></figure>
+<h3 id="debug">Debug<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#debug" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Logs Hyprland</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">cat</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> /tmp/hypr/</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">$HYPRLAND_INSTANCE_SIGNATURE</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;">/hyprland.log</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Tester une notification</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">notify-send</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Test&quot;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> &quot;Ceci est un test&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;"># Verifier la config waybar</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;">waybar</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;"> -l</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;"> debug</span></span></code></pre></figure>
+<hr/>
+<h2 id="arborescence-des-fichiers-de-configuration">Arborescence des fichiers de configuration<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#arborescence-des-fichiers-de-configuration" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<pre><code>~/.config/
+├── hypr/
+│   ├── hyprland.conf      # Config principale
+│   └── hyprlock.conf       # Ecran de verrouillage
+├── waybar/
+│   ├── config.jsonc        # Modules et disposition
+│   └── style.css           # Theme visuel
+├── mako/
+│   └── config              # Notifications
+├── wofi/
+│   ├── config              # Comportement du lanceur
+│   └── style.css           # Theme du lanceur
+└── ghostty/
+    └── config.ghostty      # Terminal
+</code></pre>
+<hr/>
+<h2 id="ressources">Ressources<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#ressources" class="internal"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li><a href="https://wiki.hypr.land" class="external">Wiki officiel Hyprland<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><a href="https://copr.fedorainfracloud.org/coprs/lionheartp/Hyprland/" class="external">COPR lionheartp/Hyprland<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><a href="https://github.com/catppuccin/catppuccin" class="external">Catppuccin (palette de couleurs)<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><a href="https://github.com/Alexays/Waybar/wiki" class="external">Waybar Wiki<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+<li><a href="https://www.nerdfonts.com/" class="external">Nerd Fonts<svg aria-hidden="true" class="external-icon" style="max-width:0.8em;max-height:0.8em;" viewBox="0 0 512 512"><path d="M320 0H288V64h32 82.7L201.4 265.4 178.7 288 224 333.3l22.6-22.6L448 109.3V192v32h64V192 32 0H480 320zM32 32H0V64 480v32H32 456h32V480 352 320H424v32 96H64V96h96 32V32H160 32z"></path></svg></a></li>
+</ul></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Graph View</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="toc desktop-only"><button type="button" class="toc-header" aria-controls="toc-content" aria-expanded="true"><h3>Table of Contents</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul class="toc-content overflow" id="list-1"><li class="depth-0"><a href="#contexte" data-for="contexte">Contexte</a></li><li class="depth-0"><a href="#installation" data-for="installation">Installation</a></li><li class="depth-1"><a href="#activer-le-depot-copr" data-for="activer-le-depot-copr">Activer le depot COPR</a></li><li class="depth-1"><a href="#installer-les-outils-essentiels" data-for="installer-les-outils-essentiels">Installer les outils essentiels</a></li><li class="depth-1"><a href="#installer-une-nerd-font" data-for="installer-une-nerd-font">Installer une Nerd Font</a></li><li class="depth-0"><a href="#configuration-de-hyprland" data-for="configuration-de-hyprland">Configuration de Hyprland</a></li><li class="depth-1"><a href="#moniteurs" data-for="moniteurs">Moniteurs</a></li><li class="depth-1"><a href="#programmes-par-defaut" data-for="programmes-par-defaut">Programmes par defaut</a></li><li class="depth-1"><a href="#autostart" data-for="autostart">Autostart</a></li><li class="depth-1"><a href="#variables-denvironnement" data-for="variables-denvironnement">Variables d’environnement</a></li><li class="depth-1"><a href="#apparence" data-for="apparence">Apparence</a></li><li class="depth-1"><a href="#animations" data-for="animations">Animations</a></li><li class="depth-1"><a href="#layout" data-for="layout">Layout</a></li><li class="depth-1"><a href="#input" data-for="input">Input</a></li><li class="depth-1"><a href="#workspaces-par-ecran" data-for="workspaces-par-ecran">Workspaces par ecran</a></li><li class="depth-0"><a href="#raccourcis-clavier" data-for="raccourcis-clavier">Raccourcis clavier</a></li><li class="depth-1"><a href="#lancer-et-fermer" data-for="lancer-et-fermer">Lancer et fermer</a></li><li class="depth-1"><a href="#gestion-des-fenetres" data-for="gestion-des-fenetres">Gestion des fenetres</a></li><li class="depth-1"><a href="#naviguer-entre-les-fenetres" data-for="naviguer-entre-les-fenetres">Naviguer entre les fenetres</a></li><li class="depth-1"><a href="#deplacer-les-fenetres" data-for="deplacer-les-fenetres">Deplacer les fenetres</a></li><li class="depth-1"><a href="#redimensionner-les-fenetres" data-for="redimensionner-les-fenetres">Redimensionner les fenetres</a></li><li class="depth-1"><a href="#workspaces" data-for="workspaces">Workspaces</a></li><li class="depth-1"><a href="#screenshots" data-for="screenshots">Screenshots</a></li><li class="depth-1"><a href="#clipboard" data-for="clipboard">Clipboard</a></li><li class="depth-1"><a href="#media" data-for="media">Media</a></li><li class="depth-1"><a href="#commandes-hyprctl-equivalentes" data-for="commandes-hyprctl-equivalentes">Commandes hyprctl equivalentes</a></li><li class="depth-0"><a href="#configuration-de-waybar" data-for="configuration-de-waybar">Configuration de Waybar</a></li><li class="depth-1"><a href="#configjsonc" data-for="configjsonc">config.jsonc</a></li><li class="depth-1"><a href="#stylecss" data-for="stylecss">style.css</a></li><li class="depth-0"><a href="#configuration-des-notifications-mako" data-for="configuration-des-notifications-mako">Configuration des notifications (mako)</a></li><li class="depth-0"><a href="#configuration-du-lanceur-wofi" data-for="configuration-du-lanceur-wofi">Configuration du lanceur (wofi)</a></li><li class="depth-1"><a href="#config" data-for="config">config</a></li><li class="depth-1"><a href="#stylecss-1" data-for="stylecss-1">style.css</a></li><li class="depth-0"><a href="#configuration-du-terminal-ghostty" data-for="configuration-du-terminal-ghostty">Configuration du terminal (Ghostty)</a></li><li class="depth-0"><a href="#configuration-du-verrouillage-hyprlock" data-for="configuration-du-verrouillage-hyprlock">Configuration du verrouillage (hyprlock)</a></li><li class="depth-0"><a href="#clipboard-manager-cliphist" data-for="clipboard-manager-cliphist">Clipboard manager (cliphist)</a></li><li class="depth-0"><a href="#theme-gtk" data-for="theme-gtk">Theme GTK</a></li><li class="depth-0"><a href="#commandes-utiles" data-for="commandes-utiles">Commandes utiles</a></li><li class="depth-1"><a href="#hyprctl" data-for="hyprctl">Hyprctl</a></li><li class="depth-1"><a href="#debug" data-for="debug">Debug</a></li><li class="depth-0"><a href="#arborescence-des-fichiers-de-configuration" data-for="arborescence-des-fichiers-de-configuration">Arborescence des fichiers de configuration</a></li><li class="depth-0"><a href="#ressources" data-for="ressources">Ressources</a></li><li class="overflow-end"></li></ul></div><div class="backlinks"><h3>Backlinks</h3><ul id="list-2" class="overflow"><li><a href="../../Notes/Linux/Linux-Hub" class="internal">Linux Hub</a></li><li class="overflow-end"></li></ul></div></div><footer class><p>Created with <a href="https://quartz.jzhao.xyz/">Quartz v4.5.1</a> © 2026</p><ul><li><a href="https://github.com/bastien-boivin">Mon GitHub</a></li><li><a href="mailto:admin@bastien-boivin.com">Me contacter</a></li><li><a href="https://github.com/bastien-boivin/bastien-boivin.github.io">Site source</a></li></ul></footer></div></div></body><script type="application/javascript">function n(){let t=this.parentElement;t.classList.toggle("is-collapsed");let e=t.getElementsByClassName("callout-content")[0];if(!e)return;let l=t.classList.contains("is-collapsed");e.style.gridTemplateRows=l?"0fr":"1fr"}function c(){let t=document.getElementsByClassName("callout is-collapsible");for(let e of t){let l=e.getElementsByClassName("callout-title")[0],s=e.getElementsByClassName("callout-content")[0];if(!l||!s)continue;l.addEventListener("click",n),window.addCleanup(()=>l.removeEventListener("click",n));let o=e.classList.contains("is-collapsed");s.style.gridTemplateRows=o?"0fr":"1fr"}}document.addEventListener("nav",c);
+</script><script type="module">function f(i,e){if(!i)return;function r(o){o.target===this&&(o.preventDefault(),o.stopPropagation(),e())}function t(o){o.key.startsWith("Esc")&&(o.preventDefault(),e())}i?.addEventListener("click",r),window.addCleanup(()=>i?.removeEventListener("click",r)),document.addEventListener("keydown",t),window.addCleanup(()=>document.removeEventListener("keydown",t))}function y(i){for(;i.firstChild;)i.removeChild(i.firstChild)}var h=class{constructor(e,r){this.container=e;this.content=r;this.setupEventListeners(),this.setupNavigationControls(),this.resetTransform()}isDragging=!1;startPan={x:0,y:0};currentPan={x:0,y:0};scale=1;MIN_SCALE=.5;MAX_SCALE=3;cleanups=[];setupEventListeners(){let e=this.onMouseDown.bind(this),r=this.onMouseMove.bind(this),t=this.onMouseUp.bind(this),o=this.resetTransform.bind(this);this.container.addEventListener("mousedown",e),document.addEventListener("mousemove",r),document.addEventListener("mouseup",t),window.addEventListener("resize",o),this.cleanups.push(()=>this.container.removeEventListener("mousedown",e),()=>document.removeEventListener("mousemove",r),()=>document.removeEventListener("mouseup",t),()=>window.removeEventListener("resize",o))}cleanup(){for(let e of this.cleanups)e()}setupNavigationControls(){let e=document.createElement("div");e.className="mermaid-controls";let r=this.createButton("+",()=>this.zoom(.1)),t=this.createButton("-",()=>this.zoom(-.1)),o=this.createButton("Reset",()=>this.resetTransform());e.appendChild(t),e.appendChild(o),e.appendChild(r),this.container.appendChild(e)}createButton(e,r){let t=document.createElement("button");return t.textContent=e,t.className="mermaid-control-button",t.addEventListener("click",r),window.addCleanup(()=>t.removeEventListener("click",r)),t}onMouseDown(e){e.button===0&&(this.isDragging=!0,this.startPan={x:e.clientX-this.currentPan.x,y:e.clientY-this.currentPan.y},this.container.style.cursor="grabbing")}onMouseMove(e){this.isDragging&&(e.preventDefault(),this.currentPan={x:e.clientX-this.startPan.x,y:e.clientY-this.startPan.y},this.updateTransform())}onMouseUp(){this.isDragging=!1,this.container.style.cursor="grab"}zoom(e){let r=Math.min(Math.max(this.scale+e,this.MIN_SCALE),this.MAX_SCALE),t=this.content.getBoundingClientRect(),o=t.width/2,n=t.height/2,c=r-this.scale;this.currentPan.x-=o*c,this.currentPan.y-=n*c,this.scale=r,this.updateTransform()}updateTransform(){this.content.style.transform=`translate(${this.currentPan.x}px, ${this.currentPan.y}px) scale(${this.scale})`}resetTransform(){this.scale=1;let e=this.content.querySelector("svg");this.currentPan={x:e.getBoundingClientRect().width/2,y:e.getBoundingClientRect().height/2},this.updateTransform()}},C=["--secondary","--tertiary","--gray","--light","--lightgray","--highlight","--dark","--darkgray","--codeFont"],E;document.addEventListener("nav",async()=>{let e=document.querySelector(".center").querySelectorAll("code.mermaid");if(e.length===0)return;E||=await import("https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.4.0/mermaid.esm.min.mjs");let r=E.default,t=new WeakMap;for(let n of e)t.set(n,n.innerText);async function o(){for(let s of e){s.removeAttribute("data-processed");let a=t.get(s);a&&(s.innerHTML=a)}let n=C.reduce((s,a)=>(s[a]=window.getComputedStyle(document.documentElement).getPropertyValue(a),s),{}),c=document.documentElement.getAttribute("saved-theme")==="dark";r.initialize({startOnLoad:!1,securityLevel:"loose",theme:c?"dark":"base",themeVariables:{fontFamily:n["--codeFont"],primaryColor:n["--light"],primaryTextColor:n["--darkgray"],primaryBorderColor:n["--tertiary"],lineColor:n["--darkgray"],secondaryColor:n["--secondary"],tertiaryColor:n["--tertiary"],clusterBkg:n["--light"],edgeLabelBackground:n["--highlight"]}}),await r.run({nodes:e})}await o(),document.addEventListener("themechange",o),window.addCleanup(()=>document.removeEventListener("themechange",o));for(let n=0;n<e.length;n++){let v=function(){let g=l.querySelector("#mermaid-space"),m=l.querySelector(".mermaid-content");if(!m)return;y(m);let w=c.querySelector("svg").cloneNode(!0);m.appendChild(w),l.classList.add("active"),g.style.cursor="grab",u=new h(g,m)},M=function(){l.classList.remove("active"),u?.cleanup(),u=null},c=e[n],s=c.parentElement,a=s.querySelector(".clipboard-button"),d=s.querySelector(".expand-button"),p=window.getComputedStyle(a),L=a.offsetWidth+parseFloat(p.marginLeft||"0")+parseFloat(p.marginRight||"0");d.style.right=`calc(${L}px + 0.3rem)`,s.prepend(d);let l=s.querySelector("#mermaid-container");if(!l)return;let u=null;d.addEventListener("click",v),f(l,M),window.addCleanup(()=>{u?.cleanup(),d.removeEventListener("click",v)})}});
+</script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript"></script><script src="../../postscript.js" type="module"></script></html>
