@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr"><head><title>Gestion de GitBastien Boivin</title><meta charset="utf-8"/><link rel="preload" href="../../index-bb6c1746.css" as="style"/><link rel="preload" href="../../prescript-2bfc6315.js" as="script"/><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted Grotesk:wght@400;700&amp;family=Source Sans Pro:ital,wght@0,400;0,600;1,400;1,600&amp;family=IBM Plex Mono:wght@400;600&amp;display=swap"/><link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="anonymous"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="og:site_name" content="Bastien Boivin"/><meta property="og:title" content="Gestion de GitBastien Boivin"/><meta property="og:type" content="website"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="Gestion de GitBastien Boivin"/><meta name="twitter:description" content="Cloner, branches, synchronisation, tags, releases, changelog et Git LFS"/><meta property="og:description" content="Cloner, branches, synchronisation, tags, releases, changelog et Git LFS"/><meta property="og:image:alt" content="Cloner, branches, synchronisation, tags, releases, changelog et Git LFS"/><meta property="twitter:domain" content="bastien-boivin.github.io"/><meta property="og:url" content="https://bastien-boivin.github.io/notes/dev/gestion-de-git"/><meta property="twitter:url" content="https://bastien-boivin.github.io/notes/dev/gestion-de-git"/><link rel="icon" href="../../static/icon.png"/><meta name="description" content="Cloner, branches, synchronisation, tags, releases, changelog et Git LFS"/><meta name="generator" content="Quartz"/><link href="../../index-bb6c1746.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-735924e0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-589c1cea.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-bbc3f7c0.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-2911f5d1.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-7f220492.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-e427079e.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-53b25b2b.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-c93c6a44.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-8a06014f.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-77d6a441.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-6ee21cee.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-1ea6ad18.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-34bdfded.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-788c9ca3.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-642859cd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-4abc06bd.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-274a3dfe.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-94cb6c84.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-58d5ff56.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../component-7262b5a7.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-a5c806d2.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-6bd36952.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-9857b007.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="../../static/resource-style-d3a1a224.css" rel="stylesheet" type="text/css" data-persist="true"/><link href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" rel="stylesheet" type="text/css" data-persist="true"/><script src="../../prescript-2bfc6315.js" type="application/javascript" data-persist="true"></script><script type="application/javascript" data-persist="true">const fetchData = fetch("../../static/contentIndex.json").then(data => data.json())</script><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted%20Grotesk%3Awght%40400%3B700&amp;family=Source%20Sans%20Pro%3Aital%2Cwght%400%2C400%3B0%2C600%3B1%2C400%3B1%2C600&amp;family=IBM%20Plex%20Mono%3Awght%40400%3B600&amp;display=swap"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta property="og:image" content="https://bastien-boivin.github.io/notes/dev/gestion-de-git-og-image.webp"/><meta property="og:image:url" content="https://bastien-boivin.github.io/notes/dev/gestion-de-git-og-image.webp"/><meta name="twitter:image" content="https://bastien-boivin.github.io/notes/dev/gestion-de-git-og-image.webp"/><meta property="og:image:type" content="image/webp"/></head><body data-slug="notes/dev/gestion-de-git" data-basepath><div id="quartz-root" class="page" data-frame="default"><div id="quartz-body"><div class="left sidebar"><h2 class="page-title"><a href="../..">Bastien Boivin</a></h2><div class="mobile-only"><div class="spacer"></div></div><div class="flex-component" style="flex-direction: row; flex-wrap: nowrap; gap: 0.5rem;"><div style="flex-grow: 1; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><div class="search"><button class="search-button" aria-label="Recherche" aria-expanded="false"><svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.9 19.7"><title>Search</title><g class="search-path" fill="none"><path stroke-linecap="square" d="M18.5 18.3l-5.4-5.4"></path><circle cx="8" cy="8" r="7"></circle></g></svg><p>Recherche</p></button><div class="search-container"><div class="search-space"><input autocomplete="off" class="search-bar" name="search" type="text" aria-label="Rechercher quelque chose..." placeholder="Rechercher quelque chose..."/><div class="search-layout" data-preview="true" data-field-priority="[&quot;title&quot;,&quot;content&quot;,&quot;tags&quot;]"></div></div></div></div></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="darkmode" aria-label="Mode sombre"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="dayIcon" x="0px" y="0px" viewBox="0 0 35 35" style="enable-background:new 0 0 35 35" xml:space="preserve" aria-label="Mode sombre"><title>Mode sombre</title><path d="M6,17.5C6,16.672,5.328,16,4.5,16h-3C0.672,16,0,16.672,0,17.5    S0.672,19,1.5,19h3C5.328,19,6,18.328,6,17.5z M7.5,26c-0.414,0-0.789,0.168-1.061,0.439l-2,2C4.168,28.711,4,29.086,4,29.5    C4,30.328,4.671,31,5.5,31c0.414,0,0.789-0.168,1.06-0.44l2-2C8.832,28.289,9,27.914,9,27.5C9,26.672,8.329,26,7.5,26z M17.5,6    C18.329,6,19,5.328,19,4.5v-3C19,0.672,18.329,0,17.5,0S16,0.672,16,1.5v3C16,5.328,16.671,6,17.5,6z M27.5,9    c0.414,0,0.789-0.168,1.06-0.439l2-2C30.832,6.289,31,5.914,31,5.5C31,4.672,30.329,4,29.5,4c-0.414,0-0.789,0.168-1.061,0.44    l-2,2C26.168,6.711,26,7.086,26,7.5C26,8.328,26.671,9,27.5,9z M6.439,8.561C6.711,8.832,7.086,9,7.5,9C8.328,9,9,8.328,9,7.5    c0-0.414-0.168-0.789-0.439-1.061l-2-2C6.289,4.168,5.914,4,5.5,4C4.672,4,4,4.672,4,5.5c0,0.414,0.168,0.789,0.439,1.06    L6.439,8.561z M33.5,16h-3c-0.828,0-1.5,0.672-1.5,1.5s0.672,1.5,1.5,1.5h3c0.828,0,1.5-0.672,1.5-1.5S34.328,16,33.5,16z     M28.561,26.439C28.289,26.168,27.914,26,27.5,26c-0.828,0-1.5,0.672-1.5,1.5c0,0.414,0.168,0.789,0.439,1.06l2,2    C28.711,30.832,29.086,31,29.5,31c0.828,0,1.5-0.672,1.5-1.5c0-0.414-0.168-0.789-0.439-1.061L28.561,26.439z M17.5,29    c-0.829,0-1.5,0.672-1.5,1.5v3c0,0.828,0.671,1.5,1.5,1.5s1.5-0.672,1.5-1.5v-3C19,29.672,18.329,29,17.5,29z M17.5,7    C11.71,7,7,11.71,7,17.5S11.71,28,17.5,28S28,23.29,28,17.5S23.29,7,17.5,7z M17.5,25c-4.136,0-7.5-3.364-7.5-7.5    c0-4.136,3.364-7.5,7.5-7.5c4.136,0,7.5,3.364,7.5,7.5C25,21.636,21.636,25,17.5,25z"></path></svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="nightIcon" x="0px" y="0px" viewBox="0 0 100 100" style="enable-background:new 0 0 100 100" xml:space="preserve" aria-label="Mode clair"><title>Mode clair</title><path d="M96.76,66.458c-0.853-0.852-2.15-1.064-3.23-0.534c-6.063,2.991-12.858,4.571-19.655,4.571  C62.022,70.495,50.88,65.88,42.5,57.5C29.043,44.043,25.658,23.536,34.076,6.47c0.532-1.08,0.318-2.379-0.534-3.23  c-0.851-0.852-2.15-1.064-3.23-0.534c-4.918,2.427-9.375,5.619-13.246,9.491c-9.447,9.447-14.65,22.008-14.65,35.369  c0,13.36,5.203,25.921,14.65,35.368s22.008,14.65,35.368,14.65c13.361,0,25.921-5.203,35.369-14.65  c3.872-3.871,7.064-8.328,9.491-13.246C97.826,68.608,97.611,67.309,96.76,66.458z"></path></svg></button></div><div style="flex-grow: 0; flex-shrink: 1; flex-basis: auto; order: 0; align-self: center; justify-self: center;"><button class="readermode" aria-label="Mode lecture"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" class="readerIcon" fill="currentColor" stroke="currentColor" stroke-width="0.2" stroke-linecap="round" stroke-linejoin="round" width="64px" height="64px" viewBox="0 0 24 24" aria-label="Mode lecture"><title>Mode lecture</title><g transform="translate(-1.8, -1.8) scale(1.15, 1.2)"><path d="M8.9891247,2.5 C10.1384702,2.5 11.2209868,2.96705384 12.0049645,3.76669482 C12.7883914,2.96705384 13.8709081,2.5 15.0202536,2.5 L18.7549359,2.5 C19.1691495,2.5 19.5049359,2.83578644 19.5049359,3.25 L19.5046891,4.004 L21.2546891,4.00457396 C21.6343849,4.00457396 21.9481801,4.28672784 21.9978425,4.6528034 L22.0046891,4.75457396 L22.0046891,20.25 C22.0046891,20.6296958 21.7225353,20.943491 21.3564597,20.9931534 L21.2546891,21 L2.75468914,21 C2.37499337,21 2.06119817,20.7178461 2.01153575,20.3517706 L2.00468914,20.25 L2.00468914,4.75457396 C2.00468914,4.37487819 2.28684302,4.061083 2.65291858,4.01142057 L2.75468914,4.00457396 L4.50368914,4.004 L4.50444233,3.25 C4.50444233,2.87030423 4.78659621,2.55650904 5.15267177,2.50684662 L5.25444233,2.5 L8.9891247,2.5 Z M4.50368914,5.504 L3.50468914,5.504 L3.50468914,19.5 L10.9478955,19.4998273 C10.4513189,18.9207296 9.73864328,18.5588115 8.96709342,18.5065584 L8.77307039,18.5 L5.25444233,18.5 C4.87474657,18.5 4.56095137,18.2178461 4.51128895,17.8517706 L4.50444233,17.75 L4.50368914,5.504 Z M19.5049359,17.75 C19.5049359,18.1642136 19.1691495,18.5 18.7549359,18.5 L15.2363079,18.5 C14.3910149,18.5 13.5994408,18.8724714 13.0614828,19.4998273 L20.5046891,19.5 L20.5046891,5.504 L19.5046891,5.504 L19.5049359,17.75 Z M18.0059359,3.999 L15.0202536,4 L14.8259077,4.00692283 C13.9889509,4.06666544 13.2254227,4.50975805 12.7549359,5.212 L12.7549359,17.777 L12.7782651,17.7601316 C13.4923805,17.2719483 14.3447024,17 15.2363079,17 L18.0059359,16.999 L18.0056891,4.798 L18.0033792,4.75457396 L18.0056891,4.71 L18.0059359,3.999 Z M8.9891247,4 L6.00368914,3.999 L6.00599909,4.75457396 L6.00599909,4.75457396 L6.00368914,4.783 L6.00368914,16.999 L8.77307039,17 C9.57551536,17 10.3461406,17.2202781 11.0128313,17.6202194 L11.2536891,17.776 L11.2536891,5.211 C10.8200889,4.56369974 10.1361548,4.13636104 9.37521067,4.02745763 L9.18347055,4.00692283 L8.9891247,4 Z"></path></g></svg></button></div></div><div class="explorer nav-files-container" data-behavior="link" data-collapsed="collapsed" data-savestate="true" data-data-fns="{&quot;order&quot;:[&quot;filter&quot;,&quot;map&quot;,&quot;sort&quot;],&quot;sortFn&quot;:&quot;(a2, b2) => {\n    if (!a2.isFolder &amp;&amp; !b2.isFolder || a2.isFolder &amp;&amp; b2.isFolder) {\n      return (a2.displayName || \&quot;\&quot;).localeCompare(b2.displayName || \&quot;\&quot;, void 0, {\n        numeric: true,\n        sensitivity: \&quot;base\&quot;\n      });\n    }\n    if (!a2.isFolder &amp;&amp; b2.isFolder) {\n      return 1;\n    }\n    return -1;\n  }&quot;,&quot;filterFn&quot;:&quot;(node) => node.slugSegment !== \&quot;tags\&quot;&quot;,&quot;mapFn&quot;:&quot;(node) => {\n    return node;\n  }&quot;}"><button type="button" class="explorer-toggle mobile-explorer hide-until-loaded" data-mobile="true" aria-controls="explorer-0" aria-label="Explorateur"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg></button><button type="button" class="title-button explorer-toggle desktop-explorer" data-mobile="false" aria-expanded="true"><h2>Explorateur</h2><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><div id="explorer-0" class="explorer-content" aria-expanded="false" role="group"><ul class="explorer-ul overflow" id="list-0"><li class="overflow-end"></li></ul></div><template id="template-file"><li><a href="#" class="nav-file-title tree-item-self"></a></li></template><template id="template-folder"><li><div class="folder-container nav-folder-title tree-item-self"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="5 8 14 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="folder-icon nav-folder-collapse-indicator collapse-icon"><polyline points="6 9 12 15 18 9"></polyline></svg><div><button class="folder-button"><span class="folder-title"></span></button></div></div><div class="folder-outer"><ul class="content tree-item-children"></ul></div></li></template></div></div><div class="center"><div class="page-header"><div class="popover-hint"><nav class="breadcrumb-container" aria-label="breadcrumbs"><div class="breadcrumb-element"><a href="../../">Home</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../notes/">Notes</a><p> ❯ </p></div><div class="breadcrumb-element"><a href="../../notes/dev/">Dev</a><p> ❯ </p></div><div class="breadcrumb-element"><a href>Gestion de Git</a></div></nav><h1 class="article-title">Gestion de Git</h1><p show-comma="true" class="content-meta"><time datetime="2026-04-02T09:44:09.000Z">02 avr. 2026</time><span>10 min de lecture</span></p><ul class="tags"><li><a href="../../tags/git" class="internal tag-link">git</a></li><li><a href="../../tags/dev" class="internal tag-link">dev</a></li><li><a href="../../tags/versioning" class="internal tag-link">versioning</a></li><li><a href="../../tags/gitlab" class="internal tag-link">gitlab</a></li><li><a href="../../tags/github" class="internal tag-link">github</a></li></ul></div></div><article class="popover-hint"><div class="markdown-preview-view markdown-rendered"><h2 id="objectif">Objectif<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#objectif" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Note de référence pour les usages courants de Git. Les exemples utilisent un dépôt avec un serveur distant nommé <code>origin</code> et une branche principale <code>main</code> ou <code>master</code> selon le contexte du projet.</p>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Raccourcis utiles </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><code>HEAD</code> désigne le dernier commit sur la branche courante. <code>origin/nom_branche</code> désigne la branche distante. <code>upstream</code> est souvent le dépôt source d’un fork.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="configuration-minimale">Configuration minimale<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#configuration-minimale" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Vérifier l'installation</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --version</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Identité</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> config</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --global</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> user.name</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;Nom Prénom&quot;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> config</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --global</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> user.email</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;email@example.com&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Branche par défaut</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> config</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --global</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> init.defaultBranch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> main</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Style de pull</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> config</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --global</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> pull.rebase</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> false</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">   # merge</span></span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># git config --global pull.rebase true  # rebase</span></span></code></pre></figure>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Portée de la configuration </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><code>--global</code> applique la configuration à l’utilisateur. Sans <code>--global</code>, la configuration s’applique au dépôt courant dans <code>.git/config</code>.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="cloner-un-dépôt">Cloner un dépôt<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#cloner-un-dépôt" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Clone standard</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> clone</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> https://example.com/owner/repo.git</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Cloner une branche spécifique</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> clone</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --branch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> https://example.com/owner/repo.git</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Clone léger</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> clone</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --depth</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> 1</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> https://example.com/owner/repo.git</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Inclure les sous-modules</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> clone</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --recurse-submodules</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> https://example.com/owner/repo.git</span></span></code></pre></figure>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Clone léger </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Un clone avec <code>--depth 1</code> ne contient pas tout l’historique. Certaines opérations comme <code>git blame</code> ou des rebase complexes peuvent échouer.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="cycle-de-base">Cycle de base<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#cycle-de-base" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># État du dépôt</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> status</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Ajouter des fichiers</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> add</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> fichier.txt</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> add</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> .</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Committer</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> commit</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -m</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;Message clair et concis&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Modifier le dernier commit</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> commit</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --amend</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Historique</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> log</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --oneline</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --graph</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --decorate</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --all</span></span></code></pre></figure>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Messages de commit </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Un bon message résume l’intention. Utiliser l’impératif court. Exemple “Ajoute la commande X”.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="concepts-clés">Concepts clés<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#concepts-clés" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<h3 id="espace-de-travail-et-index">Espace de travail et index<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#espace-de-travail-et-index" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Arbre de travail. fichiers présents dans le dossier du projet</li>
+<li>Index. zone de préparation qui liste ce qui sera inclus dans le prochain commit</li>
+<li>Commit. instantané de l’index avec un message et des métadonnées</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> status</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">           # vue d'ensemble</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> diff</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">             # différences non indexées</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> diff</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --staged</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">    # différences indexées</span></span></code></pre></figure>
+<h3 id="head-et-branches">HEAD et branches<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#head-et-branches" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>HEAD. pointeur vers le dernier commit de la branche actuelle</li>
+<li>Branche. pointeur qui avance avec les commits</li>
+<li>Detached HEAD. HEAD pointe directement sur un commit sans branche</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> checkout</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">has</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">h</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">      # detached HEAD</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> switch</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -c</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> fix/x</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">      # crée une branche et rattache HEAD</span></span></code></pre></figure>
+<h3 id="distants-et-suivi">Distants et suivi<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#distants-et-suivi" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>origin. nom par défaut du dépôt distant principal</li>
+<li>upstream. dépôt source d’un fork si utilisé</li>
+<li>Branche de suivi. branche locale liée à une branche distante. exemple <code>dev</code> qui suit <code>origin/dev</code></li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> remote</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -v</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> branch</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -vv</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">           # montre les branches locales et leur suivi</span></span></code></pre></figure>
+<h3 id="fetch-et-pull">Fetch et pull<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#fetch-et-pull" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>fetch. récupère les mises à jour du distant sans modifier la branche locale</li>
+<li>pull. équivaut à fetch puis merge ou rebase selon la configuration</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> fetch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> pull</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --ff-only</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">       # refuse si merge nécessaire</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> pull</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --rebase</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">        # rejoue les commits locaux après la mise à jour</span></span></code></pre></figure>
+<h3 id="merge-et-fast-forward">Merge et fast forward<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#merge-et-fast-forward" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Merge. combine deux historiques</li>
+<li>Fast forward. avance simple du pointeur si aucun commit local ne diverge</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> merge</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">            # merge auto si fast forward possible</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> merge</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --no-ff</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">    # force un commit de merge</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> merge</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --ff-only</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">  # refuse si non fast forward</span></span></code></pre></figure>
+<h3 id="rebase">Rebase<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#rebase" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>Rebase. rejoue les commits de la branche courante par dessus une autre base</li>
+<li>Réécrit l’historique local. les identifiants de commit changent</li>
+<li>Utile pour obtenir une histoire linéaire et propre</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> rebase</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">           # place vos commits au sommet de dev</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> rebase</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --abort</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">       # annule le rebase en cours</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> rebase</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --continue</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">    # après résolution de conflits</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Nettoyer l'historique récent</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> rebase</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -i</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> HEAD~3</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">     # reword, squash, fixup</span></span></code></pre></figure>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Rebase de branches publiques </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Ne pas rebase une branche déjà partagée sans coordination. Préférer rebase avant le premier push ou sur des branches personnelles.</p>
+</div>
+</blockquote>
+<h3 id="reset-et-revert">Reset et revert<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#reset-et-revert" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>reset. déplace la branche courante vers un commit antérieur
+<ul>
+<li>soft. garde index et fichiers</li>
+<li>mixed. garde les fichiers. vide l’index</li>
+<li>hard. remet index et fichiers à l’état du commit ciblé</li>
+</ul>
+</li>
+<li>revert. crée un nouveau commit qui inverse un commit existant</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> reset</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --soft</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">has</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">h</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> reset</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --mixed</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">has</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">h</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> reset</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --hard</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">has</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">h</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> revert</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">has</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">h</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span></span></code></pre></figure>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Choisir reset ou revert </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><code>reset</code> modifie l’histoire de la branche. <code>revert</code> garde l’histoire et ajoute un commit d’annulation. Pour une branche partagée, préférer <code>revert</code>.</p>
+</div>
+</blockquote>
+<h3 id="cherry-pick">Cherry pick<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#cherry-pick" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Appliquer un commit particulier sur la branche courante sans fusionner tout le reste.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> cherry-pick</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">has</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">h</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span></span></code></pre></figure>
+<h3 id="force-push-et-sécurité">Force push et sécurité<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#force-push-et-sécurité" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<ul>
+<li>push —force. écrase l’historique distant</li>
+<li>push —force-with-lease. refuse d’écraser si le distant a bougé depuis le dernier fetch</li>
+</ul>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> push</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --force-with-lease</span></span></code></pre></figure>
+<h2 id="branches">Branches<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#branches" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Créer et basculer</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> switch</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -c</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> feature/ma-fonction</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Basculer vers une branche existante</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> switch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Équivalent avec checkout</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> checkout</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -b</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> fix/bug-123</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> checkout</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Suivre une branche distante</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> switch</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -t</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin/dev</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Renommer la branche courante</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> branch</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -m</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> nouveau_nom</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Supprimer une branche locale</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> branch</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -d</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> feature/ma-fonction</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">      # refuse si non fusionnée</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> branch</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -D</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> feature/ma-fonction</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">      # suppression forcée</span></span></code></pre></figure>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p> <code>switch</code> ou <code>checkout</code></p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><code>git switch</code> est plus simple pour les branches. <code>git checkout</code> reste utile pour d’autres opérations comme changer de commit ou de fichier.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="distant-et-synchronisation">Distant et synchronisation<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#distant-et-synchronisation" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Voir les distants</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> remote</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -v</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Définir le distant origin si absent</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> remote</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> add</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> https://example.com/owner/repo.git</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Récupérer sans fusion</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> fetch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Récupérer et fusionner</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> pull</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">              # merge par défaut selon la config</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> pull</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --rebase</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">     # rebase si souhaité</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Pousser une branche et définir l'upstream</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> push</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -u</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Pousser des tags</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> push</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --tags</span></span></code></pre></figure>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Force push </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><code>git push --force</code> réécrit l’historique distant. Préférer <code>--force-with-lease</code> et réserver aux branches privées ou en coordination explicite.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="revenir-en-arrière-et-corriger">Revenir en arrière et corriger<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#revenir-en-arrière-et-corriger" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Voir les changements non indexés</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> diff</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Annuler des changements non indexés vers l'état du HEAD</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> restore</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> fichier.txt</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Retirer un fichier de l'index</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> restore</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --staged</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> fichier.txt</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Revenir par commit de correction</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> revert</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">hash_ou_ta</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">g</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Déplacer la branche courante vers un commit</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> reset</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --soft</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">has</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">h</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> reset</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --mixed</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">has</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">h</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">   # par défaut</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> reset</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --hard</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">has</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">h</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Mettre de côté son travail</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> stash</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> push</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -m</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;travail en cours&quot;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> stash</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> list</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> stash</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> pop</span></span></code></pre></figure>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p> <code>reset --hard</code></p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Efface les modifications locales non commitées. Vérifier avec <code>git status</code> et sauvegarder au besoin avec <code>git stash</code>.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="fusion-et-rebase">Fusion et rebase<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#fusion-et-rebase" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Fusionner dev dans la branche courante</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> merge</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Rejouer la branche courante par dessus dev</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> rebase</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Résoudre des conflits</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> status</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> add</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> fichiers_concernés</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> rebase</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --continue</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">   # ou git merge --continue</span></span></code></pre></figure>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Choisir merge ou rebase </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Merge crée un commit de jonction quand il y a divergence. Rebase réécrit vos commits pour les placer après la base visée. Rebase donne une histoire linéaire. Merge conserve le contexte d’intégration. Aligner le choix sur les conventions de l’équipe.</p>
+</div>
+</blockquote>
+<h3 id="cas-pratiques">Cas pratiques<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#cas-pratiques" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Créer un commit de merge même si fast forward possible</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> merge</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --no-ff</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> dev</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Refuser un merge implicite et exiger un fast forward</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> pull</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --ff-only</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Nettoyer et condenser l'historique local avant de pousser</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> rebase</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -i</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin/dev</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Fusion à plat. regroupe les changements sans garder l'historique de la branche feature</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> merge</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --squash</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> feature/x</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> commit</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -m</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;Intègre feature/x&quot;</span></span></code></pre></figure>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Conflits </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Un conflit apparaît quand des lignes modifiées se chevauchent. Résoudre dans les fichiers puis marquer comme résolus avec <code>git add</code>. Continuer avec <code>--continue</code>.</p>
+</div>
+</blockquote>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Quand préférer rebase </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Avant le premier push d’une branche. Pour synchroniser une branche locale sur dev. Pour nettoyer des commits intermédiaires avec <code>rebase -i</code>.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="tags">Tags<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#tags" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Lister les tags</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> tag</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> tag</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -n</span><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment">             # avec message</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Créer un tag léger au HEAD</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> tag</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> v1.2.3</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Créer un tag annoté au HEAD</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> tag</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -a</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> v1.2.3</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -m</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;Version 1.2.3&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Tagger un commit spécifique</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> tag</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -a</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> v1.2.3</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator"> &lt;</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string">hash_commi</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">t</span><span style="--shiki-light:#D73A49;--shiki-dark:#F97583;" data-token-type="operator">></span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Pousser un tag</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> push</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> v1.2.3</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Supprimer un tag local</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> tag</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -d</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> v1.2.3</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Supprimer un tag distant</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> push</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --delete</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> v1.2.3</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Vérifier les tags distants</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> ls-remote</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --tags</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span></span></code></pre></figure>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Tag léger ou annoté </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Un tag annoté stocke l’auteur, la date et un message. Recommandé pour les versions publiées. Un tag léger est un simple pointeur.</p>
+</div>
+</blockquote>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Renommer un tag </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Créer le nouveau tag sur le même commit puis supprimer l’ancien. Exemple
+<code>git tag v0.1.0 0.1^{}</code> puis <code>git tag -d 0.1</code> et <code>git push origin v0.1.0</code> suivi de <code>git push --delete origin 0.1</code>.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="releases">Releases<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#releases" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Différence entre tag et release. Un tag identifie un commit. Une release ajoute un titre, une description, des ressources et un numéro de version sémantique.</p>
+<h3 id="gitlab-et-github-interface">GitLab et GitHub interface<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#gitlab-et-github-interface" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Étapes courantes</p>
+<ol>
+<li>Créer et pousser un tag</li>
+<li>Ouvrir la page Releases du projet</li>
+<li>Créer une release depuis ce tag</li>
+<li>Renseigner le titre, la description et le changelog</li>
+<li>Ajouter des assets si nécessaire</li>
+</ol>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Sources zip et tar.gz </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Les archives source sont générées à la demande par la forge. Elles ne grossissent pas le dépôt Git. Les fichiers ajoutés comme assets téléversés sont stockés côté serveur et comptent dans les quotas du projet.</p>
+</div>
+</blockquote>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Collecte de preuves GitLab </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>La collecte de preuves enregistre un instantané des métadonnées de release. Option utile pour la traçabilité. Elle n’affecte pas le contenu du dépôt.</p>
+</div>
+</blockquote>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Visibilité des releases </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Si une release n’est pas visible en navigation privée, vérifier la visibilité du projet et du dépôt. Projet, dépôt et pages de releases doivent être publics. Vérifier aussi que le tag a été poussé.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="changelog">Changelog<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#changelog" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Rôle. Documenter les changements par version et faciliter le suivi. Format recommandé Keep a Changelog et versions sémantiques SemVer.</p>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>SemVer en bref </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>MAJOR.minor.patch
+MAJOR. rupture de compatibilité
+minor. ajout rétrocompatible
+patch. correction sans changement d’API
+Le préfixe <code>v</code> dans les tags est courant et pratique</p>
+</div>
+</blockquote>
+<h3 id="mise-en-place">Mise en place<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#mise-en-place" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h3>
+<p>Créer <code>CHANGELOG.md</code> à la racine avec une section Unreleased et une entrée par tag.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="markdown" data-theme="github-light github-dark"><code data-language="markdown" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;" data-token-type="punctuation"># Changelog</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">Toutes les modifications notables sont documentées ici.</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">Format inspiré de Keep a Changelog</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">Versionnage suivant SemVer</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;" data-token-type="punctuation">## [</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#DBEDFF;--shiki-dark-text-decoration:underline;" data-token-type="string">Unreleased</span><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;" data-token-type="punctuation">]</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;" data-token-type="punctuation">### Added</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">-</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;" data-token-type="punctuation">### Changed</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">-</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;" data-token-type="punctuation">### Fixed</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;">-</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;" data-token-type="punctuation">## [</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#DBEDFF;--shiki-dark-text-decoration:underline;" data-token-type="string">v0.1.0</span><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;" data-token-type="punctuation">] - 2024-10-01</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-light-font-weight:bold;--shiki-dark:#79B8FF;--shiki-dark-font-weight:bold;" data-token-type="punctuation">### Added</span></span>
+<span data-line><span style="--shiki-light:#E36209;--shiki-dark:#FFAB70;" data-token-type="important">-</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="normal"> Première release officielle du projet</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">[</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#DBEDFF;--shiki-dark-text-decoration:underline;" data-token-type="regexp">Unreleased</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">]: </span><span style="--shiki-light:#24292E;--shiki-light-text-decoration:underline;--shiki-dark:#E1E4E8;--shiki-dark-text-decoration:underline;" data-token-type="normal">https://example.com/compare/v0.1.0...dev</span></span>
+<span data-line><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">[</span><span style="--shiki-light:#032F62;--shiki-light-text-decoration:underline;--shiki-dark:#DBEDFF;--shiki-dark-text-decoration:underline;" data-token-type="regexp">v0.1.0</span><span style="--shiki-light:#24292E;--shiki-dark:#E1E4E8;" data-token-type="punctuation">]: </span><span style="--shiki-light:#24292E;--shiki-light-text-decoration:underline;--shiki-dark:#E1E4E8;--shiki-dark-text-decoration:underline;" data-token-type="normal">https://example.com/releases/tag/v0.1.0</span></span></code></pre></figure>
+<blockquote class="callout info" data-callout="info">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Liens de comparaison </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p><code>Unreleased</code> peut comparer la branche de développement au dernier tag. Adapter l’URL à la forge utilisée. Sur GitLab motif <code>/-/compare/v0.1.0...dev</code>.</p>
+</div>
+</blockquote>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Release et changelog </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Le texte du changelog pour une version peut être copié dans la description de la release. Garder le fichier dans le dépôt pour l’historique.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="git-lfs-et-binaires">Git LFS et binaires<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#git-lfs-et-binaires" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<p>Git LFS gère les gros fichiers binaires. Utile pour données volumineuses ou exécutables. Alternative possible. Publier les binaires en assets de release plutôt que dans le dépôt si les fichiers changent rarement.</p>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Installation locale</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> lfs</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> install</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Traquer des motifs</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> lfs</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> track</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;*.zip&quot;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> lfs</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> track</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;bin/*&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Le suivi crée ou modifie .gitattributes</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> add</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> .gitattributes</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> commit</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -m</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;Active LFS pour les binaires&quot;</span></span></code></pre></figure>
+<blockquote class="callout warning" data-callout="warning">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Quotas et clones </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>LFS consomme du stockage et de la bande passante dédiés. Vérifier les limites du serveur utilisé. Un clone sans LFS récupère des pointeurs et non les gros fichiers.</p>
+</div>
+</blockquote>
+<blockquote class="callout tip" data-callout="tip">
+<div class="callout-title">
+                  <div class="callout-icon"></div>
+                  <div class="callout-title-inner"><p>Choix pratique pour exécutables </p></div>
+                  
+                </div>
+<div class="callout-content">
+<p>Pour des binaires stables et rarement mis à jour, préférer des assets de release par système d’exploitation. Le dépôt reste léger et l’installation côté utilisateur est simple.</p>
+</div>
+</blockquote>
+<hr/>
+<h2 id="référence-rapide">Référence rapide<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#référence-rapide" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<figure data-rehype-pretty-code-figure><pre tabindex="0" data-language="bash" data-theme="github-light github-dark"><code data-language="bash" data-theme="github-light github-dark" style="display:grid;"><span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Cloner et créer une branche</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> clone</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> https://example.com/owner/repo.git</span></span>
+<span data-line><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="function">cd</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> repo</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> switch</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -c</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> feature/x</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Cycle local</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> add</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> .</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> commit</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -m</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;Implémente x&quot;</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Synchroniser</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> fetch</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> pull</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> --rebase</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> push</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -u</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> feature/x</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Tag et release</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> tag</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -a</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> v0.1.0</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -m</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> &quot;v0.1.0&quot;</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> push</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> origin</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> v0.1.0</span></span>
+<span data-line> </span>
+<span data-line><span style="--shiki-light:#6A737D;--shiki-dark:#6A737D;" data-token-type="comment"># Nettoyer</span></span>
+<span data-line><span style="--shiki-light:#6F42C1;--shiki-dark:#B392F0;" data-token-type="function">git</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> branch</span><span style="--shiki-light:#005CC5;--shiki-dark:#79B8FF;" data-token-type="value"> -d</span><span style="--shiki-light:#032F62;--shiki-dark:#9ECBFF;" data-token-type="string"> feature/x</span></span></code></pre></figure>
+<hr/>
+<h2 id="bonnes-pratiques">Bonnes pratiques<a role="anchor" aria-hidden="true" tabindex="-1" data-no-popover="true" href="#bonnes-pratiques" class="internal internal-link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg></a></h2>
+<ul>
+<li>Unité de travail claire par branche</li>
+<li>Tag annoté pour les versions publiées</li>
+<li>Changelog mis à jour à chaque release</li>
+<li>Rebase avant push si l’équipe le demande</li>
+<li>Préférer des assets de release pour les gros binaires</li>
+<li>Messages de commit courts et explicites (en anglais si possible)</li>
+</ul></div></article><hr/><div class="page-footer"></div></div><div class="right sidebar"><div class="graph"><h3>Vue Graphique</h3><div class="graph-outer"><div class="graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:1,&quot;scale&quot;:1.1,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.3,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:false,&quot;enableRadial&quot;:false}"></div><button class="global-graph-icon" aria-label="Global Graph"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 55 55" fill="currentColor" xml:space="preserve"><path d="M49,0c-3.309,0-6,2.691-6,6c0,1.035,0.263,2.009,0.726,2.86l-9.829,9.829C32.542,17.634,30.846,17,29,17
+                s-3.542,0.634-4.898,1.688l-7.669-7.669C16.785,10.424,17,9.74,17,9c0-2.206-1.794-4-4-4S9,6.794,9,9s1.794,4,4,4
+                c0.74,0,1.424-0.215,2.019-0.567l7.669,7.669C21.634,21.458,21,23.154,21,25s0.634,3.542,1.688,4.897L10.024,42.562
+                C8.958,41.595,7.549,41,6,41c-3.309,0-6,2.691-6,6s2.691,6,6,6s6-2.691,6-6c0-1.035-0.263-2.009-0.726-2.86l12.829-12.829
+                c1.106,0.86,2.44,1.436,3.898,1.619v10.16c-2.833,0.478-5,2.942-5,5.91c0,3.309,2.691,6,6,6s6-2.691,6-6c0-2.967-2.167-5.431-5-5.91
+                v-10.16c1.458-0.183,2.792-0.759,3.898-1.619l7.669,7.669C41.215,39.576,41,40.26,41,41c0,2.206,1.794,4,4,4s4-1.794,4-4
+                s-1.794-4-4-4c-0.74,0-1.424,0.215-2.019,0.567l-7.669-7.669C36.366,28.542,37,26.846,37,25s-0.634-3.542-1.688-4.897l9.665-9.665
+                C46.042,11.405,47.451,12,49,12c3.309,0,6-2.691,6-6S52.309,0,49,0z M11,9c0-1.103,0.897-2,2-2s2,0.897,2,2s-0.897,2-2,2
+                S11,10.103,11,9z M6,51c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S8.206,51,6,51z M33,49c0,2.206-1.794,4-4,4s-4-1.794-4-4
+                s1.794-4,4-4S33,46.794,33,49z M29,31c-3.309,0-6-2.691-6-6s2.691-6,6-6s6,2.691,6,6S32.309,31,29,31z M47,41c0,1.103-0.897,2-2,2
+                s-2-0.897-2-2s0.897-2,2-2S47,39.897,47,41z M49,10c-2.206,0-4-1.794-4-4s1.794-4,4-4s4,1.794,4,4S51.206,10,49,10z"></path></svg></button></div><div class="global-graph-outer"><div class="global-graph-container" data-cfg="{&quot;drag&quot;:true,&quot;zoom&quot;:true,&quot;depth&quot;:-1,&quot;scale&quot;:0.9,&quot;repelForce&quot;:0.5,&quot;centerForce&quot;:0.2,&quot;linkDistance&quot;:30,&quot;fontSize&quot;:0.6,&quot;opacityScale&quot;:1,&quot;showTags&quot;:true,&quot;removeTags&quot;:[],&quot;focusOnHover&quot;:true,&quot;enableRadial&quot;:true}"></div></div></div><div class="desktop-only"><div class="toc"><button type="button" class="toc-header" aria-controls="toc-0" aria-expanded="true"><h3>Table des Matières</h3><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="fold"><polyline points="6 9 12 15 18 9"></polyline></svg></button><ul id="list-0" class="toc-content overflow"><li class="depth-0"><a href="#objectif" data-for="objectif">Objectif</a></li><li class="depth-0"><a href="#configuration-minimale" data-for="configuration-minimale">Configuration minimale</a></li><li class="depth-0"><a href="#cloner-un-dépôt" data-for="cloner-un-dépôt">Cloner un dépôt</a></li><li class="depth-0"><a href="#cycle-de-base" data-for="cycle-de-base">Cycle de base</a></li><li class="depth-0"><a href="#concepts-clés" data-for="concepts-clés">Concepts clés</a></li><li class="depth-1"><a href="#espace-de-travail-et-index" data-for="espace-de-travail-et-index">Espace de travail et index</a></li><li class="depth-1"><a href="#head-et-branches" data-for="head-et-branches">HEAD et branches</a></li><li class="depth-1"><a href="#distants-et-suivi" data-for="distants-et-suivi">Distants et suivi</a></li><li class="depth-1"><a href="#fetch-et-pull" data-for="fetch-et-pull">Fetch et pull</a></li><li class="depth-1"><a href="#merge-et-fast-forward" data-for="merge-et-fast-forward">Merge et fast forward</a></li><li class="depth-1"><a href="#rebase" data-for="rebase">Rebase</a></li><li class="depth-1"><a href="#reset-et-revert" data-for="reset-et-revert">Reset et revert</a></li><li class="depth-1"><a href="#cherry-pick" data-for="cherry-pick">Cherry pick</a></li><li class="depth-1"><a href="#force-push-et-sécurité" data-for="force-push-et-sécurité">Force push et sécurité</a></li><li class="depth-0"><a href="#branches" data-for="branches">Branches</a></li><li class="depth-0"><a href="#distant-et-synchronisation" data-for="distant-et-synchronisation">Distant et synchronisation</a></li><li class="depth-0"><a href="#revenir-en-arrière-et-corriger" data-for="revenir-en-arrière-et-corriger">Revenir en arrière et corriger</a></li><li class="depth-0"><a href="#fusion-et-rebase" data-for="fusion-et-rebase">Fusion et rebase</a></li><li class="depth-1"><a href="#cas-pratiques" data-for="cas-pratiques">Cas pratiques</a></li><li class="depth-0"><a href="#tags" data-for="tags">Tags</a></li><li class="depth-0"><a href="#releases" data-for="releases">Releases</a></li><li class="depth-1"><a href="#gitlab-et-github-interface" data-for="gitlab-et-github-interface">GitLab et GitHub interface</a></li><li class="depth-0"><a href="#changelog" data-for="changelog">Changelog</a></li><li class="depth-1"><a href="#mise-en-place" data-for="mise-en-place">Mise en place</a></li><li class="depth-0"><a href="#git-lfs-et-binaires" data-for="git-lfs-et-binaires">Git LFS et binaires</a></li><li class="depth-0"><a href="#référence-rapide" data-for="référence-rapide">Référence rapide</a></li><li class="depth-0"><a href="#bonnes-pratiques" data-for="bonnes-pratiques">Bonnes pratiques</a></li><li class="overflow-end"></li></ul></div></div></div><footer class><p>Créé avec <a href="https://quartz.jzhao.xyz/">Quartz v5.0.0</a> © 2026</p><ul><li><a href="https://github.com/bastien-boivin">Mon GitHub</a></li><li><a href="mailto:admin@bastien-boivin.com">Me contacter</a></li><li><a href="https://github.com/bastien-boivin/bastien-boivin.github.io">Site source</a></li></ul></footer></div></div></body><script src="../../static/resource-after-e13fffa1.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-8b336f9a.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-baba652b.js" type="application/javascript" data-persist="true"></script><script src="../../static/resource-after-5eb75950.js" type="module" data-persist="true"></script><script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/copy-tex.min.js" type="application/javascript" data-persist="true"></script><script src="../../postscript-3426b91c.js" type="module" data-persist="true"></script></html>

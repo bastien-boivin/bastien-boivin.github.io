@@ -3,68 +3,68 @@
     <channel>
       <title>Bastien Boivin</title>
       <link>https://bastien-boivin.github.io</link>
-      <description>Les dernières 10 notes on Bastien Boivin</description>
+      <description>Last 10 notes on Bastien Boivin</description>
       <generator>Quartz -- quartz.jzhao.xyz</generator>
       <item>
-    <title>Gestion de Git</title>
-    <link>https://bastien-boivin.github.io/Notes/Dev/Gestion-de-Git</link>
-    <guid>https://bastien-boivin.github.io/Notes/Dev/Gestion-de-Git</guid>
-    <description>Cloner, branches, synchronisation, tags, releases, changelog et Git LFS</description>
-    <pubDate>Mon, 26 Oct 2026 10:32:36 GMT</pubDate>
+    <title>Dev</title>
+    <link>https://bastien-boivin.github.io/notes/dev/</link>
+    <guid>https://bastien-boivin.github.io/notes/dev/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 26 Oct 2026 12:25:15 GMT</pubDate>
   </item><item>
-    <title>Configuration Hyprland sur Fedora</title>
-    <link>https://bastien-boivin.github.io/Notes/Linux/Configuration-Hyprland-sur-Fedora</link>
-    <guid>https://bastien-boivin.github.io/Notes/Linux/Configuration-Hyprland-sur-Fedora</guid>
-    <description>Installation et configuration complète de Hyprland sur Fedora 43 avec dual monitor, waybar, notifications, clipboard et thème Catppuccin</description>
-    <pubDate>Mon, 26 Oct 2026 10:32:36 GMT</pubDate>
+    <title>Notes</title>
+    <link>https://bastien-boivin.github.io/notes/</link>
+    <guid>https://bastien-boivin.github.io/notes/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 26 Oct 2026 12:25:15 GMT</pubDate>
   </item><item>
-    <title>Gestion des paquets .deb</title>
-    <link>https://bastien-boivin.github.io/Notes/Linux/Gestion-des-.deb</link>
-    <guid>https://bastien-boivin.github.io/Notes/Linux/Gestion-des-.deb</guid>
-    <description>Installation, mise à jour et suppression des paquets .deb sous Debian/Ubuntu</description>
-    <pubDate>Mon, 26 Oct 2026 10:32:36 GMT</pubDate>
+    <title>Linux</title>
+    <link>https://bastien-boivin.github.io/notes/linux/</link>
+    <guid>https://bastien-boivin.github.io/notes/linux/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 26 Oct 2026 12:25:15 GMT</pubDate>
   </item><item>
-    <title>Linux Hub</title>
-    <link>https://bastien-boivin.github.io/Notes/Linux/Linux-Hub</link>
-    <guid>https://bastien-boivin.github.io/Notes/Linux/Linux-Hub</guid>
-    <description>Hub de navigation pour les notes Linux</description>
-    <pubDate>Mon, 26 Oct 2026 10:32:36 GMT</pubDate>
+    <title>Python</title>
+    <link>https://bastien-boivin.github.io/notes/python/</link>
+    <guid>https://bastien-boivin.github.io/notes/python/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 26 Oct 2026 12:25:15 GMT</pubDate>
   </item><item>
-    <title>Montage OneDrive avec rclone</title>
-    <link>https://bastien-boivin.github.io/Notes/Linux/Montage-OneDrive-avec-rclone</link>
-    <guid>https://bastien-boivin.github.io/Notes/Linux/Montage-OneDrive-avec-rclone</guid>
-    <description>Configuration de OneDrive sur Linux avec rclone pour un accès sans synchronisation automatique</description>
-    <pubDate>Mon, 26 Oct 2026 10:32:36 GMT</pubDate>
+    <title>Research</title>
+    <link>https://bastien-boivin.github.io/notes/research/</link>
+    <guid>https://bastien-boivin.github.io/notes/research/</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 26 Oct 2026 12:25:15 GMT</pubDate>
   </item><item>
-    <title>Profil</title>
-    <link>https://bastien-boivin.github.io/Notes/Profil/Profil</link>
-    <guid>https://bastien-boivin.github.io/Notes/Profil/Profil</guid>
-    <description>Profil de Bastien Boivin, doctorant en modélisation hydrogéologique</description>
-    <pubDate>Mon, 26 Oct 2026 10:32:36 GMT</pubDate>
+    <title>git</title>
+    <link>https://bastien-boivin.github.io/tags/git</link>
+    <guid>https://bastien-boivin.github.io/tags/git</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 26 Oct 2026 12:25:15 GMT</pubDate>
   </item><item>
-    <title>Fichiers d&#039;installation yml | txt | ...</title>
-    <link>https://bastien-boivin.github.io/Notes/Python/Fichier-d'installation</link>
-    <guid>https://bastien-boivin.github.io/Notes/Python/Fichier-d'installation</guid>
-    <description>Formats de fichiers de configuration pour les projets Python (yml, txt, toml)</description>
-    <pubDate>Mon, 26 Oct 2026 10:32:36 GMT</pubDate>
+    <title>dev</title>
+    <link>https://bastien-boivin.github.io/tags/dev</link>
+    <guid>https://bastien-boivin.github.io/tags/dev</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 26 Oct 2026 12:25:15 GMT</pubDate>
   </item><item>
-    <title>Gestion des environnements</title>
-    <link>https://bastien-boivin.github.io/Notes/Python/Gestion-des-environnements</link>
-    <guid>https://bastien-boivin.github.io/Notes/Python/Gestion-des-environnements</guid>
-    <description>Gestion des environnements Python avec conda et mamba</description>
-    <pubDate>Mon, 26 Oct 2026 10:32:36 GMT</pubDate>
+    <title>versioning</title>
+    <link>https://bastien-boivin.github.io/tags/versioning</link>
+    <guid>https://bastien-boivin.github.io/tags/versioning</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 26 Oct 2026 12:25:15 GMT</pubDate>
   </item><item>
-    <title>Packages Python</title>
-    <link>https://bastien-boivin.github.io/Notes/Python/Packages-Python</link>
-    <guid>https://bastien-boivin.github.io/Notes/Python/Packages-Python</guid>
-    <description>Installation et gestion des packages Python avec conda, mamba et pip</description>
-    <pubDate>Mon, 26 Oct 2026 10:32:36 GMT</pubDate>
+    <title>gitlab</title>
+    <link>https://bastien-boivin.github.io/tags/gitlab</link>
+    <guid>https://bastien-boivin.github.io/tags/gitlab</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 26 Oct 2026 12:25:15 GMT</pubDate>
   </item><item>
-    <title>Python Hub</title>
-    <link>https://bastien-boivin.github.io/Notes/Python/Python-Hub</link>
-    <guid>https://bastien-boivin.github.io/Notes/Python/Python-Hub</guid>
-    <description>Hub de navigation pour les notes Python</description>
-    <pubDate>Mon, 26 Oct 2026 10:32:36 GMT</pubDate>
+    <title>github</title>
+    <link>https://bastien-boivin.github.io/tags/github</link>
+    <guid>https://bastien-boivin.github.io/tags/github</guid>
+    <description><![CDATA[  ]]></description>
+    <pubDate>Mon, 26 Oct 2026 12:25:15 GMT</pubDate>
   </item>
     </channel>
   </rss>
