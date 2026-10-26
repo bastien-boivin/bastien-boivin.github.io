@@ -4,6 +4,9 @@ public
 prof
 tsconfig.tsbuildinfo
 .quartz-cache
+.quartz/
+quartz/cli/tui/dist/
+.turbo/
 private/
 erl_crash.dump
 
