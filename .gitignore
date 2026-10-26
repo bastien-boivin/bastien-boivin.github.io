@@ -1,0 +1,11 @@
+.DS_Store
+node_modules
+public
+prof
+tsconfig.tsbuildinfo
+.quartz-cache
+private/
+erl_crash.dump
+
+# Obsidian per-session UI state
+content/.obsidian/workspace.json
